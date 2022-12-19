@@ -27,9 +27,6 @@ let isBackToTopRendered = false;
 let alterStyles = (isBackToTopRendered) => {
   backToTopButton.style.visibility = isBackToTopRendered ? "visible" : "hidden";
   backToTopButton.style.opacity = isBackToTopRendered ? 1 : 0;
-  backToTopButton.style.transform = isBackToTopRendered
-    ? "scale(1)"
-    : "scale(0)";
 };
 
 window.addEventListener("scroll", () => {
