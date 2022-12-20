@@ -102,6 +102,11 @@ h6 {
 	--border-light: 1px solid var(--pink);
 }
 
+::selection {
+	background: var(--pink);
+	color: var(--white);
+}
+
 html {
 	font-size: 62.5%; /* (16/10)*100 = 62.5% => 1rem = 10px */
 	box-sizing: border-box;
@@ -488,10 +493,19 @@ body:not(.user-is-tabbing) a:focus {
 	margin-top: var(--gutter-medium);
 }
 
+@media screen and (min-width: 501px) {
+	.header__text-box {
+		margin-top: 0;
+		position: relative;
+		top: 50%;
+		transform: translateY(-70%);
+	}
+}
+
 @media screen and (max-width: 450px) {
-  .header__text-box {
-    margin-top: var(--gutter-normal);
-  }
+	.header__text-box {
+		margin-top: var(--gutter-normal);
+	}
 }
 
 .header__text p {
