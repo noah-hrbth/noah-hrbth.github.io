@@ -480,19 +480,24 @@ body:not(.user-is-tabbing) a:focus {
 /* --------------------------------------- */
 
 .header {
-	background: url("./images/noah.jpg");
+	background: url("./images/ffflurry.svg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
-	height: 100vh;
+	height: 100%;
 	font-size: var(--font-size-normal);
+}
+
+.header-wrapper {
+  height: 100%;
+  width: 100%;
   overflow: scroll;
 }
 
 @media screen and (max-width: 450px) {
 	.header {
-		height: 120vh;
+		height: 100%;
 	}
 }
 
