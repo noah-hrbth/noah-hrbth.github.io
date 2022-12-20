@@ -70,9 +70,9 @@ h6 {
 }
 
 #app {
-  height: 100%;
-  width: 100%;
-  overflow: scroll;
+	height: 100%;
+	width: 100%;
+	overflow: scroll;
 }
 
 :root {
@@ -485,19 +485,18 @@ body:not(.user-is-tabbing) a:focus {
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
-	height: 100%;
+	height: 100vh;
 	font-size: var(--font-size-normal);
 }
 
-.header-wrapper {
-  height: 100%;
-  width: 100%;
-  overflow: scroll;
+.apple-device-mobile {
+	background: radial-gradient(circle, rgba(27,27,47,1) 25%, rgba(35,32,121,1) 50%, rgba(27,27,47,1) 60%);
+  background-size: cover;
 }
 
 @media screen and (max-width: 450px) {
 	.header {
-		height: 100%;
+		height: 120vh;
 	}
 }
 
