@@ -370,7 +370,7 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .back-to-top:hover {
-  transform: scale(1.25);
+	transform: scale(1.25);
 }
 
 .back-to-top__image {
@@ -473,15 +473,25 @@ body:not(.user-is-tabbing) a:focus {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-  background-attachment: fixed;
+	background-attachment: fixed;
 	height: 100vh;
 	font-size: var(--font-size-normal);
 }
 
-.header__text {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
+@media screen and (max-width: 450px) {
+	.header {
+		height: 120vh;
+	}
+}
+
+.header__text-box {
+	margin-top: var(--gutter-medium);
+}
+
+@media screen and (max-width: 450px) {
+  .header__text-box {
+    margin-top: var(--gutter-normal);
+  }
 }
 
 .header__text p {
@@ -506,6 +516,18 @@ body:not(.user-is-tabbing) a:focus {
 	font-weight: 700;
 }
 
+.header__address {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+}
+
+@media (max-width: 500px) {
+	.header__address {
+		justify-content: center;
+	}
+}
+
 /* --------------------------------------- */
 /* ----- Work ----- */
 /* --------------------------------------- */
@@ -524,12 +546,6 @@ body:not(.user-is-tabbing) a:focus {
 
 .work__box:not(:last-child) {
 	margin-bottom: var(--gutter-huge);
-}
-
-@media (max-width: 500px) {
-	.work__box:not(:last-child) {
-		margin-bottom: 20rem;
-	}
 }
 
 .work__links {
@@ -555,7 +571,7 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .work__code-no-spacing {
-  margin-left: 0;
+	margin-left: 0;
 }
 
 .work__code:hover {
@@ -634,23 +650,23 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .about__list {
-  padding-left: 1em;
-  margin-bottom: var(--gutter-small-1);
+	padding-left: 1em;
+	margin-bottom: var(--gutter-small-1);
 }
 
 .about__photo-container {
-  position: relative;
+	position: relative;
 }
 
 .about__photo-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--gradient);
-  opacity: 0.3;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: var(--gradient);
+	opacity: 0.3;
 }
 
 /* --------------------------------------- */
@@ -662,14 +678,14 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .contact__wrapper {
-  display: flex;
-  align-items: center;
-  gap: var(--gutter-medium);
+	display: flex;
+	align-items: center;
+	gap: var(--gutter-medium);
 }
 
 .contact__image {
-  height: 5em;
-  width: 5em;
+	height: 5em;
+	width: 5em;
 }
 
 /* --------------------------------------- */
