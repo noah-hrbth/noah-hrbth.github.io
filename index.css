@@ -485,13 +485,14 @@ body:not(.user-is-tabbing) a:focus {
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
-	height: 100vh;
+	height: 100%;
 	font-size: var(--font-size-normal);
+  overflow: scroll;
 }
 
 @media screen and (max-width: 450px) {
 	.header {
-		height: 120vh;
+		height: 100%;
 	}
 }
 
