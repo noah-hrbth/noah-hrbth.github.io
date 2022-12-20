@@ -38,15 +38,9 @@ window.addEventListener("scroll", () => {
 	}
 });
 
-const checkAppleDevice = () => /iPhone|iPad/.test(navigator.platform);
+window.onscroll = () => {
+	const scrollPosition = window.scrollY;
 
-if (checkAppleDevice() && window.innerWidth < 600) {
 	const header = document.querySelector(".header");
-	header.classList.add("apple-device-mobile");
-
-	window.onscroll = () => {
-		const scrollPosition = window.scrollY;
-
-		header.style.backgroundPosition = `${scrollPosition}px`;
-	};
-}
+	header.style.backgroundPosition = `${scrollPosition * 0.25}px`;
+};

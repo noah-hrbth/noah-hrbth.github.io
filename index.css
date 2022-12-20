@@ -480,18 +480,16 @@ body:not(.user-is-tabbing) a:focus {
 /* --------------------------------------- */
 
 .header {
-	background: url("./images/ffflurry.svg");
-	background-repeat: no-repeat;
+  background: radial-gradient(circle, rgba(27,27,47,1) 25%, rgba(35,32,121,1) 50%, rgba(27,27,47,1) 60%);
 	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
 	height: 100vh;
 	font-size: var(--font-size-normal);
 }
 
-.apple-device-mobile {
-	background: radial-gradient(circle, rgba(27,27,47,1) 25%, rgba(35,32,121,1) 50%, rgba(27,27,47,1) 60%);
-  background-size: cover;
+@media screen and (min-width: 1000px) {
+  .header {
+    background-size: calc(75% - 10vw);
+  }
 }
 
 @media screen and (max-width: 450px) {
