@@ -751,3 +751,33 @@ body:not(.user-is-tabbing) a:focus {
 		padding: var(--gutter-medium) 0;
 	}
 }
+
+.fade-up {
+  animation: fade-up 0.5s ease-in-out;
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-right {
+  animation: fade-right 0.5s 0.15s ease-in-out both;
+}
+
+@keyframes fade-right {
+  0% {
+    opacity: 0;
+    transform: translateX(5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -10,7 +10,8 @@
 			name="keywords"
 			content="Noah Harborth, React, HTML, JavaScript, CSS, SCSS, Vue, PHP, SQL, Figma, web, developer"
 		/>
-    <meta name="theme-color" content="#1b1b2f" />
+		<meta name="theme-color" content="#1b1b2f" />
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 		<link rel="stylesheet" href="index.css" />
 	</head>
 
@@ -18,15 +19,20 @@
 		<header class="header" role="banner" id="top">
 			<div class="row">
 				<nav class="nav" role="navigation">
-					<img src="./images/logo.png" alt="Logo" class="nav__logo" />
+					<img
+						src="./images/logo.png"
+						alt="Logo"
+						class="nav__logo"
+						data-aos="fade-right"
+					/>
 					<ul class="nav__items">
-						<li class="nav__item">
+						<li class="nav__item" data-aos="fade-down" data-aos-delay="100">
 							<a href="#about" class="nav__link">That's me</a>
 						</li>
-						<li class="nav__item">
+						<li class="nav__item" data-aos="fade-down" data-aos-delay="200">
 							<a href="#work" class="nav__link">My Projects</a>
 						</li>
-						<li class="nav__item">
+						<li class="nav__item" data-aos="fade-down" data-aos-delay="300">
 							<a href="#contact" class="nav__link">Contact Me</a>
 						</li>
 					</ul>
@@ -34,16 +40,16 @@
 			</div>
 			<div class="header__text-box row">
 				<div class="header__text">
-					<h1 class="heading-primary">
+					<h1 class="heading-primary" data-aos="fade-left" data-aos-delay="100">
 						<span
 							>Hey there I'm <span class="headline-name mark">Noah</span></span
 						>
 					</h1>
-					<p>
-						Self taught <span class="mark">Web Developer</span> who is
+					<p data-aos="fade-right" data-aos-delay="200">
+						Self taught <span class="mark">Front End Developer</span> who is
 						passionate in everything about web and tech
 					</p>
-					<p class="header__address">
+					<p class="header__address fade-right">
 						<span style="display: inline-block">
 							<svg
 								width="24"
@@ -66,7 +72,9 @@
 						</span>
 						<span class="mark">Düsseldorf, Germany</span>
 					</p>
-					<a href="Resume.pdf" download class="btn btn--pink">My resume</a>
+					<a href="Resume.pdf" download class="btn btn--pink fade-up"
+						>My resume</a
+					>
 				</div>
 			</div>
 		</header>
@@ -74,18 +82,20 @@
 		<main role="main">
 			<section class="about" id="about">
 				<div class="row">
-					<h2>That's me</h2>
+					<h2 data-aos="fade-down">That's me</h2>
 					<div class="about__content">
 						<div class="about__text">
-							<p>
+							<p data-aos="fade-left">
 								My name is Noah Harborth. I am a 20 year old Front End Developer
 								from Germany. I like to change things and build cool stuff I
 								like (and can show off to my friends hehe). Currently I am
 								studying Computer Science at the University of Applied Sciences
 								in Düsseldorf.
 							</p>
-							<span class="mark">Here are some more things about me:</span>
-							<ul class="about__list">
+							<span class="mark" data-aos="fade-left" data-aos-delay="100"
+								>Here are some more things about me:</span
+							>
+							<ul class="about__list" data-aos="fade-left" data-aos-delay="100">
 								<li>
 									experienced in web development, testing and UI/UX basics
 								</li>
@@ -100,16 +110,23 @@
 								<li>open to remote :)</li>
 							</ul>
 							<span
+								data-aos="fade-left"
+								data-aos-delay="200"
 								style="display: block; margin-bottom: var(--gutter-small)"
 								class="mark"
 								>All my other (technical) skills:</span
 							>
-							<a href="Resume.pdf" download class="btn"
+							<a
+								data-aos="fade-up"
+								data-aos-delay="200"
+								href="Resume.pdf"
+								download
+								class="btn"
 								>My Resume (again)</a
 							>
 						</div>
 
-						<div class="about__photo-container">
+						<div class="about__photo-container" data-aos="fade-right">
 							<img
 								class="about__photo"
 								src="./images/noah.jpg"
@@ -122,24 +139,26 @@
 
 			<section class="work" id="work">
 				<div class="row">
-					<h2>My Projects</h2>
+					<h2 data-aos="fade-down">My Projects</h2>
 					<div class="work__boxes">
 						<div class="work__box">
 							<div class="work__text">
-								<h3>Kunstpalast <small class="mark">(current)</small></h3>
-								<p>
+								<h3 data-aos="fade-right" data-aos-delay="100">
+									Kunstpalast <small class="mark">(current)</small>
+								</h3>
+								<p data-aos="fade-right" data-aos-delay="200">
 									A website and shop for the Kunstpalast Düsseldorf. The
 									Kunstpalast is a famous museum based in Düsseldorf, Germany.
 								</p>
 								<ul class="work__list">
-									<li>HTML</li>
-									<li>SCSS</li>
-									<li>JavaScript</li>
-									<li>React</li>
-									<li>PHP</li>
-									<li>WordPress</li>
-									<li>Webpack</li>
-									<li>Babel</li>
+									<li data-aos="fade-right">HTML</li>
+									<li data-aos="fade-right" data-aos-delay="100">SCSS</li>
+									<li data-aos="fade-right" data-aos-delay="200">JavaScript</li>
+									<li data-aos="fade-right" data-aos-delay="300">React</li>
+									<li data-aos="fade-right" data-aos-delay="400">PHP</li>
+									<li data-aos="fade-right" data-aos-delay="500">WordPress</li>
+									<li data-aos="fade-right" data-aos-delay="600">Webpack</li>
+									<li data-aos="fade-right" data-aos-delay="700">Babel</li>
 								</ul>
 
 								<div class="work__links">
@@ -147,12 +166,18 @@
 										href="https://kunstpalast.de"
 										target="_blank"
 										class="link__text"
+										data-aos="fade-up"
+										data-aos-delay="100"
 									>
 										Visit Site <span>&rarr;</span>
 									</a>
 								</div>
 							</div>
-							<div class="work__image-box">
+							<div
+								class="work__image-box"
+								data-aos="fade-left"
+								data-aos-delay="100"
+							>
 								<img
 									src="./images/kunstpalast.png"
 									class="work__image"
@@ -163,47 +188,62 @@
 
 						<div class="work__box">
 							<div class="work__text">
-								<h3>EVKK</h3>
-								<p>A website for the EVKK hospital in Cologne, Germany.</p>
+								<h3 data-aos="fade-right" data-aos-delay="100">EVKK</h3>
+								<p data-aos="fade-right" data-aos-delay="200">
+									A website for the EVKK hospital in Cologne, Germany.
+								</p>
 								<ul class="work__list">
-									<li>HTML</li>
-									<li>SCSS</li>
-									<li>JavaScript</li>
-									<li>React</li>
-									<li>PHP</li>
-									<li>WordPress</li>
-									<li>Webpack</li>
-									<li>Babel</li>
+									<li data-aos="fade-right">HTML</li>
+									<li data-aos="fade-right" data-aos-delay="100">SCSS</li>
+									<li data-aos="fade-right" data-aos-delay="200">JavaScript</li>
+									<li data-aos="fade-right" data-aos-delay="300">React</li>
+									<li data-aos="fade-right" data-aos-delay="400">PHP</li>
+									<li data-aos="fade-right" data-aos-delay="500">WordPress</li>
+									<li data-aos="fade-right" data-aos-delay="600">Webpack</li>
+									<li data-aos="fade-right" data-aos-delay="700">Babel</li>
 								</ul>
 
 								<div class="work__links">
-									<a href="https://evkk.de" class="link__text">
+									<a
+										href="https://evkk.de"
+										class="link__text"
+										data-aos="fade-up"
+										data-aos-delay="100"
+									>
 										Visit Site <span>&rarr;</span>
 									</a>
 								</div>
 							</div>
-							<div class="work__image-box">
+							<div
+								class="work__image-box"
+								data-aos="fade-left"
+								data-aos-delay="100"
+							>
 								<img src="./images/evkk.png" class="work__image" alt="Evkk" />
 							</div>
 						</div>
 
 						<div class="work__box">
 							<div class="work__text">
-								<h3>Minimalist color generator</h3>
-								<p>
+								<h3 data-aos="fade-right" data-aos-delay="100">
+									Minimalist color generator
+								</h3>
+								<p data-aos="fade-right" data-aos-delay="200">
 									A small project I made to learn React and to get a better
 									understanding of how to use components, states etc.
 								</p>
 								<ul class="work__list">
-									<li>HTML</li>
-									<li>SCSS</li>
-									<li>React</li>
-									<li>Vite</li>
+									<li data-aos="fade-right">HTML</li>
+									<li data-aos="fade-right" data-aos-delay="100">SCSS</li>
+									<li data-aos="fade-right" data-aos-delay="200">React</li>
+									<li data-aos="fade-right" data-aos-delay="300">Vite</li>
 								</ul>
 
 								<div class="work__links">
 									<a
 										href="https://github.com/noah-hrbth/noahs-projects/tree/main/color-generator"
+										data-aos="fade-up"
+										data-aos-delay="100"
 									>
 										<img
 											src="./images/github.svg"
@@ -214,7 +254,11 @@
 									</a>
 								</div>
 							</div>
-							<div class="work__image-box">
+							<div
+								class="work__image-box"
+								data-aos="fade-left"
+								data-aos-delay="100"
+							>
 								<img
 									src="./images/color-generator.gif"
 									class="work__image"
@@ -225,20 +269,22 @@
 
 						<div class="work__box">
 							<div class="work__text">
-								<h3>Calculator</h3>
-								<p>
+								<h3 data-aos="fade-right" data-aos-delay="100">Calculator</h3>
+								<p data-aos="fade-right" data-aos-delay="200">
 									Just a small calculator I made cause I tried to understand how
 									a calculator really works.
 								</p>
 								<ul class="work__list">
-									<li>HTML</li>
-									<li>CSS</li>
-									<li>JavaScript</li>
+									<li data-aos="fade-right">HTML</li>
+									<li data-aos="fade-right" data-aos-delay="100">CSS</li>
+									<li data-aos="fade-right" data-aos-delay="200">JavaScript</li>
 								</ul>
 
 								<div class="work__links">
 									<a
 										href="https://github.com/noah-hrbth/noahs-projects/tree/main/calculator"
+										data-aos="fade-up"
+										data-aos-delay="100"
 									>
 										<img
 											src="./images/github.svg"
@@ -249,7 +295,11 @@
 									</a>
 								</div>
 							</div>
-							<div class="work__image-box">
+							<div
+								class="work__image-box"
+								data-aos="fade-left"
+								data-aos-delay="100"
+							>
 								<img
 									src="./images/calculator.png"
 									class="work__image"
@@ -260,29 +310,41 @@
 
 						<div class="work__box">
 							<div class="work__text">
-								<h3>20 Grad Restobar</h3>
-								<p>
+								<h3 data-aos="fade-right" data-aos-delay="100">
+									20Grad Restobar
+								</h3>
+								<p data-aos="fade-right" data-aos-delay="200">
 									I refactored and bug fixed a lot of the code and made a lot of
 									changes to the design and content of the website. Later I will
 									migrate the whole website to WordPress.
 								</p>
 								<ul class="work__list">
-									<li>HTML</li>
-									<li>Less</li>
-									<li>JavaScript</li>
-									<li>Barba.js</li>
-									<li>PHP</li>
-									<li>Webpack</li>
-									<li>Babel</li>
+									<li data-aos="fade-right">HTML</li>
+									<li data-aos="fade-right" data-aos-delay="100">Less</li>
+									<li data-aos="fade-right" data-aos-delay="200">JavaScript</li>
+									<li data-aos="fade-right" data-aos-delay="300">Barba.js</li>
+									<li data-aos="fade-right" data-aos-delay="400">PHP</li>
+									<li data-aos="fade-right" data-aos-delay="500">Webpack</li>
+									<li data-aos="fade-right" data-aos-delay="600">Babel</li>
 								</ul>
 
 								<div class="work__links">
-									<a href="" target="_blank" class="link__text">
+									<a
+										href="https://20grad.com"
+										target="_blank"
+										class="link__text"
+										data-aos="fade-up"
+										data-aos-delay="100"
+									>
 										Visit Site <span>&rarr;</span>
 									</a>
 								</div>
 							</div>
-							<div class="work__image-box">
+							<div
+								class="work__image-box"
+								data-aos="fade-left"
+								data-aos-delay="100"
+							>
 								<img
 									src="./images/20grad.png"
 									class="work__image"
@@ -293,18 +355,20 @@
 
 						<div class="work__box">
 							<div class="work__text">
-								<h3>CSS Flex & Grid games</h3>
-								<p>
+								<h3 data-aos="fade-right" data-aos-delay="100">
+									CSS Flex & Grid games
+								</h3>
+								<p data-aos="fade-right" data-aos-delay="200">
 									This was a small project I made with a friend at university so
 									younger students can learn CSS Flex & Grid in a better way as
 									they taught us in lectures.
 								</p>
 								<ul class="work__list">
-									<li>HTML</li>
-									<li>CSS</li>
-									<li>JavaScript</li>
-									<li>Express.js</li>
-									<li>Vue</li>
+									<li data-aos="fade-right">HTML</li>
+									<li data-aos="fade-right" data-aos-delay="100">CSS</li>
+									<li data-aos="fade-right" data-aos-delay="200">JavaScript</li>
+									<li data-aos="fade-right" data-aos-delay="300">Express.js</li>
+									<li data-aos="fade-right" data-aos-delay="400">Vue</li>
 								</ul>
 
 								<div class="work__links">
@@ -312,11 +376,15 @@
 										href="http://129.159.255.16/"
 										target="_blank"
 										class="link__text"
+										data-aos="fade-up"
+										data-aos-delay="100"
 									>
 										Visit Site <span>&rarr;</span>
 									</a>
 									<a
 										href="https://github.com/noah-hrbth/CSS-Flex-Grid-Games/tree/VueCLI"
+										data-aos="fade-up"
+										data-aos-delay="200"
 									>
 										<img
 											src="./images/github.svg"
@@ -327,7 +395,11 @@
 									</a>
 								</div>
 							</div>
-							<div class="work__image-box">
+							<div
+								class="work__image-box"
+								data-aos="fade-left"
+								data-aos-delay="100"
+							>
 								<img
 									src="./images/css-game.png"
 									class="work__image"
@@ -335,41 +407,16 @@
 								/>
 							</div>
 						</div>
-
-						<!--
-          <div class="work__box">
-            <div class="work__text">
-              <h3>QR Code generator</h3>
-              <p>
-                A small QR code generator with wich you can generate QR codes with basically every string.
-              </p>
-              <ul class="work__list">
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>QR Code JavaScript library</li>
-              </ul>
-
-              <div class="work__links">
-                <a href="https://github.com/noah-hrbth/noahs-projects/tree/main/color-generator">
-                  <img src="./images/github.svg" class="work__code work__code-no-spacing" title="View Source Code" alt="GitHub">
-                </a>
-              </div>
-            </div>
-            <div class="work__image-box">
-              <img src="./images/qrcode-generator.png" class="work__image" alt="QR Code generator" />
-            </div>
-          </div>
-          --></div>
+					</div>
 				</div>
 			</section>
 
 			<section class="contact" id="contact">
 				<div class="row">
-					<h2>Get in Touch</h2>
+					<h2 data-aos="fade-down">Get in Touch</h2>
 					<div class="contact__info">
 						<div class="contact__wrapper">
-							<p>
+							<p data-aos="fade-right">
 								Do you want to work together? Or have any questions? <br />
 								<span class="mark"
 									>Great, I am open for employment or projects!</span
@@ -377,9 +424,18 @@
 								<br />
 								The quickest way to reach out to me is via email 🚀
 							</p>
-							<img class="contact__image" src="./images/logo.png" />
+							<img
+								data-aos="fade-left"
+								data-aos-delay="100"
+								class="contact__image"
+								src="./images/logo.png"
+							/>
 						</div>
-						<a href="mailto:noahhrbth@icloud.com" class="btn"
+						<a
+							data-aos="fade-up"
+							data-aos-delay="200"
+							href="mailto:noahhrbth@icloud.com"
+							class="btn"
 							>noahhrbth@icloud.com</a
 						>
 					</div>
@@ -389,7 +445,7 @@
 		<footer role="contentinfo" class="footer">
 			<div class="row">
 				<ul class="footer__social-links">
-					<li class="footer__social-link-item">
+					<li class="footer__social-link-item" data-aos="fade-down">
 						<a
 							href="https://github.com/noah-hrbth"
 							title="Link to Github Profile"
@@ -401,7 +457,7 @@
 							/>
 						</a>
 					</li>
-					<li class="footer__social-link-item">
+					<li class="footer__social-link-item" data-aos="fade-down" data-aos-delay="100">
 						<a href="https://www.linkedin.com/in/noah-harborth-5b91541a1/">
 							<img
 								src="./images/linkedin.svg"
@@ -411,7 +467,7 @@
 							/>
 						</a>
 					</li>
-					<li class="footer__social-link-item">
+					<li class="footer__social-link-item" data-aos="fade-down" data-aos-delay="200">
 						<a
 							href="https://twitter.com/npm_run_noah"
 							title="Link to Twitter Profile"
@@ -425,7 +481,7 @@
 					</li>
 				</ul>
 
-				<p style="max-width: unset">
+				<p style="max-width: unset" data-aos="fade-up">
 					&copy; 2023 | Made with 💜 by Noah Harborth
 				</p>
 			</div>
@@ -439,5 +495,12 @@
 			/>
 		</a>
 		<script src="./index.js"></script>
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<script>
+			AOS.init({
+        duration: 700,
+        once: true,
+      });
+		</script>
 	</body>
 </html>
