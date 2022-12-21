@@ -28,6 +28,13 @@ let alterStyles = (isBackToTopRendered) => {
 	backToTopButton.style.opacity = isBackToTopRendered ? 1 : 0;
 };
 
+const headerScrollAnimation = () => {
+  const scrollPosition = window.scrollY;
+
+  const header = document.querySelector(".header");
+  header.style.backgroundPosition = `${scrollPosition * 0.25}px`;
+}
+
 window.addEventListener("scroll", () => {
 	if (window.scrollY > 700) {
 		isBackToTopRendered = true;
@@ -35,12 +42,10 @@ window.addEventListener("scroll", () => {
 	} else {
 		isBackToTopRendered = false;
 		alterStyles(isBackToTopRendered);
-	}
+  }
+  headerScrollAnimation();
 });
 
-window.onscroll = () => {
-	const scrollPosition = window.scrollY;
-
-	const header = document.querySelector(".header");
-	header.style.backgroundPosition = `${scrollPosition * 0.25}px`;
-};
+window.addEventListener("load", () => {
+	headerScrollAnimation();
+});

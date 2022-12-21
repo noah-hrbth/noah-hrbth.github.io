@@ -21,11 +21,13 @@ body {
 body {
 	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+	overflow-x: hidden;
 }
 
-header, main, footer {
-  overflow-x: hidden;
+header,
+main,
+footer {
+	overflow-x: hidden;
 }
 
 img,
@@ -174,9 +176,17 @@ section {
 	border-bottom: var(--border-light);
 }
 
+section:last-child {
+  border-bottom: none;
+}
+
 img {
 	object-fit: contain;
 	max-width: 100%;
+}
+
+main {
+	box-shadow: 0 -50px 100px 50px var(--black);
 }
 
 .mark {
@@ -485,17 +495,16 @@ body:not(.user-is-tabbing) a:focus {
 /* --------------------------------------- */
 
 .header {
-  background: radial-gradient(circle, rgba(27,27,47,1) 25%, rgba(35,32,121,1) 50%, rgba(27,27,47,1) 60%);
+	background: radial-gradient(
+		circle,
+		rgba(27, 27, 47, 1) 25%,
+		rgba(35, 32, 121, 1) 50%,
+		rgba(27, 27, 47, 1) 60%
+	);
 	background-size: cover;
-  background-repeat: repeat-x;
+	background-repeat: repeat-x;
 	height: 100vh;
 	font-size: var(--font-size-normal);
-}
-
-@media screen and (min-width: 1000px) {
-  .header {
-    background-size: calc(75% - 10vw);
-  }
 }
 
 @media screen and (max-width: 450px) {
@@ -759,31 +768,31 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .fade-up {
-  animation: fade-up 0.5s ease-in-out;
+	animation: fade-up 0.5s ease-in-out;
 }
 
 @keyframes fade-up {
-  0% {
-    opacity: 0;
-    transform: translateY(5rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateY(5rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .fade-right {
-  animation: fade-right 0.5s 0.15s ease-in-out both;
+	animation: fade-right 0.5s 0.15s ease-in-out both;
 }
 
 @keyframes fade-right {
-  0% {
-    opacity: 0;
-    transform: translateX(5rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateX(5rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
