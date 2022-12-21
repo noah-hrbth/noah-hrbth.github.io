@@ -32,8 +32,8 @@ const headerScrollAnimation = () => {
   const scrollPosition = window.scrollY;
 
   const header = document.querySelector(".header");
-  header.style.backgroundPosition = `${scrollPosition * 0.25}px`;
-}
+  header.style.backgroundPosition = `center ${scrollPosition * 0.3}px`;
+};
 
 window.addEventListener("scroll", () => {
 	if (window.scrollY > 700) {
