@@ -24,6 +24,10 @@ body {
   overflow-x: hidden;
 }
 
+header, main, footer {
+  overflow-x: hidden;
+}
+
 img,
 picture,
 video,
@@ -483,6 +487,7 @@ body:not(.user-is-tabbing) a:focus {
 .header {
   background: radial-gradient(circle, rgba(27,27,47,1) 25%, rgba(35,32,121,1) 50%, rgba(27,27,47,1) 60%);
 	background-size: cover;
+  background-repeat: repeat-x;
 	height: 100vh;
 	font-size: var(--font-size-normal);
 }
