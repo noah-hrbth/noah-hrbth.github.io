@@ -692,7 +692,7 @@ body:not(.user-is-tabbing) a:focus {
 	position: relative;
 }
 
-/*.about__photo-container::before {
+.about__photo-container::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -700,8 +700,8 @@ body:not(.user-is-tabbing) a:focus {
 	right: 0;
 	bottom: 0;
 	background: var(--gradient);
-	opacity: 0.3;
-}*/
+	opacity: 0.1;
+}
 
 /* --------------------------------------- */
 /* ----- Contact ----- */
