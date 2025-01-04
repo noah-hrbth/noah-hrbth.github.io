@@ -1,0 +1,40 @@
+$color_background_1: #000000;
+$color_background_1--blur: rgba(0, 0, 0, 0.55);
+$color_background_2: #ffffff;
+$color_background_2--blur: rgba(255, 255, 255, 0.55);
+
+$color_text_1: #ffffff;
+$color_text_2: #000000;
+
+$color_primary_1: #4c00ff;
+$color_primary_2: #9b9b9b;
+$color_primary_3: #5f5f5f;
+
+$transition: 0.3s;
+$transition_fast: 0.1s;
+$transition_slow: 0.5s;
+
+$font_size_-2: clamp(0.7813rem, 0.7766rem + 0.0234vw, 0.8rem);
+$font_size_-1: clamp(0.9375rem, 0.9219rem + 0.0781vw, 1rem);
+$font_size_0: clamp(1.125rem, 1.0938rem + 0.1563vw, 1.25rem);
+$font_size_1: clamp(1.35rem, 1.2969rem + 0.2656vw, 1.5625rem);
+$font_size_2: clamp(1.62rem, 1.5367rem + 0.4164vw, 1.9531rem);
+$font_size_3: clamp(1.944rem, 1.8196rem + 0.6218vw, 2.4414rem);
+$font_size_4: clamp(2.3328rem, 2.1531rem + 0.8987vw, 3.0518rem);
+$font_size_5: clamp(2.7994rem, 2.5455rem + 1.2692vw, 3.8147rem);
+
+$font_family: sans-serif;
+
+$spacing_0: 0;
+$spacing_1: 0.25rem;
+$spacing_2: 0.5rem;
+$spacing_3: 0.75rem;
+$spacing_4: 1rem;
+$spacing_5: 1.25rem;
+$spacing_6: 1.5rem;
+$spacing_7: 1.75rem;
+$spacing_8: 2rem;
+$spacing_9: 2.25rem;
+$spacing_10: 2.5rem;
+
+$max_width: 1400px; /* TODO: Change this value to 1600px */

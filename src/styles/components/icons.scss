@@ -1,0 +1,14 @@
+@import '../variables';
+
+.icon {
+	color: var(--color-text);
+	transition: color $transition;
+  height: $spacing_8;
+  width: $spacing_8;
+  font-size: $font_size_1;
+}
+
+.icon--logo {
+  height: $font_size_3;
+  width: $font_size_3;
+}

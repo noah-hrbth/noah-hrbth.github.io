@@ -1,0 +1,36 @@
+@import 'variables';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+div {
+	font-family: $font_family;
+	color: $color_text_1;
+}
+
+h1 {
+	font-size: $font_size_5;
+}
+
+h2 {
+	font-size: $font_size_4;
+}
+
+h3 {
+	font-size: $font_size_3;
+}
+
+body,
+html,
+p,
+a,
+span,
+div {
+	font-size: $font_size_0;
+}

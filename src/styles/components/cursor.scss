@@ -1,0 +1,17 @@
+.cursor {
+	position: absolute;
+	height: 25px;
+	width: 25px;
+	background-color: $color_background_1;
+	border-radius: 100%;
+	z-index: 10;
+	pointer-events: none;
+
+	@media (pointer: coarse) {
+		display: none;
+	}
+}
+
+:hover {
+  cursor: none;
+}

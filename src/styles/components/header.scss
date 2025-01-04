@@ -1,0 +1,57 @@
+@import '../variables';
+
+.header {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+
+	&__nav {
+		position: fixed;
+		bottom: 3%;
+		left: 50%;
+		transform: translateX(-50%);
+
+		display: flex;
+		align-items: center;
+
+		padding: $spacing_2 $spacing_4;
+		border-radius: 25px;
+
+		background-color: $color_background_1--blur;
+		box-shadow: 0 0 10px 0 $color_background_2--blur;
+	}
+
+	&__list {
+		display: flex;
+		align-items: center;
+		column-gap: $spacing_4;
+	}
+
+	&__item {
+		a {
+			font-size: $font_size_-2;
+			transition: $transition;
+
+			&.active {
+				font-size: $font_size_0;
+			}
+		}
+	}
+
+	&__logo {
+		place-self: center;
+	}
+
+	&__theme-switch {
+		place-self: end;
+		display: flex;
+		height: 100%;
+		align-items: center;
+		justify-content: center;
+
+		.theme-toggle {
+			color: var(--color-text);
+			transition: color $transition;
+		}
+	}
+}
