@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router';
-import '@theme-toggles/react/css/Expand.css';
 import Logo from '../assets/images/noah_claymorphism_remove-bg.png';
 
 function Header() {

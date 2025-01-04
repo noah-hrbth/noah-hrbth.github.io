@@ -42,12 +42,6 @@
 
 a {
 	text-decoration: none;
-	transition: color $transition;
-
-	&:hover,
-	&:active {
-		color: $color_primary_2;
-	}
 }
 
 @keyframes moveInCircle {

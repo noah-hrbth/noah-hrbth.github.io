@@ -1,8 +1,8 @@
 function About() {
   return (
-    <main>
-      <h1>About</h1>
-    </main>
+    <main className="about">
+			<h1>about</h1>
+		</main>
   );
 }
 

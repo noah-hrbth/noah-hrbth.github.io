@@ -1,8 +1,8 @@
 function Contact() {
   return (
-    <main>
-      <h1>Contact</h1>
-    </main>
+    <main className="contact">
+			<h1>contact</h1>
+		</main>
   );
 }
 
