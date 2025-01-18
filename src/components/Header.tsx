@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router';
 import Logo from '../assets/images/noah_claymorphism_remove-bg.png';
 import { ReactComponent as DocumentDownloadIcon } from '../assets/images/icons/document-download.svg';
+import Resume from '../assets/documents/noah_harborth_resume.pdf';
 
 function Header() {
 	return (
@@ -29,9 +30,9 @@ function Header() {
 				<div className='header__resume fade-in delay-17'>
 					<a
 						className='header__resume-btn'
-						href=''
+						href={Resume}
 						target='_blank'
-						rel='noreferrer'
+            rel='noreferrer'
 					>
 						<DocumentDownloadIcon />
 					</a>

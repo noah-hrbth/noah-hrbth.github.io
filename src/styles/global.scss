@@ -30,11 +30,13 @@
 	0% {
 		width: 100%;
 		margin: 0;
+		border-radius: 0;
 	}
 
 	100% {
 		width: min(90%, $max_width);
 		margin: $spacing_4;
+		border-radius: $spacing_2;
 	}
 }
 
@@ -44,11 +46,11 @@
 	grid-template-rows: auto 1fr;
 	width: 100%;
 	margin: 0;
+	border-radius: 0;
 	padding: $spacing_4 $spacing_8;
 	backdrop-filter: blur(16px) saturate(180%);
 	-webkit-backdrop-filter: blur(16px) saturate(180%);
 	background-color: $color_background_1--blur;
-	border-radius: $spacing_2;
 	transition: $transition;
 	animation: layout-animation 1s ease forwards 0.5s;
 }
