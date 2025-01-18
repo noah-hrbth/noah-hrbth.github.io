@@ -2,6 +2,34 @@ import React from 'react';
 
 function Cursor() {
 	const mousePosition = useMousePosition();
+	const cursurRef = React.useRef<HTMLDivElement>(null);
+
+	const handleCursorHover = () => {
+		const allLinks = document.querySelectorAll('a');
+		const allButtons = document.querySelectorAll('button');
+
+		allLinks.forEach((link) => {
+			link.addEventListener('mouseover', () => {
+				cursurRef.current?.classList.add('cursor--hover');
+			});
+			link.addEventListener('mouseleave', () => {
+				cursurRef.current?.classList.remove('cursor--hover');
+			});
+		});
+
+		allButtons.forEach((button) => {
+			button.addEventListener('mouseover', () => {
+				cursurRef.current?.classList.add('cursor--hover');
+			});
+			button.addEventListener('mouseleave', () => {
+				cursurRef.current?.classList.remove('cursor--hover');
+			});
+		});
+	};
+
+	React.useEffect(() => {
+		handleCursorHover();
+	}, []);
 
 	return (
 		<div
@@ -10,6 +38,7 @@ function Cursor() {
 				top: (mousePosition.y ?? 0) - 10,
 				left: (mousePosition.x ?? 0) - 10,
 			}}
+			ref={cursurRef}
 		></div>
 	);
 }

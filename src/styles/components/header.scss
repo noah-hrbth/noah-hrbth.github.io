@@ -5,11 +5,27 @@
 	justify-content: start;
 	align-items: center;
 
-	&__nav {
+	&__logo {
+		place-self: center;
+	}
+
+	&__container {
 		position: fixed;
 		bottom: 3%;
 		left: 50%;
 		transform: translateX(-50%);
+
+		width: 100%;
+
+		display: grid;
+		grid-template-areas: 'gap nav resume';
+		grid-template-columns: 1fr auto 1fr;
+		column-gap: $spacing_4;
+		align-items: center;
+	}
+
+	&__nav {
+		grid-area: nav;
 
 		display: flex;
 		align-items: center;
@@ -38,20 +54,26 @@
 		}
 	}
 
-	&__logo {
-		place-self: center;
+	&__resume {
+		grid-area: resume;
+
+		display: flex;
+		justify-content: start;
+		align-items: center;
+
+		height: 100%;
 	}
 
-	&__theme-switch {
-		place-self: end;
-		display: flex;
-		height: 100%;
-		align-items: center;
-		justify-content: center;
+	&__resume-btn {
+		display: grid;
+		place-items: center;
 
-		.theme-toggle {
-			color: var(--color-text);
-			transition: color $transition;
-		}
+		aspect-ratio: 1;
+		width: auto;
+		height: 100%;
+		border-radius: 50%;
+
+		background-color: $color_background_1--blur;
+		box-shadow: 0 0 10px 0 $color_background_2--blur;
 	}
 }

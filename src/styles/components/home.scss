@@ -1,0 +1,30 @@
+.home {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	&__profession {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: $spacing_4;
+
+		&--start {
+			justify-self: end;
+		}
+	}
+}
+
+@media (width <= $viewport_medium) {
+	.home {
+		align-items: start;
+
+		&__profession {
+			grid-template-columns: 1fr;
+		}
+
+		&__profession--start {
+			justify-self: start;
+		}
+	}
+}

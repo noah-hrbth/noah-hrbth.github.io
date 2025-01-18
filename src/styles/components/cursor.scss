@@ -6,12 +6,17 @@
 	border-radius: 100%;
 	z-index: 10;
 	pointer-events: none;
+	transition: background-color $transition ease-in-out;
 
 	@media (pointer: coarse) {
 		display: none;
 	}
+
+	&--hover {
+		background-color: $color_background_2;
+	}
 }
 
 :hover {
-  cursor: none;
+	cursor: none;
 }

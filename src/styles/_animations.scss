@@ -1,0 +1,98 @@
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fade-slide-in--top {
+	0% {
+		opacity: 0;
+		transform: translateY(-15%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fade-slide-in--bottom {
+	0% {
+		opacity: 0;
+		transform: translateY(15%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fade-scale-in {
+	0% {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+// CLASSES
+.animation--fast {
+	animation-duration: 0.3s !important;
+}
+
+.delay-03 {
+	animation-delay: 0.3s !important;
+}
+
+.delay-05 {
+	animation-delay: 0.5s !important;
+}
+
+.delay-07 {
+	animation-delay: 0.7s !important;
+}
+
+.delay-1 {
+	animation-delay: 1s !important;
+}
+
+.delay-13 {
+	animation-delay: 1.3s !important;
+}
+
+.delay-15 {
+	animation-delay: 1.5s !important;
+}
+
+.delay-17 {
+	animation-delay: 1.7s !important;
+}
+
+.delay-2 {
+	animation-delay: 2s !important;
+}
+
+.fade-in {
+	opacity: 0;
+	animation: fade-in 0.5s ease-in-out forwards;
+}
+
+.fade-slide-in--top {
+	opacity: 0;
+	animation: fade-slide-in--top 0.5s ease-in-out forwards;
+}
+
+.fade-slide-in--bottom {
+	opacity: 0;
+	animation: fade-slide-in--bottom 0.5s ease-in-out forwards;
+}
+
+.fade-scale-in {
+	opacity: 0;
+	animation: fade-scale-in 0.5s ease-in-out forwards;
+}
