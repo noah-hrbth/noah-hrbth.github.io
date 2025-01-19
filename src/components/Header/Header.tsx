@@ -1,25 +1,16 @@
 import { NavLink } from 'react-router';
+import useWindowSize from '../../hooks/useWindowSize';
+import VIEWPORT from '../../constants/constants';
 import './Header.scss';
 import Logo from '../../assets/images/noah_claymorphism_remove-bg.png';
-import { ReactComponent as DocumentDownloadIcon } from '../../assets/images/icons/document-download.svg';
 import Resume from '../../assets/documents/noah_harborth_resume.pdf';
-
-function HeaderResumeButton() {
-	return (
-		<div className='header__resume fade-in delay-17'>
-			<a
-				className='header__resume-btn'
-				href={Resume}
-				target='_blank'
-				rel='noreferrer'
-			>
-				<DocumentDownloadIcon />
-			</a>
-		</div>
-	);
-}
+import { ReactComponent as DocumentDownloadIcon } from '../../assets/images/icons/document-download.svg';
+import Button from '../Button/Button';
 
 function Header() {
+	const { width } = useWindowSize();
+	const isMobile = width <= VIEWPORT.SMALL;
+
 	return (
 		<header className='header'>
 			<div className='header__logo fade-in delay-13'>
@@ -42,8 +33,15 @@ function Header() {
 						</li>
 					</ul>
 				</nav>
-				<HeaderResumeButton />
+				<div className='header__resume fade-in delay-17'>
+					<Button type='link' href={Resume} className='header__resume-btn'>
+						<DocumentDownloadIcon />
+					</Button>
+				</div>
 			</div>
+
+			{/* TODO: Add mobile menu */}
+			{isMobile && <div className='header__mobile-menu'></div>}
 		</header>
 	);
 }
