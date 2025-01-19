@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import './SpotlightEffect.scss';
 
 function SpotlightEffect({ children }: { children: React.ReactNode }) {
 	const divRef = useRef<HTMLDivElement>(null);

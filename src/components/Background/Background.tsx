@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import './Background.scss';
 
 const Background: React.FC = () => {
 	const interBubbleRef = useRef<HTMLDivElement>(null);

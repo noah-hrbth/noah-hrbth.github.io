@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
-import Home from './screens/Home';
-import About from './screens/About';
-import Contact from './screens/Contact';
-import Header from './components/Header';
-import Cursor from './components/Cursor';
-import Background from './components/Background';
+import Home from './screens/Home/Home';
+import About from './screens/About/About';
+import Contact from './screens/Contact/Contact';
+import Header from './components/Header/Header';
+import Cursor from './components/Cursor/Cursor';
+import Background from './components/Background/Background';
 
-import './styles/_index.scss';
+import './styles/index.scss';
 
 function App() {
 	return (

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Cursor.scss';
 
 function Cursor() {
 	const mousePosition = useMousePosition();

@@ -1,7 +1,23 @@
 import { NavLink } from 'react-router';
-import Logo from '../assets/images/noah_claymorphism_remove-bg.png';
-import { ReactComponent as DocumentDownloadIcon } from '../assets/images/icons/document-download.svg';
-import Resume from '../assets/documents/noah_harborth_resume.pdf';
+import './Header.scss';
+import Logo from '../../assets/images/noah_claymorphism_remove-bg.png';
+import { ReactComponent as DocumentDownloadIcon } from '../../assets/images/icons/document-download.svg';
+import Resume from '../../assets/documents/noah_harborth_resume.pdf';
+
+function HeaderResumeButton() {
+	return (
+		<div className='header__resume fade-in delay-17'>
+			<a
+				className='header__resume-btn'
+				href={Resume}
+				target='_blank'
+				rel='noreferrer'
+			>
+				<DocumentDownloadIcon />
+			</a>
+		</div>
+	);
+}
 
 function Header() {
 	return (
@@ -26,17 +42,7 @@ function Header() {
 						</li>
 					</ul>
 				</nav>
-
-				<div className='header__resume fade-in delay-17'>
-					<a
-						className='header__resume-btn'
-						href={Resume}
-						target='_blank'
-            rel='noreferrer'
-					>
-						<DocumentDownloadIcon />
-					</a>
-				</div>
+				<HeaderResumeButton />
 			</div>
 		</header>
 	);

@@ -1,4 +1,4 @@
-@import '../variables';
+@import '../../styles/variables.scss';
 
 .header {
 	display: flex;
@@ -75,5 +75,12 @@
 
 		background-color: $color_background_1--blur;
 		box-shadow: 0 0 10px 0 $color_background_2--blur;
+	}
+}
+
+@media (width <= $viewport_small) {
+	.header {
+		&__resume {
+		}
 	}
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './Home.scss';
 
 function Home() {
 	const [professionStart, setProfessionStart] = useState('full-stack');
