@@ -40,6 +40,20 @@
 	}
 }
 
+@keyframes layout-animation-reverse {
+	0% {
+		width: min(90%, $max_width);
+		margin: $spacing_4;
+		border-radius: $spacing_2;
+	}
+
+	100% {
+		width: 100%;
+		margin: 0;
+		border-radius: 0;
+	}
+}
+
 .layout {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -53,4 +67,13 @@
 	background-color: $color_background_1--blur;
 	transition: $transition;
 	animation: layout-animation 1s ease forwards 0.5s;
+}
+
+@media (width <= $viewport_small) {
+	.layout {
+		width: min(90%, $max_width);
+		margin: $spacing_4;
+		border-radius: $spacing_2;
+		animation: layout-animation-reverse 1s ease forwards 0.5s;
+	}
 }

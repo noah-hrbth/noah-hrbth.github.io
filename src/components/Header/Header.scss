@@ -63,23 +63,18 @@
 
 		height: 100%;
 	}
-
-	&__resume-btn {
-		display: grid;
-		place-items: center;
-
-		aspect-ratio: 1;
-		width: auto;
-		height: 100%;
-		border-radius: 50%;
-
-		background-color: $color_background_1--blur;
-		box-shadow: 0 0 10px 0 $color_background_2--blur;
-	}
 }
 
 @media (width <= $viewport_small) {
 	.header {
-		/* TODO: Add mobile styles */
+		&__menu {
+			position: fixed;
+			bottom: $spacing_10;
+			right: $spacing_4;
+
+			&-btn {
+				padding: $spacing_4;
+			}
+		}
 	}
 }

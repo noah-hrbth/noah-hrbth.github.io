@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Home.scss';
+import DecryptedText from '../../components/DecryptedText/DecryptedText';
 
 function Home() {
 	const [professionStart, setProfessionStart] = useState('full-stack');
@@ -20,7 +21,13 @@ function Home() {
 		<main className={'home'}>
 			<h1 className={'home__title fade-slide-in--top'}>hey i'm noah</h1>
 			<h2 className={'home__profession fade-slide-in--bottom delay-03'}>
-				<span className={'home__profession--start'}>{professionStart}</span>{' '}
+				<span className={'home__profession--start'}>
+					<DecryptedText
+						text={professionStart}
+						animateOn='view'
+            speed={175}
+					/>
+				</span>{' '}
 				<span className={'home__profession--end'}>developer</span>
 			</h2>
 		</main>

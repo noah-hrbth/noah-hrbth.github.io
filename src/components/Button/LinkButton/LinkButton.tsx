@@ -5,23 +5,17 @@ interface LinkButtonProps {
 	href?: string;
 	target?: string;
 	rel?: string;
-	children?: ReactNode;
 }
 
 function LinkButton({
 	className = '',
+	children,
 	...props
-}: { className?: string } & LinkButtonProps) {
-	const {
-		href = '',
-		target = '_blank',
-		rel = 'noreferrer',
-		children,
-		...rest
-	} = props;
+}: { className?: string; children: ReactNode } & LinkButtonProps) {
+	const { href = '', target = '_blank', rel = 'noreferrer' } = props;
 
 	return (
-		<a className={className} href={href} target={target} rel={rel} {...rest}>
+		<a className={className} href={href} target={target} rel={rel}>
 			{children}
 		</a>
 	);
