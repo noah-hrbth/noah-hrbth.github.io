@@ -1,25 +1,31 @@
-import { NavLink } from 'react-router';
+import Link from '../Link/Link.js';
+import Button from '../Button/Button';
 import useWindowSize from '../../hooks/useWindowSize';
-import VIEWPORT from '../../constants/constants';
+import VIEWPORT from '../../constants.js';
 import './Header.scss';
 import Logo from '../../assets/images/noah_claymorphism_remove-bg.png';
 import Resume from '../../assets/documents/noah_harborth_resume.pdf';
 import { ReactComponent as DocumentDownloadIcon } from '../../assets/images/icons/document-download.svg';
 import { ReactComponent as MenuIcon } from '../../assets/images/icons/squiggly-arrow-up.svg';
-import Button from '../Button/Button';
 
 function HeaderNav({ isMobile }: { isMobile?: boolean }) {
 	return isMobile ? (
 		<nav className={`header__nav--mobile fade-in`}>
 			<ul className='header__list--mobile'>
 				<li className='header__item--mobile'>
-					<NavLink to='/'>home</NavLink>
+					<Link isNavLink to='/'>
+						home
+					</Link>
 				</li>
 				<li className='header__item--mobile'>
-					<NavLink to='/about'>about</NavLink>
+					<Link isNavLink to='/about'>
+						about
+					</Link>
 				</li>
 				<li className='header__item--mobile'>
-					<NavLink to='/contact'>contact</NavLink>
+					<Link isNavLink to='/contact'>
+						contact
+					</Link>
 				</li>
 			</ul>
 		</nav>
@@ -27,13 +33,19 @@ function HeaderNav({ isMobile }: { isMobile?: boolean }) {
 		<nav className={`header__nav fade-in delay-15`}>
 			<ul className='header__list'>
 				<li className='header__item'>
-					<NavLink to='/'>home</NavLink>
+					<Link isNavLink to='/'>
+						home
+					</Link>
 				</li>
 				<li className='header__item'>
-					<NavLink to='/about'>about</NavLink>
+					<Link isNavLink to='/about'>
+						about
+					</Link>
 				</li>
 				<li className='header__item'>
-					<NavLink to='/contact'>contact</NavLink>
+					<Link isNavLink to='/contact'>
+						contact
+					</Link>
 				</li>
 			</ul>
 		</nav>
@@ -73,9 +85,9 @@ function Header() {
 	return (
 		<header className='header'>
 			<div className='header__logo fade-in delay-13'>
-				<NavLink to='/'>
+				<Link isNavLink to='/'>
 					<img className={'icon--logo'} src={Logo} alt='Logo' />
-				</NavLink>
+				</Link>
 			</div>
 
 			{!isMobile && (

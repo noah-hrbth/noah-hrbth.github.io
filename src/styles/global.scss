@@ -18,6 +18,12 @@
 	color: $color_background_1;
 }
 
+html,
+body {
+	background-color: $color_background_1;
+	overflow: hidden;
+}
+
 .app {
 	display: flex;
 	flex-direction: column;

@@ -19,6 +19,9 @@
 	}
 }
 
-:hover {
+:hover,
+:focus,
+:focus-visible,
+:focus-within {
 	cursor: none;
 }

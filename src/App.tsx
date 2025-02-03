@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
+import { NavigationProvider } from './contexts/NavigationContext';
 import Home from './screens/Home/Home';
 import About from './screens/About/About';
 import Contact from './screens/Contact/Contact';
@@ -11,20 +12,22 @@ import './styles/index.scss';
 function App() {
 	return (
 		<BrowserRouter>
-			<div className={'app'}>
-				<Background />
-				<div className={'layout'}>
-					<Header />
+			<NavigationProvider>
+				<div className={'app'}>
+					<Background />
+					<div className={'layout'}>
+						<Header />
 
-					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route path='/about' element={<About />} />
-						<Route path='/contact' element={<Contact />} />
-					</Routes>
+						<Routes>
+							<Route path='/' element={<Home />} />
+							<Route path='/about' element={<About />} />
+							<Route path='/contact' element={<Contact />} />
+						</Routes>
+					</div>
+
+					<Cursor />
 				</div>
-
-				<Cursor />
-			</div>
+			</NavigationProvider>
 		</BrowserRouter>
 	);
 }

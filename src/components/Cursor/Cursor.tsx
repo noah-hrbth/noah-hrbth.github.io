@@ -1,36 +1,40 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Cursor.scss';
+import { useNavigation } from '../../contexts/NavigationContext';
 
-function Cursor() {
+const Cursor = () => {
 	const mousePosition = useMousePosition();
-	const cursurRef = React.useRef<HTMLDivElement>(null);
+	const cursorRef = useRef<HTMLDivElement>(null);
+	const { urlChanged } = useNavigation();
 
-	const handleCursorHover = () => {
-		const allLinks = document.querySelectorAll('a');
-		const allButtons = document.querySelectorAll('button');
+	const handleMouseEnter = () => {
+		cursorRef.current?.classList.add('cursor--hover');
+	};
 
-		allLinks.forEach((link) => {
-			link.addEventListener('mouseover', () => {
-				cursurRef.current?.classList.add('cursor--hover');
-			});
-			link.addEventListener('mouseleave', () => {
-				cursurRef.current?.classList.remove('cursor--hover');
-			});
-		});
+	const handleMouseLeave = () => {
+		cursorRef.current?.classList.remove('cursor--hover');
+	};
 
-		allButtons.forEach((button) => {
-			button.addEventListener('mouseover', () => {
-				cursurRef.current?.classList.add('cursor--hover');
+	const handleMouseHover = () => {
+		setTimeout(() => {
+			const allLinks = document.querySelectorAll('a');
+			const allButtons = document.querySelectorAll('button');
+
+			allLinks.forEach((link) => {
+				link.addEventListener('mouseenter', handleMouseEnter);
+				link.addEventListener('mouseleave', handleMouseLeave);
 			});
-			button.addEventListener('mouseleave', () => {
-				cursurRef.current?.classList.remove('cursor--hover');
+
+			allButtons.forEach((button) => {
+				button.addEventListener('mouseenter', handleMouseEnter);
+				button.addEventListener('mouseleave', handleMouseLeave);
 			});
 		});
 	};
 
-	React.useEffect(() => {
-		handleCursorHover();
-	}, []);
+	useEffect(() => {
+		handleMouseHover();
+	}, [urlChanged]);
 
 	return (
 		<div
@@ -39,10 +43,10 @@ function Cursor() {
 				top: (mousePosition.y ?? 0) - 10,
 				left: (mousePosition.x ?? 0) - 10,
 			}}
-			ref={cursurRef}
+			ref={cursorRef}
 		></div>
 	);
-}
+};
 
 const useMousePosition = () => {
 	const [mousePosition, setMousePosition] = React.useState({
