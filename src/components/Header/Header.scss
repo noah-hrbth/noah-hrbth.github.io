@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables.scss' as variables;
 
 .header {
 	display: flex;
@@ -20,7 +20,7 @@
 		display: grid;
 		grid-template-areas: 'gap nav resume';
 		grid-template-columns: 1fr auto 1fr;
-		column-gap: $spacing_4;
+		column-gap: variables.$spacing_4;
 		align-items: center;
 	}
 
@@ -30,26 +30,26 @@
 		display: flex;
 		align-items: center;
 
-		padding: $spacing_2 $spacing_4;
+		padding: variables.$spacing_2 variables.$spacing_4;
 		border-radius: 25px;
 
-		background-color: $color_background_1--blur;
-		box-shadow: 0 0 10px 0 $color_background_2--blur;
+		background-color: variables.$color_background_1--blur;
+		box-shadow: 0 0 10px 0 variables.$color_background_2--blur;
 	}
 
 	&__list {
 		display: flex;
 		align-items: center;
-		column-gap: $spacing_4;
+		column-gap: variables.$spacing_4;
 	}
 
 	&__item {
 		a {
-			font-size: $font_size_-2;
-			transition: $transition;
+			font-size: variables.$font_size_-2;
+			transition: variables.$transition;
 
 			&.active {
-				font-size: $font_size_0;
+				font-size: variables.$font_size_0;
 			}
 		}
 	}
@@ -65,15 +65,15 @@
 	}
 }
 
-@media (width <= $viewport_small) {
+@media (width <= variables.$viewport_small) {
 	.header {
 		&__menu {
 			position: fixed;
-			bottom: $spacing_10;
-			right: $spacing_4;
+			bottom: variables.$spacing_10;
+			right: variables.$spacing_4;
 
 			&-btn {
-				padding: $spacing_4;
+				padding: variables.$spacing_4;
 			}
 		}
 	}

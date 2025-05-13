@@ -1,12 +1,12 @@
-@import 'variables';
+@use 'variables' as variables;
 
 .icon {
 	svg {
-		color: $color_text_1;
+		color: variables.$color_text_1;
 	}
 }
 
 .icon--logo {
-	height: $font_size_3;
-	width: $font_size_3;
+	height: variables.$font_size_3;
+	width: variables.$font_size_3;
 }

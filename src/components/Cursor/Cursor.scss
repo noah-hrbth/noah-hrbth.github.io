@@ -1,21 +1,21 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables.scss' as variables;
 
 .cursor {
 	position: absolute;
 	height: 25px;
 	width: 25px;
-	background-color: $color_background_1;
+	background-color: variables.$color_background_1;
 	border-radius: 100%;
 	z-index: 10;
 	pointer-events: none;
-	transition: background-color $transition ease-in-out;
+	transition: background-color variables.$transition ease-in-out;
 
 	@media (pointer: coarse) {
 		display: none;
 	}
 
 	&--hover {
-		background-color: $color_background_2;
+		background-color: variables.$color_background_2;
 	}
 }
 

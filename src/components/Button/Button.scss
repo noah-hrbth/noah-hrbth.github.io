@@ -1,12 +1,12 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables.scss' as variables;
 
 .button {
 	display: grid;
 	place-items: center;
-	background-color: $color_background_1--blur;
-	box-shadow: 0 0 10px 0 $color_background_2--blur;
-  border: 0;
-	color: $color_text_1;
+	background-color: variables.$color_background_1--blur;
+	box-shadow: 0 0 10px 0 variables.$color_background_2--blur;
+	border: 0;
+	color: variables.$color_text_1;
 
 	&--round {
 		aspect-ratio: 1;

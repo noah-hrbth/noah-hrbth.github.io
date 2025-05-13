@@ -1,7 +1,7 @@
-@import 'variables.scss';
+@use 'variables' as variables;
 
 :root {
-	--color-bg1: #{$color_background_1};
+	--color-bg1: #{variables.$color_background_1};
 	--color-bg2: var(--color-bg1);
 	--color1: 128, 0, 128; /* Purple */
 	--color2: 75, 0, 130; /* Indigo */
@@ -14,13 +14,13 @@
 }
 
 ::selection {
-	background-color: $color_background_2;
-	color: $color_background_1;
+	background-color: variables.$color_background_2;
+	color: variables.$color_background_1;
 }
 
 html,
 body {
-	background-color: $color_background_1;
+	background-color: variables.$color_background_1;
 	overflow: hidden;
 }
 
@@ -29,7 +29,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	transition: $transition;
+	transition: variables.$transition;
 }
 
 @keyframes layout-animation {
@@ -40,17 +40,17 @@ body {
 	}
 
 	100% {
-		width: min(90%, $max_width);
-		margin: $spacing_4;
-		border-radius: $spacing_2;
+		width: min(90%, variables.$max_width);
+		margin: variables.$spacing_4;
+		border-radius: variables.$spacing_2;
 	}
 }
 
 @keyframes layout-animation-reverse {
 	0% {
-		width: min(90%, $max_width);
-		margin: $spacing_4;
-		border-radius: $spacing_2;
+		width: min(90%, variables.$max_width);
+		margin: variables.$spacing_4;
+		border-radius: variables.$spacing_2;
 	}
 
 	100% {
@@ -67,19 +67,19 @@ body {
 	width: 100%;
 	margin: 0;
 	border-radius: 0;
-	padding: $spacing_4 $spacing_8;
+	padding: variables.$spacing_4 variables.$spacing_8;
 	backdrop-filter: blur(16px) saturate(180%);
 	-webkit-backdrop-filter: blur(16px) saturate(180%);
-	background-color: $color_background_1--blur;
-	transition: $transition;
+	background-color: variables.$color_background_1--blur;
+	transition: variables.$transition;
 	animation: layout-animation 1s ease forwards 0.5s;
 }
 
-@media (width <= $viewport_small) {
+@media (width <= variables.$viewport_small) {
 	.layout {
-		width: min(90%, $max_width);
-		margin: $spacing_4;
-		border-radius: $spacing_2;
+		width: min(90%, variables.$max_width);
+		margin: variables.$spacing_4;
+		border-radius: variables.$spacing_2;
 		animation: layout-animation-reverse 1s ease forwards 0.5s;
 	}
 }
