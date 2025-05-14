@@ -1,0 +1,36 @@
+@use 'sass:list';
+@use 'variables' as variables;
+
+@mixin box($width, $height: null) {
+	@if $height == null {
+		$height: $width;
+	}
+
+	width: $width;
+	height: $height;
+}
+
+@mixin glassy {
+	background-color: variables.$color_background_1--blur;
+	box-shadow: 0 0 10px 0 variables.$color_background_2--blur;
+}
+
+@function z-index($index_name) {
+	$index_list: (
+		'hidden',
+		'background',
+		'default',
+		'foreground',
+		'modal',
+		'tooltip',
+		'float'
+	);
+
+	$index: list.index($index_list, $index_name);
+
+	@if $index == null {
+		@error "Invalid z-index value: #{$index}. Valid values are: #{join($index_list, ', ')}.";
+	}
+
+	@return $index;
+}

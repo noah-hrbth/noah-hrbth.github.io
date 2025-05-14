@@ -1,4 +1,5 @@
 @use '../../styles/variables.scss' as variables;
+@use '../../styles/mixins.scss' as mixins;
 
 .header {
 	display: flex;
@@ -56,25 +57,92 @@
 
 	&__resume {
 		grid-area: resume;
-
 		display: flex;
 		justify-content: start;
 		align-items: center;
-
 		height: 100%;
 	}
 }
 
+$menu-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+
 @media (width <= variables.$viewport_small) {
 	.header {
-		&__menu {
+		$initial-button-size: 4rem;
+
+		&__expanding-menu-shell {
 			position: fixed;
 			bottom: variables.$spacing_10;
-			right: variables.$spacing_4;
+			right: variables.$spacing_6;
+			z-index: mixins.z-index(modal);
+			display: flex;
 
-			&-btn {
-				padding: variables.$spacing_4;
+			overflow: hidden;
+			@include mixins.glassy;
+
+			transition: variables.$transition_slow $menu-timing-function;
+
+			&--closed {
+				width: $initial-button-size;
+				max-height: $initial-button-size;
+				border-radius: 50%;
 			}
+
+			&--open {
+				width: calc(100% - #{variables.$spacing_6 * 2});
+				max-height: 25%;
+				border-radius: 1rem;
+				background: variables.$color_background_1;
+			}
+		}
+
+		&__menu-actual-content {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			row-gap: variables.$spacing_8;
+
+			width: 100%;
+			height: 100%;
+			padding: variables.$spacing_5 variables.$spacing_6;
+
+			pointer-events: none;
+			overflow-y: auto;
+
+			opacity: 0;
+			transform: scale(0.95) translateY(10px);
+			transform-origin: bottom right;
+
+			transition: opacity 0.2s ease-out (variables.$transition_slow * 0.6),
+				transform 0.2s ease-out (variables.$transition_slow * 0.6),
+				pointer-events 0s linear (variables.$transition_slow * 0.8);
+
+			&--open {
+				opacity: 1;
+				transform: scale(1) translateY(0);
+				pointer-events: auto;
+			}
+		}
+
+		&__menu-icon-button {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			z-index: mixins.z-index(float);
+
+			display: grid;
+			place-items: center;
+
+			width: $initial-button-size;
+			height: $initial-button-size;
+			padding: 0;
+			border-radius: 50%;
+
+			cursor: pointer;
+
+			background: none;
+			box-shadow: none;
+			border: none;
 		}
 	}
 }

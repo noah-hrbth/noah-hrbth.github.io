@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import './Home.scss';
 import DecryptedText from '../../components/DecryptedText/DecryptedText';
 
-function Home() {
-	const [professionStart, setProfessionStart] = useState('full-stack');
+const professions = ['software', 'web', 'mobile', 'front end', 'full stack'];
 
-	const professions = ['software', 'web', 'mobile', 'full-stack'];
+function Home() {
+	const [professionStart, setProfessionStart] = useState('full stack');
 
 	useEffect(() => {
 		let i = 0;
@@ -22,11 +22,7 @@ function Home() {
 			<h1 className={'home__title fade-slide-in--top'}>hey i'm noah</h1>
 			<h2 className={'home__profession fade-slide-in--bottom delay-03'}>
 				<span className={'home__profession--start'}>
-					<DecryptedText
-						text={professionStart}
-						animateOn='view'
-            speed={175}
-					/>
+					<DecryptedText text={professionStart} animateOn='view' speed={175} />
 				</span>{' '}
 				<span className={'home__profession--end'}>developer</span>
 			</h2>

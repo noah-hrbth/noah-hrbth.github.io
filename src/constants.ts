@@ -1,4 +1,4 @@
-const VIEWPORT = {
+const VIEWPORT: { [key: string]: number } = {
 	SMALL: 576,
 	MEDIUM: 768,
 	LARGE: 992,

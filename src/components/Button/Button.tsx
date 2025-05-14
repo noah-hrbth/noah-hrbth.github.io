@@ -31,7 +31,7 @@ function Button({
 		.filter((key) => allClasses[key])
 		.join(' ');
 
-	if (type === 'link') {
+	if (type === 'link' || type === 'link-inline') {
 		return (
 			<LinkButton
 				className={formattedClassName}

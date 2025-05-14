@@ -1,4 +1,5 @@
 @use 'variables' as variables;
+@use 'mixins' as mixins;
 
 .icon {
 	svg {
@@ -7,6 +8,6 @@
 }
 
 .icon--logo {
-	height: variables.$font_size_3;
-	width: variables.$font_size_3;
+  @include mixins.box(variables.$font_size_5);
+	object-fit: contain;
 }

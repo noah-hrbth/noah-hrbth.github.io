@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import './LinkButton.scss';
 
 interface LinkButtonProps {
 	[key: string]: any;
