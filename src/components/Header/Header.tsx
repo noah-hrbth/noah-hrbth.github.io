@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import useWindowSize from '../../hooks/useWindowSize';
 import VIEWPORT from '../../constants.ts';
 import './Header.scss';
-import Logo from '../../assets/images/noah_clay_transparent.png';
+import Cyborg1 from '../../assets/images/icons/cyborg-1/Cyborg1';
 import Resume from '../../assets/documents/NoahHarborthResume.pdf';
 import { ReactComponent as DocumentDownloadIcon } from '../../assets/images/icons/document-download.svg';
 import { ReactComponent as MenuIcon } from '../../assets/images/icons/squiggly-arrow-up.svg';
@@ -223,11 +223,11 @@ function Header() {
 
 	return (
 		<header className='header'>
-			<div className='header__logo fade-in delay-13'>
-				<Link isNavLink to='/'>
-					<img className={'icon--logo'} src={Logo} alt='Logo' />
-				</Link>
-			</div>
+		<div className='header__logo fade-in delay-13'>
+			<Link isNavLink to='/'>
+				<Cyborg1 />
+			</Link>
+		</div>
 
 			{!isMobile && (
 				<div className='header__container'>
