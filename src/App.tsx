@@ -25,7 +25,7 @@ function App() {
 						</Routes>
 					</div>
 
-					<Cursor />
+					{/* <Cursor /> */}
 				</div>
 			</NavigationProvider>
 		</BrowserRouter>
