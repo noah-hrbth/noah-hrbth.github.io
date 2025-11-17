@@ -19,7 +19,7 @@
 
 	&__active-page {
 		font-size: variables.$font_size_-1;
-		margin-left: variables.$spacing_1;
+		margin: 0 variables.$spacing_1;
 	}
 
 	&__nav-button {
@@ -35,6 +35,7 @@
 			.icon {
 				transition: transform variables.$transition_fast ease-in-out;
 				transform: rotate(90deg);
+				pointer-events: none;
 			}
 		}
 
@@ -56,7 +57,6 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-left: variables.$spacing_1;
-		width: 95px;
 	}
 
 	&__nav {

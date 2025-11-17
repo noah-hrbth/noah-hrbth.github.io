@@ -215,11 +215,11 @@ function HeaderMenuDesktopButton({
 }) {
 	return (
 		<div
-			className={`header__nav-button ${
+			className={`header__nav-button fade-slide-in--top delay-2 ${
 				isOpen ? 'header__nav-button--open' : ''
 			}`}
 		>
-			<Button onClick={onClick}>
+			<Button onClick={onClick} className={'header__desktop-nav-button'}>
 				<Arrow size={10} />
 			</Button>
 		</div>
@@ -228,12 +228,11 @@ function HeaderMenuDesktopButton({
 
 function Header() {
 	const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false);
-	const [delayedIsDesktopMenuOpen, setDelayedIsDesktopMenuOpen] = useState(false);
+	const [delayedIsDesktopMenuOpen, setDelayedIsDesktopMenuOpen] =
+		useState(false);
 	const { width } = useWindowSize();
 	const isMobile = width <= VIEWPORT.SMALL;
 	const location = useLocation();
-
-	console.log(location);
 
 	const currentActivePage = useMemo(() => {
 		const path = location.pathname.slice(1);
@@ -267,6 +266,28 @@ function Header() {
 		setIsDesktopMenuOpen(false);
 	}, [location]);
 
+	useEffect(() => {
+		const handleClickOutsideDesktopMenu = (event: MouseEvent) => {
+			const target = event.target;
+			console.log(target);
+			const menuButtonContainer = document.querySelector(
+				'.header__nav-button *'
+			);
+			const headerActivePage = document.querySelector('.header__active-page');
+
+			if (target === menuButtonContainer || target === headerActivePage) {
+				return;
+			}
+
+			setIsDesktopMenuOpen(false);
+		};
+
+		document.addEventListener('click', handleClickOutsideDesktopMenu);
+		return () => {
+			document.removeEventListener('click', handleClickOutsideDesktopMenu);
+		};
+	}, []);
+
 	return (
 		<header className='header'>
 			<div className='header__logo fade-in delay-13'>
@@ -277,9 +298,16 @@ function Header() {
 			<span className='fade-slide-in--top delay-15'>/</span>
 
 			<div className='header__container'>
-				<span className='header__active-page fade-slide-in--top delay-17'>
+				<Button
+					onClick={() => {
+						setIsDesktopMenuOpen(true);
+					}}
+					className='header__active-page fade-slide-in--top delay-17'
+					disabled={isDesktopMenuOpen}
+					styleType='no-bg'
+				>
 					{currentActivePage}
-				</span>
+				</Button>
 				<HeaderMenuDesktopButton
 					isOpen={isDesktopMenuOpen}
 					onClick={() => {
@@ -289,7 +317,9 @@ function Header() {
 				{(delayedIsDesktopMenuOpen || isDesktopMenuOpen) && (
 					<HeaderNav
 						inactivePages={currentInacitvePages}
-						className={isDesktopMenuOpen ? 'fade-in animation--fast' : 'fade-out'}
+						className={
+							isDesktopMenuOpen ? 'fade-in animation--fast' : 'fade-out'
+						}
 					/>
 				)}
 			</div>
