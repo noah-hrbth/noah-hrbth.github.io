@@ -18,9 +18,7 @@ const Background: React.FC = () => {
 			curY += (tgY - curY) / 20;
 
 			if (interBubble) {
-				interBubble.style.transform = `translate(${Math.round(
-					curX
-				)}px, ${Math.round(curY)}px)`;
+				interBubble.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
 			}
 
 			requestAnimationFrame(move);

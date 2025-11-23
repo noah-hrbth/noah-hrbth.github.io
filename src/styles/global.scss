@@ -28,7 +28,7 @@
 textarea:not(.terminal-input__textarea):focus-visible {
 	background-color: variables.$color_background_2;
 	color: variables.$color_background_1;
-  padding: 2px;
+	padding: 2px;
 	outline: none;
 }
 
@@ -37,7 +37,7 @@ body {
 	background-color: variables.$color_background_1;
 	overflow: hidden;
 
-  // TODO: custom cursor wieder aktivieren, cleane morph animation based darauf was man macht
+	// TODO: custom cursor wieder aktivieren, cleane morph animation based darauf was man macht
 }
 
 .app {

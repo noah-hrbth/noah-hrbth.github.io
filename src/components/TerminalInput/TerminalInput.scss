@@ -16,7 +16,8 @@
 		background-color: variables.$color_background_1;
 		border-radius: 0 variables.$spacing_1 0 variables.$spacing_1;
 		cursor: pointer;
-		transition: background-color variables.$transition ease-in-out,
+		transition:
+			background-color variables.$transition ease-in-out,
 			transform variables.$transition_fast ease-in-out;
 		z-index: mixins.z-index(modal);
 

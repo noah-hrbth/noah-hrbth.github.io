@@ -6,7 +6,7 @@
 	place-items: center;
 	border: 0;
 	color: variables.$color_text_1;
-  cursor: pointer;
+	cursor: pointer;
 	@include mixins.glassy;
 	-webkit-tap-highlight-color: transparent;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -18,7 +18,7 @@
 		border-radius: 50%;
 	}
 
-  &--no-bg {
-    background: none;
-  }
+	&--no-bg {
+		background: none;
+	}
 }

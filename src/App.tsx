@@ -13,22 +13,22 @@ function App() {
 	return (
 		<BrowserRouter>
 			<NavigationProvider>
-			<div className={'app'}>
-				<Background />
-				<div className={'layout'}>
-					<Header />
+				<div className={'app'}>
+					<Background />
+					<div className={'layout'}>
+						<Header />
 
-					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route path='/about' element={<About />} />
-						<Route path='/contact' element={<Contact />} />
-					</Routes>
+						<Routes>
+							<Route path='/' element={<Home />} />
+							<Route path='/about' element={<About />} />
+							<Route path='/contact' element={<Contact />} />
+						</Routes>
 
-					<TerminalInput />
+						<TerminalInput />
+					</div>
+
+					{/* <Cursor /> */}
 				</div>
-
-				{/* <Cursor /> */}
-			</div>
 			</NavigationProvider>
 		</BrowserRouter>
 	);

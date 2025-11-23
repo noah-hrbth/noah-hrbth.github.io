@@ -112,7 +112,7 @@ export default function DecryptedText({
 
 		const shuffleText = (
 			originalText: string,
-			currentRevealed: Set<unknown>
+			currentRevealed: Set<unknown>,
 		) => {
 			if (useOriginalCharsOnly) {
 				const positions = originalText
@@ -127,7 +127,7 @@ export default function DecryptedText({
 				const nonSpaceChars = positions
 					.filter(
 						(p: { isSpace: any; isRevealed: any }) =>
-							!p.isSpace && !p.isRevealed
+							!p.isSpace && !p.isRevealed,
 					)
 					.map((p: { char: any }) => p.char);
 
@@ -229,7 +229,7 @@ export default function DecryptedText({
 
 		const observer = new IntersectionObserver(
 			observerCallback,
-			observerOptions
+			observerOptions,
 		);
 		const currentRef = containerRef.current;
 		if (currentRef) {
@@ -248,7 +248,7 @@ export default function DecryptedText({
 			? {
 					onMouseEnter: () => setIsHovering(true),
 					onMouseLeave: () => setIsHovering(false),
-			  }
+				}
 			: {};
 
 	return (

@@ -8,12 +8,12 @@ type Arrow = {
 const Arrow = ({ size, color }: Arrow) => (
 	<Icon size={size} color={color}>
 		<svg
-      width={'100%'}
-      height={'100%'}
+			width={'100%'}
+			height={'100%'}
 			xmlns='http://www.w3.org/2000/svg'
 			viewBox='0 0 100 100'
 			fill='currentColor'
-      stroke='currentColor'
+			stroke='currentColor'
 			strokeWidth='10'
 			strokeLinecap='round'
 			strokeLinejoin='round'

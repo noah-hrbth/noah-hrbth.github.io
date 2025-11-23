@@ -32,13 +32,13 @@ const TerminalInput = () => {
 	};
 
 	return (
-		<div className="terminal-input fade-in">
+		<div className='terminal-input fade-in'>
 			<div
 				className={`terminal-input__corner-toggle ${
 					isOpen && !isAnimating ? 'terminal-input__corner-toggle--open' : ''
 				}`}
 				onClick={handleToggle}
-				role="button"
+				role='button'
 				tabIndex={0}
 				onKeyDown={(e) => {
 					if (e.key === 'Enter' || e.key === ' ') {
@@ -55,9 +55,11 @@ const TerminalInput = () => {
 					value={value}
 					onChange={handleChange}
 					rows={1}
-					placeholder="Type here..."
+					placeholder='Type here...'
 					className={`terminal-input__textarea ${
-						isOpen && !isAnimating ? 'terminal-input__textarea--open' : 'terminal-input__textarea--closed'
+						isOpen && !isAnimating
+							? 'terminal-input__textarea--open'
+							: 'terminal-input__textarea--closed'
 					}`}
 				/>
 			)}

@@ -7,7 +7,7 @@ interface NavigationContextType {
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(
-	undefined
+	undefined,
 );
 
 interface NavigationProviderProps {

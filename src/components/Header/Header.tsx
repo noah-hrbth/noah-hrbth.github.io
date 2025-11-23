@@ -130,7 +130,7 @@ function ExpandingMenuButton() {
 			() => {
 				setdelayedIsMenuOpen(isMenuOpen);
 			},
-			isMenuOpen ? 500 : 100
+			isMenuOpen ? 500 : 100,
 		);
 
 		return () => {
@@ -142,10 +142,10 @@ function ExpandingMenuButton() {
 		const handleClickOutsideToggleMenu = (event: MouseEvent) => {
 			const target = event.target as HTMLElement;
 			const menuButton = document.querySelector(
-				'.header__menu-icon-button'
+				'.header__menu-icon-button',
 			) as HTMLElement;
 			const menuButtonIcon = document.querySelector(
-				'.header__menu-icon-button-icon'
+				'.header__menu-icon-button-icon',
 			) as HTMLElement;
 
 			if (target === menuButtonIcon || target === menuButton) {
@@ -175,9 +175,7 @@ function ExpandingMenuButton() {
 				}`}
 			>
 				<div
-					className={`header__menu-actual-content ${
-						isMenuOpen ? 'header__menu-actual-content--open' : ''
-					}`}
+					className={`header__menu-actual-content ${isMenuOpen ? 'header__menu-actual-content--open' : ''}`}
 					id='header__mobile-menu-content-area'
 				>
 					<HeaderNav isMobile={true} delayedIsMenuOpen={delayedIsMenuOpen} />
@@ -215,9 +213,7 @@ function HeaderMenuDesktopButton({
 }) {
 	return (
 		<div
-			className={`header__nav-button fade-slide-in--top delay-2 ${
-				isOpen ? 'header__nav-button--open' : ''
-			}`}
+			className={`header__nav-button fade-slide-in--top delay-2 ${isOpen ? 'header__nav-button--open' : ''}`}
 		>
 			<Button onClick={onClick} className={'header__desktop-nav-button'}>
 				<Arrow size={10} />
@@ -246,7 +242,7 @@ function Header() {
 
 	const currentInacitvePages = useMemo(
 		() => APP_ROUTES.filter((route) => route.route !== location.pathname),
-		[location]
+		[location],
 	);
 
 	useEffect(() => {
@@ -254,7 +250,7 @@ function Header() {
 			() => {
 				setDelayedIsDesktopMenuOpen(isDesktopMenuOpen);
 			},
-			isDesktopMenuOpen ? 50 : 300
+			isDesktopMenuOpen ? 50 : 300,
 		);
 
 		return () => {
@@ -271,7 +267,7 @@ function Header() {
 			const target = event.target;
 			console.log(target);
 			const menuButtonContainer = document.querySelector(
-				'.header__nav-button *'
+				'.header__nav-button *',
 			);
 			const headerActivePage = document.querySelector('.header__active-page');
 
