@@ -15,6 +15,13 @@
 		&:hover {
 			transform: rotate(20deg);
 		}
+
+		a:focus-visible {
+      all: unset;
+			outline: 2px dashed white;
+			outline-offset: 2px;
+			border-radius: 4px;
+		}
 	}
 
 	&__active-page {

@@ -1,0 +1,90 @@
+@use '../../styles/variables.scss' as variables;
+@use '../../styles/mixins.scss' as mixins;
+
+.terminal-input {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: mixins.z-index(foreground);
+
+	&__corner-toggle {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 16px;
+		height: 16px;
+		background-color: variables.$color_background_1;
+		border-radius: 0 variables.$spacing_1 0 variables.$spacing_1;
+		cursor: pointer;
+		transition: background-color variables.$transition ease-in-out,
+			transform variables.$transition_fast ease-in-out;
+		z-index: mixins.z-index(modal);
+
+		&:hover {
+			transform: scale(1.15);
+		}
+
+		&:focus-visible {
+			outline: 2px dashed white;
+			outline-offset: 2px;
+		}
+
+		&--open {
+			&::after {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 4px;
+				height: 4px;
+				background-color: variables.$color_background_2;
+				border-radius: 50%;
+			}
+		}
+	}
+
+	&__textarea {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 300px;
+		max-width: calc(100vw - #{variables.$spacing_8 * 2});
+		padding: variables.$spacing_3 variables.$spacing_4;
+		border: none;
+		border-radius: variables.$spacing_2;
+		color: variables.$color_text_1;
+		font-size: variables.$font_size_-1;
+		font-weight: bold;
+		line-height: 1.5;
+		resize: none;
+		overflow: hidden;
+		@include mixins.glassy;
+		caret-color: variables.$color_text_1;
+		caret-shape: block;
+		transform-origin: bottom left;
+
+		&::placeholder {
+			color: variables.$color_primary_2;
+			font-weight: normal;
+		}
+
+		&:focus,
+		&:focus-visible,
+		&:focus-within {
+			outline: none;
+			background-color: variables.$color_background_1--blur;
+			color: variables.$color_text_1;
+			padding: variables.$spacing_3 variables.$spacing_4;
+			border-radius: variables.$spacing_2;
+		}
+
+		&--open {
+			animation: expand-from-corner 0.3s ease-out forwards;
+		}
+
+		&--closed {
+			animation: collapse-to-corner 0.3s ease-out forwards;
+		}
+	}
+}

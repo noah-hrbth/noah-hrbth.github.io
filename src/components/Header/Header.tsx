@@ -5,7 +5,7 @@ import VIEWPORT, { APP_ROUTES } from '../../constants.ts';
 import './Header.scss';
 import Cyborg1 from '../../assets/images/icons/cyborg-1/Cyborg1';
 import Resume from '../../assets/documents/NoahHarborthResume.pdf';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import ReactFocusLock from 'react-focus-lock';
 import { useLocation } from 'react-router';
 import Arrow from '../../assets/images/icons/arrow/Arrow.tsx';
@@ -288,9 +288,24 @@ function Header() {
 		};
 	}, []);
 
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key !== 'Escape') {
+				return;
+			}
+
+			setIsDesktopMenuOpen(false);
+		};
+
+		document.addEventListener('keydown', handleKeyDown);
+		return () => {
+			document.removeEventListener('keydown', handleKeyDown);
+		};
+	}, []);
+
 	return (
 		<header className='header'>
-			<div className='header__logo fade-in delay-13'>
+			<div className='header__logo fade-in delay-13' role='button'>
 				<Link isNavLink to='/'>
 					<Cyborg1 size={36} />
 				</Link>
