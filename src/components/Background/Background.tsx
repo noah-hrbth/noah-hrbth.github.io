@@ -3,6 +3,7 @@ import './Background.scss';
 
 const Background: React.FC = () => {
 	const interBubbleRef = useRef<HTMLDivElement>(null);
+	const cornerOrbitRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const interBubble = interBubbleRef.current;
@@ -37,6 +38,32 @@ const Background: React.FC = () => {
 		};
 	}, []);
 
+	useEffect(() => {
+		const orbitEl = cornerOrbitRef.current;
+		if (!orbitEl) return;
+
+		const updateCornerOrigin = () => {
+			const toggle = document.querySelector(
+				'.terminal-input__corner-toggle',
+			) as HTMLElement | null;
+			if (!toggle) return;
+			const rect = toggle.getBoundingClientRect();
+			// Anchor at the toggle's bottom-left corner
+			orbitEl.style.left = `${rect.left}px`;
+			orbitEl.style.top = `${rect.bottom}px`;
+		};
+
+		updateCornerOrigin();
+		window.addEventListener('resize', updateCornerOrigin);
+		// Reflow guard: re-calc shortly after mount to account for layout animations
+		const timeoutId = window.setTimeout(updateCornerOrigin, 600);
+
+		return () => {
+			window.removeEventListener('resize', updateCornerOrigin);
+			window.clearTimeout(timeoutId);
+		};
+	}, []);
+
 	return (
 		<div className='gradient-bg'>
 			<svg xmlns='http://www.w3.org/2000/svg'>
@@ -63,6 +90,9 @@ const Background: React.FC = () => {
 				<div className='g3'></div>
 				<div className='g4'></div>
 				<div className='g5'></div>
+				<div className='g-corner-orbit' ref={cornerOrbitRef} aria-hidden>
+					<div className='g-corner'></div>
+				</div>
 				<div className='interactive' ref={interBubbleRef}></div>
 			</div>
 		</div>

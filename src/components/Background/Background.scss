@@ -162,6 +162,45 @@
 		opacity: 1;
 	}
 
+	/* Orbit wrapper anchored at the TerminalInput corner toggle (set via JS) */
+	.g-corner-orbit {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 0;
+		height: 0;
+		pointer-events: none;
+		animation: moveInCircle 16s linear infinite;
+		transform-origin: 0 0;
+	}
+
+	.g-corner {
+		position: absolute;
+		background: radial-gradient(
+				circle at center,
+				rgba(var(--color-corner), 0.85) 0,
+				rgba(var(--color-corner), 0) 50%
+			)
+			no-repeat;
+		mix-blend-mode: var(--blending);
+		pointer-events: none;
+
+		width: var(--corner-circle-size);
+		height: var(--corner-circle-size);
+		/* Offset the blob by the orbit radius so the orbit wrapper rotation makes a circle */
+		transform: translate(
+			calc(var(--corner-orbit-radius) - var(--corner-circle-size) / 2),
+			calc(-1 * var(--corner-circle-size) / 2)
+		);
+		opacity: 0.9;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.g-corner-orbit {
+			animation: none;
+		}
+	}
+
 	.interactive {
 		position: absolute;
 		background: radial-gradient(

@@ -9,8 +9,25 @@
 	--color4: 72, 61, 139; /* DarkSlateBlue */
 	--color5: 106, 90, 205; /* SlateBlue */
 	--color-interactive: 147, 112, 219; /* MediumPurple */
+
+	/* Corner blob theme and layout anchors */
+	--color-corner:
+		#{red(variables.$color_primary_1)}, #{green(variables.$color_primary_1)},
+		#{blue(variables.$color_primary_1)};
+	--layout-margin: #{variables.$spacing_4};
+	--layout-radius: #{variables.$spacing_2};
+	--corner-circle-size: 240px;
+	--corner-orbit-radius: 48px;
+
 	--circle-size: 80%;
 	--blending: hard-light;
+}
+
+@media (max-width: #{variables.$viewport_small}) {
+	:root {
+		--corner-circle-size: 180px;
+		--corner-orbit-radius: 36px;
+	}
 }
 
 ::selection {
