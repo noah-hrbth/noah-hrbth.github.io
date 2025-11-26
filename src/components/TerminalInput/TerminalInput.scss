@@ -26,7 +26,7 @@
 		}
 
 		&:focus-visible {
-			outline: 2px dashed white;
+			outline: 2px dashed variables.$color_background_2;
 			outline-offset: 2px;
 		}
 
@@ -55,7 +55,7 @@
 		border: none;
 		border-radius: variables.$spacing_2;
 		color: variables.$color_text_1;
-		font-size: variables.$font_size_-1;
+		font-size: variables.$font_size_-2;
 		font-weight: bold;
 		line-height: 1.5;
 		resize: none;
@@ -81,11 +81,11 @@
 		}
 
 		&--open {
-			animation: expand-from-corner 0.3s ease-out forwards;
+			animation: expand-from-corner 0.2s ease-out forwards;
 		}
 
 		&--closed {
-			animation: collapse-to-corner 0.3s ease-out forwards;
+			animation: collapse-to-corner 0.2s ease-out forwards;
 		}
 	}
 }

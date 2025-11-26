@@ -3,12 +3,12 @@
 :root {
 	--color-bg1: #{variables.$color_background_1};
 	--color-bg2: var(--color-bg1);
-	--color1: 128, 0, 128; /* Purple */
-	--color2: 75, 0, 130; /* Indigo */
-	--color3: 138, 43, 226; /* BlueViolet */
-	--color4: 72, 61, 139; /* DarkSlateBlue */
-	--color5: 106, 90, 205; /* SlateBlue */
-	--color-interactive: 147, 112, 219; /* MediumPurple */
+	--color1: 20, 20, 20; /* Nearly black */
+	--color2: 45, 45, 45; /* Very dark grey */
+	--color3: 80, 80, 80; /* Dark grey */
+	--color4: 120, 120, 120; /* Medium grey */
+	--color5: 160, 160, 160; /* Light grey */
+	--color-interactive: 200, 200, 200; /* Lighter grey */
 
 	/* Corner blob theme and layout anchors */
 	--color-corner:

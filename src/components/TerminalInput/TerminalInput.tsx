@@ -55,6 +55,9 @@ const TerminalInput = () => {
 					value={value}
 					onChange={handleChange}
 					rows={1}
+          autoComplete='off'
+          autoCorrect='off'
+          spellCheck='false'
 					placeholder='Type here...'
 					className={`terminal-input__textarea ${
 						isOpen && !isAnimating
