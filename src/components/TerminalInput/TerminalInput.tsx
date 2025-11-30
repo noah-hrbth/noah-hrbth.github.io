@@ -1,22 +1,55 @@
-import { useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import './TerminalInput.scss';
+import { APP_ROUTES } from '../../constants';
+import { useNavigate } from 'react-router';
+
+enum TerminalCommand {
+	ChangeDirectory = 'cd',
+	List = 'ls',
+}
 
 const TerminalInput = () => {
-	const textareaRef = useRef<HTMLTextAreaElement>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
 	const [value, setValue] = useState('');
 	const [isOpen, setIsOpen] = useState(false);
 	const [isAnimating, setIsAnimating] = useState(false);
+	const navigate = useNavigate();
 
 	useEffect(() => {
-		const textarea = textareaRef.current;
-		if (!textarea) return;
+		const input = inputRef.current;
+		if (!input) return;
 
-		textarea.style.height = 'auto';
-		textarea.style.height = `${textarea.scrollHeight}px`;
+		input.style.height = 'auto';
+		input.style.height = `${input.scrollHeight}px`;
 	}, [value]);
 
-	const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(event.target.value);
+	};
+
+	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		const trimmedValue = value.trim();
+
+		if (trimmedValue === TerminalCommand.List) {
+			// TODO: implement toast with all app routes
+			console.log(APP_ROUTES);
+		}
+
+		if (trimmedValue.startsWith(TerminalCommand.ChangeDirectory + ' ')) {
+			const valueWithoutCMD = trimmedValue.slice(3).trim();
+			const matchingRoute = APP_ROUTES.find(
+				(route) => route.name === valueWithoutCMD,
+			);
+
+			if (matchingRoute) {
+				navigate(matchingRoute.route);
+			} else {
+				// TODO: implement error toast
+			}
+		}
+
+		setValue('');
 	};
 
 	const handleToggle = () => {
@@ -50,21 +83,23 @@ const TerminalInput = () => {
 				aria-expanded={isOpen}
 			/>
 			{(isOpen || isAnimating) && (
-				<textarea
-					ref={textareaRef}
-					value={value}
-					onChange={handleChange}
-					rows={1}
-          autoComplete='off'
-          autoCorrect='off'
-          spellCheck='false'
-					placeholder='Type here...'
-					className={`terminal-input__textarea ${
-						isOpen && !isAnimating
-							? 'terminal-input__textarea--open'
-							: 'terminal-input__textarea--closed'
-					}`}
-				/>
+				<form onSubmit={handleSubmit}>
+					<input
+						type='text'
+						ref={inputRef}
+						value={value}
+						onChange={handleChange}
+						autoComplete='off'
+						autoCorrect='off'
+						spellCheck='false'
+						placeholder='Type here...'
+						className={`terminal-input__input ${
+							isOpen && !isAnimating
+								? 'terminal-input__input--open'
+								: 'terminal-input__input--closed'
+						}`}
+					/>
+				</form>
 			)}
 		</div>
 	);

@@ -265,7 +265,6 @@ function Header() {
 	useEffect(() => {
 		const handleClickOutsideDesktopMenu = (event: MouseEvent) => {
 			const target = event.target;
-			console.log(target);
 			const menuButtonContainer = document.querySelector(
 				'.header__nav-button *',
 			);

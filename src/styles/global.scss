@@ -42,7 +42,7 @@
 }
 
 :is(a, span, p, strong, input):focus-visible,
-textarea:not(.terminal-input__textarea):focus-visible {
+textarea:not(.terminal-input__input):focus-visible {
 	background-color: variables.$color_background_2;
 	color: variables.$color_background_1;
 	padding: 2px;
@@ -101,6 +101,7 @@ body {
 	width: 100%;
 	margin: 0;
 	border-radius: 0;
+	overflow: hidden;
 	padding: variables.$spacing_4 variables.$spacing_8;
 	backdrop-filter: blur(16px) saturate(180%);
 	-webkit-backdrop-filter: blur(16px) saturate(180%);
