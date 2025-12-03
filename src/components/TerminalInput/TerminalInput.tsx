@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState, Fragment, useMemo } from 'react';
 import './TerminalInput.scss';
 import { APP_ROUTES } from '../../constants';
 import { useNavigate } from 'react-router';
@@ -8,11 +8,40 @@ enum TerminalCommand {
 	List = 'ls',
 }
 
-const TerminalInput = () => {
+const highlightCommand = (text: string): JSX.Element | null => {
+	if (!text) return null;
+
+	const trimmedText = text.trim();
+	if (!trimmedText) {
+		return <span className='text'>{text}</span>;
+	}
+
+	const parts = trimmedText.split(/\s+/);
+	const [command, ...args] = parts;
+
+	const isValidCommand = Object.values(TerminalCommand).includes(
+		command as TerminalCommand,
+	);
+
+	const commandEndIndex = text.indexOf(command) + command.length;
+	const restOfText = text.slice(commandEndIndex);
+
+	return (
+		<Fragment>
+			<span className={isValidCommand ? 'command' : 'text'}>{command}</span>
+			{restOfText && <span className='argument'>{restOfText}</span>}
+		</Fragment>
+	);
+}
+
+interface TerminalFormProps {
+	isOpen: boolean;
+	isAnimating: boolean;
+}
+
+const TerminalForm = ({ isOpen, isAnimating }: TerminalFormProps) => {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [value, setValue] = useState('');
-	const [isOpen, setIsOpen] = useState(false);
-	const [isAnimating, setIsAnimating] = useState(false);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -52,6 +81,48 @@ const TerminalInput = () => {
 		setValue('');
 	};
 
+	const highlightedValue = useMemo(() => highlightCommand(value), [value]);
+
+	return (
+		<form onSubmit={handleSubmit}>
+			<div className='terminal-input__container'>
+				<input
+					type='text'
+					ref={inputRef}
+					value={value}
+					onChange={handleChange}
+					autoComplete='off'
+					autoCorrect='off'
+					spellCheck='false'
+					placeholder='Type here...'
+					className={`terminal-input__input ${
+						isOpen && !isAnimating
+							? 'terminal-input__input--open'
+							: 'terminal-input__input--closed'
+					}`}
+				/>
+				{value && (
+					<div
+						className={`terminal-input__highlight ${
+							isOpen && !isAnimating
+								? 'terminal-input__highlight--open'
+								: 'terminal-input__highlight--closed'
+						}`}
+						aria-hidden='true'
+					>
+						{highlightedValue}
+					</div>
+				)}
+			</div>
+		</form>
+	);
+};
+
+const TerminalInput = () => {
+	const [isOpen, setIsOpen] = useState(false);
+	const [isAnimating, setIsAnimating] = useState(false);
+	const [mountKey, setMountKey] = useState(0);
+
 	const handleToggle = () => {
 		if (isOpen) {
 			setIsAnimating(true);
@@ -61,6 +132,7 @@ const TerminalInput = () => {
 			}, 300);
 		} else {
 			setIsOpen(true);
+			setMountKey((prev) => prev + 1);
 		}
 	};
 
@@ -83,23 +155,7 @@ const TerminalInput = () => {
 				aria-expanded={isOpen}
 			/>
 			{(isOpen || isAnimating) && (
-				<form onSubmit={handleSubmit}>
-					<input
-						type='text'
-						ref={inputRef}
-						value={value}
-						onChange={handleChange}
-						autoComplete='off'
-						autoCorrect='off'
-						spellCheck='false'
-						placeholder='Type here...'
-						className={`terminal-input__input ${
-							isOpen && !isAnimating
-								? 'terminal-input__input--open'
-								: 'terminal-input__input--closed'
-						}`}
-					/>
-				</form>
+				<TerminalForm key={mountKey} isOpen={isOpen} isAnimating={isAnimating} />
 			)}
 		</div>
 	);

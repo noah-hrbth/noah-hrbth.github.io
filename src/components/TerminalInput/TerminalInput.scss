@@ -1,6 +1,15 @@
 @use '../../styles/variables.scss' as variables;
 @use '../../styles/mixins.scss' as mixins;
 
+@mixin terminal-text-styles {
+	width: 300px;
+	max-width: calc(100vw - #{variables.$spacing_8 * 2});
+	padding: variables.$spacing_3 variables.$spacing_4;
+	font-size: variables.$font_size_-2;
+	font-weight: bold;
+	line-height: 1.5;
+}
+
 .terminal-input {
 	position: absolute;
 	bottom: 0;
@@ -45,19 +54,18 @@
 		}
 	}
 
+	&__container {
+		position: relative;
+	}
+
 	&__input {
+		@include terminal-text-styles;
 		position: absolute;
 		bottom: 0;
 		left: 0;
-		width: 300px;
-		max-width: calc(100vw - #{variables.$spacing_8 * 2});
-		padding: variables.$spacing_3 variables.$spacing_4;
 		border: none;
 		border-radius: variables.$spacing_2;
 		color: variables.$color_text_1;
-		font-size: variables.$font_size_-2;
-		font-weight: bold;
-		line-height: 1.5;
 		resize: none;
 		overflow: hidden;
 		@include mixins.glassy;
@@ -82,6 +90,37 @@
 
 		&--open {
 			animation: expand-from-corner 0.2s ease-out forwards;
+		}
+
+		&--closed {
+			animation: collapse-to-corner 0.2s ease-out forwards;
+		}
+	}
+
+	&__highlight {
+		@include terminal-text-styles;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		pointer-events: none;
+		white-space: pre;
+		overflow: hidden;
+		transform-origin: bottom left;
+
+		.command {
+			color: variables.$color_primary_1;
+		}
+
+		.argument {
+			color: variables.$color_primary_2;
+		}
+
+		.text {
+			color: variables.$color_text_1;
+		}
+
+		&--open {
+			// No animation to prevent flying in effect
 		}
 
 		&--closed {
