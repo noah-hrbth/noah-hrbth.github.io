@@ -8,9 +8,17 @@
 	gap: variables.$spacing_1;
 	user-select: none;
 
+	.color-shuffle-button {
+		margin-left: auto;
+	}
+
 	&__logo {
 		place-self: center;
 		transition: transform variables.$transition-fast ease-in-out;
+
+		span {
+			font-size: variables.$font_size_-1;
+		}
 
 		&:hover {
 			transform: rotate(20deg);
@@ -41,7 +49,7 @@
 
 			.icon {
 				transition: transform variables.$transition_fast ease-in-out;
-				transform: rotate(90deg);
+				transform: rotate(0deg);
 				pointer-events: none;
 			}
 		}
@@ -52,7 +60,7 @@
 				background-color: transparent;
 
 				.icon {
-					transform: rotate(-90deg);
+					transform: rotate(180deg);
 				}
 			}
 		}

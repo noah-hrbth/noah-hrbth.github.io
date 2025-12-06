@@ -1,4 +1,11 @@
-import { FormEvent, useEffect, useRef, useState, Fragment, useMemo } from 'react';
+import {
+	FormEvent,
+	useEffect,
+	useRef,
+	useState,
+	Fragment,
+	useMemo,
+} from 'react';
 import './TerminalInput.scss';
 import { APP_ROUTES } from '../../constants';
 import { useNavigate } from 'react-router';
@@ -17,7 +24,7 @@ const highlightCommand = (text: string): JSX.Element | null => {
 	}
 
 	const parts = trimmedText.split(/\s+/);
-	const [command, ...args] = parts;
+	const [command] = parts;
 
 	const isValidCommand = Object.values(TerminalCommand).includes(
 		command as TerminalCommand,
@@ -32,7 +39,7 @@ const highlightCommand = (text: string): JSX.Element | null => {
 			{restOfText && <span className='argument'>{restOfText}</span>}
 		</Fragment>
 	);
-}
+};
 
 interface TerminalFormProps {
 	isOpen: boolean;
@@ -155,7 +162,11 @@ const TerminalInput = () => {
 				aria-expanded={isOpen}
 			/>
 			{(isOpen || isAnimating) && (
-				<TerminalForm key={mountKey} isOpen={isOpen} isAnimating={isAnimating} />
+				<TerminalForm
+					key={mountKey}
+					isOpen={isOpen}
+					isAnimating={isAnimating}
+				/>
 			)}
 		</div>
 	);

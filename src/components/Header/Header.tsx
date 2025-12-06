@@ -8,7 +8,8 @@ import Resume from '../../assets/documents/NoahHarborthResume.pdf';
 import { useEffect, useMemo, useState } from 'react';
 import ReactFocusLock from 'react-focus-lock';
 import { useLocation } from 'react-router';
-import Arrow from '../../assets/images/icons/arrow/Arrow.tsx';
+import CaretDown from '../../assets/images/icons/caret-down/CaretDown.tsx';
+import ColorShuffleButton from '../ColorShuffleButton/ColorShuffleButton';
 
 function HeaderNav({
 	inactivePages,
@@ -216,7 +217,7 @@ function HeaderMenuDesktopButton({
 			className={`header__nav-button fade-slide-in--top delay-2 ${isOpen ? 'header__nav-button--open' : ''}`}
 		>
 			<Button onClick={onClick} className={'header__desktop-nav-button'}>
-				<Arrow size={10} />
+				<CaretDown size={10} />
 			</Button>
 		</div>
 	);
@@ -334,6 +335,7 @@ function Header() {
 				)}
 			</div>
 
+			{!isMobile && <ColorShuffleButton />}
 			{isMobile && <ExpandingMenuButton />}
 		</header>
 	);

@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react';
+import { useBlobColors } from '../../contexts/BlobColorsContext';
 import './Background.scss';
 
 const Background: React.FC = () => {
 	const interBubbleRef = useRef<HTMLDivElement>(null);
 	const cornerOrbitRef = useRef<HTMLDivElement>(null);
+	const { colors } = useBlobColors();
 
 	useEffect(() => {
 		const interBubble = interBubbleRef.current;
@@ -63,6 +65,18 @@ const Background: React.FC = () => {
 			window.clearTimeout(timeoutId);
 		};
 	}, []);
+
+	useEffect(() => {
+		document.documentElement.style.setProperty('--color1', colors.color1);
+		document.documentElement.style.setProperty('--color2', colors.color2);
+		document.documentElement.style.setProperty('--color3', colors.color3);
+		document.documentElement.style.setProperty('--color4', colors.color4);
+		document.documentElement.style.setProperty('--color5', colors.color5);
+		document.documentElement.style.setProperty(
+			'--color-interactive',
+			colors.colorInteractive,
+		);
+	}, [colors]);
 
 	return (
 		<div className='gradient-bg'>
