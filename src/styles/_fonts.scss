@@ -10,20 +10,22 @@ p,
 a,
 span,
 div {
-	font-family: variables.$font_family;
 	color: variables.$color_text_1;
 }
 
 h1 {
 	font-size: variables.$font_size_5;
+	font-family: variables.$font_family_bold;
 }
 
 h2 {
 	font-size: variables.$font_size_4;
+	font-family: variables.$font_family_semibold;
 }
 
 h3 {
 	font-size: variables.$font_size_3;
+	font-family: variables.$font_family;
 }
 
 body,
@@ -32,4 +34,5 @@ p,
 a,
 div {
 	font-size: variables.$font_size_0;
+	font-family: variables.$font_family;
 }
