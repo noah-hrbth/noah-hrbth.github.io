@@ -23,7 +23,7 @@ function Home() {
 			<h2 className={'home__profession fade-slide-in--bottom delay-03'}>
 				<span className={'home__profession--start'}>
 					<DecryptedText text={professionStart} animateOn='view' speed={175} />
-				</span>{' '}
+				</span>
 				<span className={'home__profession--end'}>Developer</span>
 			</h2>
 		</main>

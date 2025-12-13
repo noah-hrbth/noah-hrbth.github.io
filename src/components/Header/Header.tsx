@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import useWindowSize from '../../hooks/useWindowSize';
 import VIEWPORT, { APP_ROUTES } from '../../constants.ts';
 import './Header.scss';
-import Cyborg1 from '../../assets/images/icons/cyborg-1/Cyborg1';
+import NoahsLogo from  '../../assets/images/noah_logo.png';
 import Resume from '../../assets/documents/NoahHarborthResume.pdf';
 import { useEffect, useMemo, useState } from 'react';
 import ReactFocusLock from 'react-focus-lock';
@@ -303,7 +303,7 @@ function Header() {
 		<header className='header'>
 			<div className='header__logo fade-in delay-13' role='button'>
 				<Link isNavLink to='/'>
-					<Cyborg1 size={36} />
+          <img className='header__logo-img' src={NoahsLogo} alt="Noah in Ghibli art style" />
 				</Link>
 			</div>
 			<span className='fade-slide-in--top delay-15'>/</span>

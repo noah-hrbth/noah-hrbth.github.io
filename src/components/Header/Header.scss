@@ -14,11 +14,11 @@
 
 	&__logo {
 		place-self: center;
+		width: 34px;
+		height: 34px;
+		transform-origin: 50% 70%;
+		margin-bottom: 10px;
 		transition: transform variables.$transition-fast ease-in-out;
-
-		span {
-			font-size: variables.$font_size_-1;
-		}
 
 		&:hover {
 			transform: rotate(20deg);

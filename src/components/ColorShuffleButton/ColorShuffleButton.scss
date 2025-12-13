@@ -17,6 +17,8 @@
 }
 
 .color-shuffle-button {
+  display: flex;
+
 	&__btn {
 		position: relative;
 		width: 2rem;
@@ -36,6 +38,11 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
+    transition: transform 0.3s ease-in-out;
+ 
+    &--animating {
+      transform: rotate(315deg);
+    }
 	}
 
 	&__circle {
@@ -48,10 +55,6 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		transition: opacity 0.2s ease;
-
-		.color-shuffle-button__btn:hover & {
-			opacity: 0.8;
-		}
 	}
 
 	&__circles--animating &__circle {
