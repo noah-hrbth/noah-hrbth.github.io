@@ -24,23 +24,23 @@ $font_size_4: clamp(2.3328rem, 2.1531rem + 0.8987vw, 3.0518rem);
 $font_size_5: clamp(2.7994rem, 2.5455rem + 1.2692vw, 3.8147rem);
 
 @font-face {
-	font-family: "Nunito";
+	font-family: 'Nunito';
 	src: url('../assets/fonts/Nunito-Medium.ttf');
 }
 
 @font-face {
-	font-family: "NunitoSemibold";
+	font-family: 'NunitoSemibold';
 	src: url('../assets/fonts/Nunito-SemiBold.ttf');
 }
 
 @font-face {
-	font-family: "NunitoBold";
+	font-family: 'NunitoBold';
 	src: url('../assets/fonts/Nunito-Bold.ttf');
 }
 
-$font_family: "Nunito", sans-serif;
-$font_family_semibold: "NunitoSemibold", sans-serif;
-$font_family_bold: "NunitoBold", sans-serif;
+$font_family: 'Nunito', sans-serif;
+$font_family_semibold: 'NunitoSemibold', sans-serif;
+$font_family_bold: 'NunitoBold', sans-serif;
 
 $spacing_0: 0;
 $spacing_1: 0.25rem;

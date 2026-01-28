@@ -38,11 +38,19 @@ const parseRgb = (rgb: string): [number, number, number] => {
 	return [r, g, b];
 };
 
-const interpolateChannel = (start: number, end: number, progress: number): number => {
+const interpolateChannel = (
+	start: number,
+	end: number,
+	progress: number,
+): number => {
 	return Math.round(start + (end - start) * progress);
 };
 
-const interpolateRgb = (start: string, end: string, progress: number): string => {
+const interpolateRgb = (
+	start: string,
+	end: string,
+	progress: number,
+): string => {
 	const [sr, sg, sb] = parseRgb(start);
 	const [er, eg, eb] = parseRgb(end);
 
@@ -129,7 +137,11 @@ export const BlobColorsProvider: React.FC<{ children: ReactNode }> = ({
 			const progress = Math.min(elapsed / duration, 1);
 
 			const easedProgress = progress * (2 - progress);
-			const nextColors = interpolateBlobColors(startColors, endColors, easedProgress);
+			const nextColors = interpolateBlobColors(
+				startColors,
+				endColors,
+				easedProgress,
+			);
 			setColors(nextColors);
 
 			if (progress < 1) {

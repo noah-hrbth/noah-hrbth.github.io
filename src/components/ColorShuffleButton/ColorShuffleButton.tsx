@@ -15,7 +15,10 @@ const ColorShuffleButton = () => {
 		};
 	}, []);
 
-	const handleClick = () => {
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+		event.preventDefault();
+		event.stopPropagation();
+
 		if (isAnimating) return;
 
 		setIsAnimating(true);

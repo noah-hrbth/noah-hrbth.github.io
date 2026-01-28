@@ -16,6 +16,10 @@
 		width: auto;
 		height: 100%;
 		border-radius: 50%;
+
+		&:focus-visible {
+			border-radius: 50%;
+		}
 	}
 
 	&--no-bg {

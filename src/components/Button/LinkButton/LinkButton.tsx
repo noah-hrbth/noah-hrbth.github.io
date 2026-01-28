@@ -6,6 +6,7 @@ interface LinkButtonProps {
 	href?: string;
 	target?: string;
 	rel?: string;
+	download?: string | boolean;
 }
 
 function LinkButton({
@@ -13,10 +14,16 @@ function LinkButton({
 	children,
 	...props
 }: { className?: string; children: ReactNode } & LinkButtonProps) {
-	const { href = '', target = '_blank', rel = 'noreferrer' } = props;
+	const { href = '', target = '_blank', rel = 'noreferrer', download } = props;
 
 	return (
-		<a className={className} href={href} target={target} rel={rel}>
+		<a
+			className={className}
+			href={href}
+			target={target}
+			rel={rel}
+			download={download}
+		>
 			{children}
 		</a>
 	);
