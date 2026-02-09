@@ -6,14 +6,10 @@
 	align-items: center;
 	justify-content: center;
 
+	&__title,
 	&__profession {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		column-gap: variables.$spacing_4;
-
-		&--start {
-			justify-self: end;
-		}
+		display: flex;
+		gap: 0.3em;
 	}
 
 	&__download-container {
@@ -65,13 +61,5 @@
 @media (width <= variables.$viewport_medium) {
 	.home {
 		align-items: start;
-
-		&__profession {
-			grid-template-columns: 1fr;
-		}
-
-		&__profession--start {
-			justify-self: start;
-		}
 	}
 }
