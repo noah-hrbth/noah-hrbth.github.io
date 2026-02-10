@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { NavigationProvider } from './contexts/NavigationContext';
 import { BlobColorsProvider } from './contexts/BlobColorsContext';
-import { hasEntrancePlayed } from './constants';
+import { DELAY, getDelay, hasEntrancePlayed } from './constants';
 import Home from './screens/Home/Home';
 import About from './screens/About/About';
 import Contact from './screens/Contact/Contact';
@@ -19,7 +19,7 @@ function App() {
 				<BlobColorsProvider>
 					<div className={'app'}>
 						<Background />
-						<div className={`layout${skipEntrance ? ' layout--skip-entrance' : ''}`}>
+						<div className='layout' style={{ animationDelay: getDelay(DELAY.LAYOUT, skipEntrance) }}>
 							<Header />
 
 							<Routes>

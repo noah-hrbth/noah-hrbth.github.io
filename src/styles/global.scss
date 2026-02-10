@@ -94,11 +94,8 @@ body {
 	-webkit-backdrop-filter: blur(16px) saturate(180%);
 	background-color: variables.$color_background_1--blur;
 	transition: variables.$transition;
-	animation: layout-animation 1s ease forwards 3.7s;
-
-	&--skip-entrance {
-		animation-delay: 0.5s;
-	}
+	animation: layout-animation 1s ease forwards;
+	/* animation-delay set inline via JS (see DELAY.LAYOUT in constants.ts) */
 }
 
 @media (width <= variables.$viewport_small) {
@@ -106,10 +103,6 @@ body {
 		width: min(90%, variables.$max_width);
 		margin: variables.$spacing_4;
 		border-radius: variables.$spacing_2;
-		animation: layout-animation-reverse 1s ease forwards 3.7s;
-
-		&--skip-entrance {
-			animation-delay: 0.5s;
-		}
+		animation: layout-animation-reverse 1s ease forwards;
 	}
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Home.scss';
 import Button from '../../components/Button/Button';
-import { hasEntrancePlayed } from '../../constants';
+import { DELAY, getDelay, hasEntrancePlayed } from '../../constants';
 import resumePdf from '../../assets/documents/NoahHarborthResume.pdf';
 import totoroImage from '../../assets/images/totoro.png';
 
@@ -38,7 +38,7 @@ function Home() {
 					<span
 						key={word}
 						className='fade-slide-in--top'
-						style={{ animationDelay: `${(skipEntrance ? 0 : 1.4) + i * 0.15}s` }}
+						style={{ animationDelay: getDelay(DELAY.HOME_TITLE_BASE, skipEntrance, i * 0.15) }}
 					>
 						{word}
 					</span>
@@ -49,7 +49,7 @@ function Home() {
 					<span
 						key={word}
 						className='fade-slide-in--bottom'
-						style={{ animationDelay: `${(skipEntrance ? 0.55 : 1.95) + i * 0.15}s` }}
+						style={{ animationDelay: getDelay(DELAY.HOME_SUBTITLE_BASE, skipEntrance, i * 0.15) }}
 					>
 						{word}
 					</span>
@@ -58,7 +58,7 @@ function Home() {
 			<div className='home__download-container'>
 				<Button
 					className='home__download-btn fade-slide-in--bottom'
-					style={{ animationDelay: skipEntrance ? '1s' : '4.5s' }}
+					style={{ animationDelay: getDelay(DELAY.HOME_DOWNLOAD, skipEntrance) }}
 					onClick={handleDownloadResume}
 				>
 					Download Resume

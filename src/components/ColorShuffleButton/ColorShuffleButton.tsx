@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useBlobColors } from '../../contexts/BlobColorsContext';
-import { hasEntrancePlayed } from '../../constants';
+import { DELAY, getDelay, hasEntrancePlayed } from '../../constants';
 import './ColorShuffleButton.scss';
 
 const ColorShuffleButton = () => {
@@ -33,7 +33,7 @@ const ColorShuffleButton = () => {
 	};
 
 	return (
-		<div className='color-shuffle-button fade-in' style={{ animationDelay: skipEntrance ? '2.0s' : '4.7s' }}>
+		<div className='color-shuffle-button fade-in' style={{ animationDelay: getDelay(DELAY.COLOR_SHUFFLE, skipEntrance) }}>
 			<button
 				className='color-shuffle-button__btn'
 				onClick={handleClick}

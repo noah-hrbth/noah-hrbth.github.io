@@ -105,76 +105,37 @@
 		}
 	}
 
-	/* ---------- Blob base styles (positioned inline via JS) ---------- */
+	/* ---------- Blob base + per-blob overrides ---------- */
 
-	.g1 {
+	.g-blob {
 		position: absolute;
-		background: radial-gradient(
-				circle at center,
-				rgba(var(--color1), 0.8) 0,
-				rgba(var(--color1), 0) 50%
-			)
-			no-repeat;
 		mix-blend-mode: var(--blending);
 		width: var(--circle-size);
 		height: var(--circle-size);
 		opacity: 1;
+	}
+
+	.g1 {
+		background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
 	}
 
 	.g2 {
-		position: absolute;
-		background: radial-gradient(
-				circle at center,
-				rgba(var(--color2), 0.8) 0,
-				rgba(var(--color2), 0) 50%
-			)
-			no-repeat;
-		mix-blend-mode: var(--blending);
-		width: var(--circle-size);
-		height: var(--circle-size);
-		opacity: 1;
+		background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
 	}
 
 	.g3 {
-		position: absolute;
-		background: radial-gradient(
-				circle at center,
-				rgba(var(--color3), 0.8) 0,
-				rgba(var(--color3), 0) 50%
-			)
-			no-repeat;
-		mix-blend-mode: var(--blending);
-		width: var(--circle-size);
-		height: var(--circle-size);
-		opacity: 1;
+		background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
 	}
 
 	.g4 {
-		position: absolute;
-		background: radial-gradient(
-				circle at center,
-				rgba(var(--color4), 0.8) 0,
-				rgba(var(--color4), 0) 50%
-			)
-			no-repeat;
-		mix-blend-mode: var(--blending);
-		width: var(--circle-size);
-		height: var(--circle-size);
+		background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
 		opacity: 0.7;
 	}
 
 	.g5 {
-		position: absolute;
-		background: radial-gradient(
-				circle at center,
-				rgba(var(--color5), 0.8) 0,
-				rgba(var(--color5), 0) 50%
-			)
-			no-repeat;
-		mix-blend-mode: var(--blending);
+		background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
 		width: calc(var(--circle-size) * 2);
 		height: calc(var(--circle-size) * 2);
-		opacity: 1;
 	}
 
 	/* ---------- Interactive (mouse-following) blob ---------- */

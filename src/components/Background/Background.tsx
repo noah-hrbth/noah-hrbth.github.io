@@ -129,7 +129,11 @@ const Background: React.FC = () => {
 		Array(BLOB_COUNT).fill(null),
 	);
 	const readyBlobs = useRef<Set<number>>(new Set());
+	const completedBlobCount = useRef(0);
 	const rafId = useRef<number>(0);
+	const mouseTargetRef = useRef({ x: 0, y: 0 });
+	const mouseCurRef = useRef({ x: 0, y: 0 });
+	const showInteractiveRef = useRef(false);
 	const { colors } = useBlobColors();
 
 	const skipEntrance = hasEntrancePlayed();
@@ -151,11 +155,13 @@ const Background: React.FC = () => {
 		});
 	}, []);
 
-	/** Initialize a blob for wandering (shared by skip-entrance and reduced-motion). */
-	const initBlobWander = useCallback((index: number) => {
+	/** Initialize a blob for wandering. Set skipPhaseUpdate when phase is already 'ready'. */
+	const initBlobWander = useCallback((index: number, skipPhaseUpdate = false) => {
 		wanderStates.current[index] = createWanderState(index, 0, 0);
 		readyBlobs.current.add(index);
-		advanceBlob(index, 'ready');
+		if (!skipPhaseUpdate) {
+			advanceBlob(index, 'ready');
+		}
 	}, [advanceBlob]);
 
 	/* ---- Skip-entrance: initialize all blobs as ready immediately ---- */
@@ -163,7 +169,7 @@ const Background: React.FC = () => {
 		if (!skipEntrance) return;
 
 		for (let i = 0; i < BLOB_COUNT; i++) {
-			initBlobWander(i);
+			initBlobWander(i, true);
 		}
 		setShowInteractive(true);
 	}, [skipEntrance, initBlobWander]);
@@ -213,10 +219,10 @@ const Background: React.FC = () => {
 
 			wanderStates.current[index] = createWanderState(index, 0, 0);
 			readyBlobs.current.add(index);
-
 			advanceBlob(index, 'ready');
 
-			if (index === BLOB_COUNT - 1) {
+			completedBlobCount.current++;
+			if (completedBlobCount.current === BLOB_COUNT) {
 				setShowInteractive(true);
 				markEntrancePlayed();
 			}
@@ -224,31 +230,43 @@ const Background: React.FC = () => {
 		[advanceBlob],
 	);
 
-	/* ---- Random wandering loop (runs continuously) ---- */
+	/* ---- Keep showInteractiveRef in sync with state ---- */
+	useEffect(() => {
+		showInteractiveRef.current = showInteractive;
+	}, [showInteractive]);
+
+	/* ---- Mouse listener (stores target coords, cheap) ---- */
+	useEffect(() => {
+		const handleMouseMove = (event: MouseEvent) => {
+			mouseTargetRef.current.x = event.clientX;
+			mouseTargetRef.current.y = event.clientY;
+		};
+		window.addEventListener('mousemove', handleMouseMove);
+		return () => window.removeEventListener('mousemove', handleMouseMove);
+	}, []);
+
+	/* ---- Single combined animation loop (blob wandering + mouse following) ---- */
 	useEffect(() => {
 		const animate = () => {
+			/* Blob wandering */
 			for (const i of readyBlobs.current) {
 				const state = wanderStates.current[i];
 				const el = blobRefs.current[i];
 				if (!state || !el) continue;
 
-				/* Smoothly transition base speed toward target speed. */
 				state.speed += (state.targetSpeed - state.speed) * SPEED_LERP;
 
-				/* Periodically pick a new random target speed. */
 				state.framesUntilSpeedChange--;
 				if (state.framesUntilSpeedChange <= 0) {
 					state.targetSpeed = pickRandomSpeed(i);
 					state.framesUntilSpeedChange = pickSpeedChangeDelay();
 				}
 
-				/* Direction + distance to target. */
 				const dx = state.targetX - state.offsetX;
 				const dy = state.targetY - state.offsetY;
 				const dist = Math.sqrt(dx * dx + dy * dy);
 
 				if (dist < ARRIVAL_THRESHOLD) {
-					/* Arrived — record current position as new start, pick new target. */
 					state.startX = state.offsetX;
 					state.startY = state.offsetY;
 					const newTarget = pickRandomTarget();
@@ -258,8 +276,6 @@ const Background: React.FC = () => {
 					const tdy = state.targetY - state.startY;
 					state.totalDist = Math.sqrt(tdx * tdx + tdy * tdy);
 				} else {
-					/* Ease-in/out: sine curve over progress (0→1 along path).
-					   Blobs decelerate approaching targets and accelerate leaving. */
 					const progress = state.totalDist > 0
 						? 1 - dist / state.totalDist
 						: 0.5;
@@ -273,45 +289,23 @@ const Background: React.FC = () => {
 				el.style.transform = `translate(${Math.round(state.offsetX)}px, ${Math.round(state.offsetY)}px)`;
 			}
 
+			/* Mouse-following interactive blob */
+			const interBubble = interBubbleRef.current;
+			if (interBubble) {
+				const cur = mouseCurRef.current;
+				const tg = mouseTargetRef.current;
+				cur.x += (tg.x - cur.x) / 20;
+				cur.y += (tg.y - cur.y) / 20;
+				if (showInteractiveRef.current) {
+					interBubble.style.transform = `translate(${Math.round(cur.x)}px, ${Math.round(cur.y)}px)`;
+				}
+			}
+
 			rafId.current = requestAnimationFrame(animate);
 		};
 
 		rafId.current = requestAnimationFrame(animate);
 		return () => cancelAnimationFrame(rafId.current);
-	}, []);
-
-	/* ---- Mouse-following interactive blob ---- */
-	useEffect(() => {
-		const interBubble = interBubbleRef.current;
-		if (!interBubble) return;
-
-		let curX = 0;
-		let curY = 0;
-		let tgX = 0;
-		let tgY = 0;
-		let mouseRafId: number;
-
-		const move = () => {
-			curX += (tgX - curX) / 20;
-			curY += (tgY - curY) / 20;
-
-			interBubble.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
-
-			mouseRafId = requestAnimationFrame(move);
-		};
-
-		const handleMouseMove = (event: MouseEvent) => {
-			tgX = event.clientX;
-			tgY = event.clientY;
-		};
-
-		window.addEventListener('mousemove', handleMouseMove);
-		mouseRafId = requestAnimationFrame(move);
-
-		return () => {
-			window.removeEventListener('mousemove', handleMouseMove);
-			cancelAnimationFrame(mouseRafId);
-		};
 	}, []);
 
 	/* ---- Sync blob colors to CSS custom properties ---- */
@@ -329,7 +323,7 @@ const Background: React.FC = () => {
 
 	/** Get className for a blob based on its animation phase. */
 	const getBlobClassName = (index: number, phase: BlobPhase): string => {
-		const base = `g${index + 1}`;
+		const base = `g-blob g${index + 1}`;
 		if (phase === 'entrance' || phase === 'sparkle') return `${base} g--entrance`;
 		if (phase === 'animating') return `${base} g--animating`;
 		return base;
@@ -382,7 +376,7 @@ const Background: React.FC = () => {
 				/>
 			</div>
 			{!skipEntrance && (
-				<div className='sparkles-container'>
+				<div className='sparkles-container' aria-hidden>
 					{SPARKLE_POSITIONS.map((pos, i) => (
 						<div
 							key={i}
