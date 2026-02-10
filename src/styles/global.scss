@@ -94,7 +94,7 @@ body {
 	-webkit-backdrop-filter: blur(16px) saturate(180%);
 	background-color: variables.$color_background_1--blur;
 	transition: variables.$transition;
-	animation: layout-animation 1s ease forwards 0.5s;
+	animation: layout-animation 1s ease forwards 3.5s;
 }
 
 @media (width <= variables.$viewport_small) {
@@ -102,6 +102,6 @@ body {
 		width: min(90%, variables.$max_width);
 		margin: variables.$spacing_4;
 		border-radius: variables.$spacing_2;
-		animation: layout-animation-reverse 1s ease forwards 0.5s;
+		animation: layout-animation-reverse 1s ease forwards 3.5s;
 	}
 }

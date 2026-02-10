@@ -36,7 +36,7 @@ function Home() {
 					<span
 						key={word}
 						className='fade-slide-in--top'
-						style={{ animationDelay: `${i * 0.15}s` }}
+						style={{ animationDelay: `${1.4 + i * 0.15}s` }}
 					>
 						{word}
 					</span>
@@ -47,7 +47,7 @@ function Home() {
 					<span
 						key={word}
 						className='fade-slide-in--bottom'
-						style={{ animationDelay: `${0.55 + i * 0.15}s` }}
+						style={{ animationDelay: `${1.95 + i * 0.15}s` }}
 					>
 						{word}
 					</span>
@@ -56,7 +56,7 @@ function Home() {
 			<div className='home__download-container'>
 				<Button
 					className='home__download-btn fade-slide-in--bottom'
-					style={{ animationDelay: '1.3s' }}
+					style={{ animationDelay: '2.7s' }}
 					onClick={handleDownloadResume}
 				>
 					Download Resume

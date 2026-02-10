@@ -214,7 +214,8 @@ function HeaderMenuDesktopButton({
 }) {
 	return (
 		<div
-			className={`header__nav-button fade-slide-in--top delay-2 ${isOpen ? 'header__nav-button--open' : ''}`}
+			className={`header__nav-button fade-slide-in--top ${isOpen ? 'header__nav-button--open' : ''}`}
+			style={{ animationDelay: '4.5s' }}
 		>
 			<Button onClick={onClick} className={'header__desktop-nav-button'}>
 				<CaretDown size={10} />
@@ -301,7 +302,7 @@ function Header() {
 
 	return (
 		<header className='header'>
-			<div className='header__logo fade-in delay-13' role='button'>
+			<div className='header__logo fade-in' style={{ animationDelay: '4.0s' }} role='button'>
 				<Link isNavLink to='/'>
 					<img
 						className='header__logo-img'
@@ -310,14 +311,15 @@ function Header() {
 					/>
 				</Link>
 			</div>
-			<span className='fade-slide-in--top delay-15'>/</span>
+			<span className='fade-slide-in--top' style={{ animationDelay: '4.2s' }}>/</span>
 
 			<div className='header__container'>
 				<Button
 					onClick={() => {
 						setIsDesktopMenuOpen(true);
 					}}
-					className='header__active-page fade-slide-in--top delay-17'
+					className='header__active-page fade-slide-in--top'
+				style={{ animationDelay: '4.3s' }}
 					disabled={isDesktopMenuOpen}
 					styleType='no-bg'
 				>
