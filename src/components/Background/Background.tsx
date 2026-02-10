@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useBlobColors } from '../../contexts/BlobColorsContext';
+import { ENTRANCE_SESSION_KEY, hasEntrancePlayed } from '../../constants';
 import './Background.scss';
 
 const BLOB_COUNT = 5;
-const SESSION_KEY = 'portfolioBlobEntrancePlayed';
 
 /** Entrance timing — sparkles first, then blob morphs. */
 const SPARKLE_STAGGER_MS = 200;
@@ -113,20 +113,10 @@ const createWanderState = (
 	};
 };
 
-/** Check whether the entrance animation has already played this session. */
-const hasEntrancePlayed = (): boolean => {
-	try {
-		// return sessionStorage.getItem(SESSION_KEY) === 'true';
-		return false;
-	} catch {
-		return false;
-	}
-};
-
 /** Mark entrance animation as played for this session. */
 const markEntrancePlayed = (): void => {
 	try {
-		// sessionStorage.setItem(SESSION_KEY, 'true');
+		sessionStorage.setItem(ENTRANCE_SESSION_KEY, 'true');
 	} catch {
 		/* sessionStorage unavailable */
 	}

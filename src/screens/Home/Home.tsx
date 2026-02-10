@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import './Home.scss';
 import Button from '../../components/Button/Button';
+import { hasEntrancePlayed } from '../../constants';
 import resumePdf from '../../assets/documents/NoahHarborthResume.pdf';
 import totoroImage from '../../assets/images/totoro.png';
 
 function Home() {
 	const [showTotoro, setShowTotoro] = useState(false);
+	const skipEntrance = hasEntrancePlayed();
 
 	const handleDownloadResume = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
@@ -36,7 +38,7 @@ function Home() {
 					<span
 						key={word}
 						className='fade-slide-in--top'
-						style={{ animationDelay: `${1.4 + i * 0.15}s` }}
+						style={{ animationDelay: `${(skipEntrance ? 0 : 1.4) + i * 0.15}s` }}
 					>
 						{word}
 					</span>
@@ -47,7 +49,7 @@ function Home() {
 					<span
 						key={word}
 						className='fade-slide-in--bottom'
-						style={{ animationDelay: `${1.95 + i * 0.15}s` }}
+						style={{ animationDelay: `${(skipEntrance ? 0.55 : 1.95) + i * 0.15}s` }}
 					>
 						{word}
 					</span>
@@ -56,7 +58,7 @@ function Home() {
 			<div className='home__download-container'>
 				<Button
 					className='home__download-btn fade-slide-in--bottom'
-					style={{ animationDelay: '2.7s' }}
+					style={{ animationDelay: skipEntrance ? '1s' : '4.5s' }}
 					onClick={handleDownloadResume}
 				>
 					Download Resume

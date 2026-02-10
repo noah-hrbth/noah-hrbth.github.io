@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { NavigationProvider } from './contexts/NavigationContext';
 import { BlobColorsProvider } from './contexts/BlobColorsContext';
+import { hasEntrancePlayed } from './constants';
 import Home from './screens/Home/Home';
 import About from './screens/About/About';
 import Contact from './screens/Contact/Contact';
@@ -10,13 +11,15 @@ import Background from './components/Background/Background';
 import './styles/index.scss';
 
 function App() {
+	const skipEntrance = hasEntrancePlayed();
+
 	return (
 		<BrowserRouter>
 			<NavigationProvider>
 				<BlobColorsProvider>
 					<div className={'app'}>
 						<Background />
-						<div className={'layout'}>
+						<div className={`layout${skipEntrance ? ' layout--skip-entrance' : ''}`}>
 							<Header />
 
 							<Routes>

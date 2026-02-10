@@ -1,7 +1,7 @@
 import Link from '../Link/Link.js';
 import Button from '../Button/Button';
 import useWindowSize from '../../hooks/useWindowSize';
-import VIEWPORT, { APP_ROUTES } from '../../constants.ts';
+import VIEWPORT, { APP_ROUTES, hasEntrancePlayed } from '../../constants.ts';
 import './Header.scss';
 import NoahsLogo from '../../assets/images/noah_logo.png';
 import Resume from '../../assets/documents/NoahHarborthResume.pdf';
@@ -208,14 +208,16 @@ function ExpandingMenuButton() {
 function HeaderMenuDesktopButton({
 	isOpen,
 	onClick,
+	skipEntrance,
 }: {
 	isOpen: boolean;
 	onClick: () => void;
+	skipEntrance: boolean;
 }) {
 	return (
 		<div
 			className={`header__nav-button fade-slide-in--top ${isOpen ? 'header__nav-button--open' : ''}`}
-			style={{ animationDelay: '4.5s' }}
+			style={{ animationDelay: skipEntrance ? '2.0s' : '4.7s' }}
 		>
 			<Button onClick={onClick} className={'header__desktop-nav-button'}>
 				<CaretDown size={10} />
@@ -229,6 +231,7 @@ function Header() {
 	const [delayedIsDesktopMenuOpen, setDelayedIsDesktopMenuOpen] =
 		useState(false);
 	const { width } = useWindowSize();
+	const skipEntrance = hasEntrancePlayed();
 	const isMobile = width <= VIEWPORT.SMALL;
 	const location = useLocation();
 
@@ -302,7 +305,7 @@ function Header() {
 
 	return (
 		<header className='header'>
-			<div className='header__logo fade-in' style={{ animationDelay: '4.0s' }} role='button'>
+			<div className='header__logo fade-in' style={{ animationDelay: skipEntrance ? '1.3s' : '4.2s' }} role='button'>
 				<Link isNavLink to='/'>
 					<img
 						className='header__logo-img'
@@ -311,7 +314,7 @@ function Header() {
 					/>
 				</Link>
 			</div>
-			<span className='fade-slide-in--top' style={{ animationDelay: '4.2s' }}>/</span>
+			<span className='fade-slide-in--top' style={{ animationDelay: skipEntrance ? '1.5s' : '4.4s' }}>/</span>
 
 			<div className='header__container'>
 				<Button
@@ -319,7 +322,7 @@ function Header() {
 						setIsDesktopMenuOpen(true);
 					}}
 					className='header__active-page fade-slide-in--top'
-				style={{ animationDelay: '4.3s' }}
+				style={{ animationDelay: skipEntrance ? '1.7s' : '4.5s' }}
 					disabled={isDesktopMenuOpen}
 					styleType='no-bg'
 				>
@@ -327,6 +330,7 @@ function Header() {
 				</Button>
 				<HeaderMenuDesktopButton
 					isOpen={isDesktopMenuOpen}
+					skipEntrance={skipEntrance}
 					onClick={() => {
 						setIsDesktopMenuOpen(!isDesktopMenuOpen);
 					}}
