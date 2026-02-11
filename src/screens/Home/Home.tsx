@@ -5,6 +5,8 @@ import { DELAY, getDelay, hasEntrancePlayed } from '../../constants';
 import resumePdf from '../../assets/documents/NoahHarborthResume.pdf';
 import totoroImage from '../../assets/images/totoro.png';
 
+const SPARKLE_COUNT = 4;
+
 function Home() {
 	const [showTotoro, setShowTotoro] = useState(false);
 	const skipEntrance = hasEntrancePlayed();
@@ -62,6 +64,13 @@ function Home() {
 					onClick={handleDownloadResume}
 				>
 					Download Resume
+					{Array.from({ length: SPARKLE_COUNT }, (_, i) => (
+						<span
+							key={i}
+							className='home__sparkle'
+							style={{ '--sparkle-index': i } as React.CSSProperties}
+						/>
+					))}
 				</Button>
 				{showTotoro && (
 					<img
