@@ -38,9 +38,21 @@ $font_size_5: clamp(2.7994rem, 2.5455rem + 1.2692vw, 3.8147rem);
 	src: url('../assets/fonts/Nunito-Bold.ttf');
 }
 
-$font_family: 'Nunito', sans-serif;
-$font_family_semibold: 'NunitoSemibold', sans-serif;
-$font_family_bold: 'NunitoBold', sans-serif;
+@font-face {
+	font-family: 'Geist Pixel';
+	src: url('../assets/fonts/geist-font/GeistPixel/webfonts/GeistPixel-Square.woff2')
+		format('woff2');
+}
+
+@font-face {
+	font-family: 'Geist Pixel Circle';
+	src: url('../assets/fonts/geist-font/GeistPixel/webfonts/GeistPixel-Circle.woff2')
+		format('woff2');
+}
+
+$font_family: 'Geist Pixel', 'Nunito', sans-serif;
+$font_family_semibold: 'Geist Pixel Circle', 'NunitoSemibold', sans-serif;
+$font_family_bold: 'Geist Pixel Circle', 'NunitoBold', sans-serif;
 
 $spacing_0: 0;
 $spacing_1: 0.25rem;

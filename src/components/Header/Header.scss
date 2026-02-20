@@ -68,6 +68,7 @@
 
 	&__container {
 		position: relative;
+		z-index: mixins.z-index(foreground);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -80,7 +81,7 @@
 		left: -(variables.$spacing_2);
 		margin-left: variables.$spacing_1;
 		margin-top: 2px;
-		width: calc(100% + variables.$spacing_2);
+		width: calc(100% + variables.$spacing_3 + 0.25rem);
 		border-radius: 15px;
 		background-color: variables.$color_background_1--blur;
 		padding: 0 0 variables.$spacing_2 variables.$spacing_2;
@@ -101,5 +102,4 @@
 			}
 		}
 	}
-
 }

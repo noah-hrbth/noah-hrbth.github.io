@@ -1,0 +1,67 @@
+@use '../../styles/variables.scss' as variables;
+
+:root {
+	--list-width: 800px;
+}
+
+@keyframes running-pixelman {
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(calc(var(--list-width) / 2));
+	}
+}
+
+.projects {
+	overflow-y: auto;
+	border-radius: variables.$spacing_2;
+
+	h1 {
+		margin-bottom: variables.$spacing_4;
+	}
+
+	&__running-pixelman {
+		position: absolute;
+		height: 50px;
+		width: 50px;
+		top: -49px;
+		left: 50%;
+		transform: translateX(-50%);
+		animation: running-pixelman 1s linear infinite;
+	}
+
+	&__list {
+		display: grid;
+		position: relative;
+		grid-template-columns: repeat(6, 1fr);
+		max-width: 800px;
+		gap: variables.$spacing_4;
+	}
+
+	&__item {
+		grid-column: span 3;
+		border-radius: variables.$spacing_2;
+		background-color: variables.$color_background_1--blur;
+		padding: variables.$spacing_4;
+
+		&:is(#nextmuseum-sacred-pixels) {
+			grid-column: span 6;
+		}
+
+		&:is(#hovercube-42) {
+			grid-column: 1 / 5;
+		}
+
+		&:is(#css-flex-grid-game) {
+			grid-column: 5 / 7;
+		}
+	}
+
+	&__description {
+		margin-top: variables.$spacing_1;
+		font-size: variables.$font_size_-2;
+		color: variables.$color_primary_1;
+	}
+}

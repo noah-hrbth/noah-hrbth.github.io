@@ -3,7 +3,7 @@ import { NavigationProvider } from './contexts/NavigationContext';
 import { BlobColorsProvider } from './contexts/BlobColorsContext';
 import { DELAY, getDelay, hasEntrancePlayed } from './constants';
 import Home from './screens/Home/Home';
-import About from './screens/About/About';
+import Projects from './screens/Projects/Projects';
 import Contact from './screens/Contact/Contact';
 import Header from './components/Header/Header';
 import Background from './components/Background/Background';
@@ -24,7 +24,7 @@ function App() {
 
 							<Routes>
 								<Route path='/' element={<Home />} />
-								<Route path='/about' element={<About />} />
+								<Route path='/projects' element={<Projects />} />
 								<Route path='/contact' element={<Contact />} />
 							</Routes>
 						</div>

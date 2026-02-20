@@ -22,6 +22,15 @@
 	color: variables.$color_background_1;
 }
 
+::-webkit-scrollbar {
+	/* Hide scrollbars in WebKit browsers */
+	display: none;
+}
+
+* {
+	scrollbar-width: none;
+}
+
 *:focus-visible {
 	outline: 2px dashed white;
 	outline-offset: 2px;
@@ -95,7 +104,6 @@ body {
 	background-color: variables.$color_background_1--blur;
 	transition: variables.$transition;
 	animation: layout-animation 1s ease forwards;
-	/* animation-delay set inline via JS (see DELAY.LAYOUT in constants.ts) */
 }
 
 @media (width <= variables.$viewport_small) {
