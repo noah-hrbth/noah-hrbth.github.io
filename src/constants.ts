@@ -28,11 +28,11 @@ export const PROJECTS = [
 		badge: 'WIP',
 		tags: ['IoT', 'Computer Vision', 'Python'],
 	},
-    	{
+	{
 		id: 'nextmuseum-sacred-pixels',
 		label: 'NextMuseum: Sacred Pixels',
 		description:
-			'An uni project for the Museum Ulm where we created a 3 split screen altair, that took pictures of the visitors and transformed them into various art styles with the help of AI',
+			'An uni project for the Museum Ulm where we created a 3 split screen altar, that took pictures of the visitors and transformed them into various art styles with the help of AI',
 		tags: ['AI', 'Computer Vision', 'Python'],
 	},
 	{
