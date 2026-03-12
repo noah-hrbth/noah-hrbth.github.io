@@ -1,15 +1,14 @@
 import './Projects.scss';
-import { PROJECTS } from '../../constants';
+import { PROJECTS, DEFAULT_GRID_SPAN, SPARKLE_COUNT_PER_SPAN } from '../../constants';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import useWindowSize from '../../hooks/useWindowSize';
-import { useTilt } from '../../hooks/useTilt';
+import ProjectCard from './ProjectCard';
 
 
-const Projects = (): React.JSX.Element => {
+const Projects = (): JSX.Element => {
 	const listRef = useRef<HTMLUListElement>(null);
 	const { width } = useWindowSize();
 	const [listWidth, setListWidth] = useState(800);
-	const { handleMouseMove, handleMouseLeave } = useTilt();
 
 	const handleAnimationEnd = useCallback((e: React.AnimationEvent<HTMLElement>) => {
 		const el = e.currentTarget;
@@ -32,21 +31,14 @@ const Projects = (): React.JSX.Element => {
 				className='projects__list'
 				style={{ '--list-width': listWidth + 'px' } as React.CSSProperties}
 			>
-				{/* <img src={RunningPixelman} className='projects__running-pixelman' /> */}
 				{PROJECTS.map((project, index) => (
-					<li
+					<ProjectCard
 						key={`${project.label}-${project.id}`}
-						id={project.id}
-						className='projects__item fade-slide-in--top'
-						style={{ animationDelay: `${1.6 + index * 0.3}s` }}
-						onMouseMove={handleMouseMove}
-						onMouseLeave={handleMouseLeave}
+						project={project}
+						sparkleCount={(project.gridSpan ?? DEFAULT_GRID_SPAN) * SPARKLE_COUNT_PER_SPAN}
+						index={index}
 						onAnimationEnd={handleAnimationEnd}
-					>
-						<h4 className='projects__label'>{project.label}</h4>
-						<p className='projects__description'>{project.description}</p>
-						{project.link && <span className='projects__link-wrapper'>[<a className='projects__link' href={project.link} target='_blank' rel='noreferrer'>{project.link}</a>]</span>}
-					</li>
+					/>
 				))}
 			</ul>
 		</main>

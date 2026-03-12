@@ -11,7 +11,21 @@ export const APP_ROUTES = [
 	{ route: '/contact', name: 'contact' },
 ];
 
-export const PROJECTS = [
+export interface Project {
+	id: string;
+	label: string;
+	description: string;
+	badge?: string;
+	link?: string;
+	tags: string[];
+	/** Effective column width in the grid (2, 3, or 4). Default: 3. Used for sparkle count scaling. */
+	gridSpan?: number;
+}
+
+export const SPARKLE_COUNT_PER_SPAN = 2;
+export const DEFAULT_GRID_SPAN = 3;
+
+export const PROJECTS: Project[] = [
 	{
 		id: 'bachelor-thesis',
 		label: 'RAG Bachelor Thesis',
@@ -24,7 +38,7 @@ export const PROJECTS = [
 		id: 'kunstpalast',
 		label: 'Kunstpalast Website & Webshop',
 		description:
-			'The website and webshop for the Kunstpalast museum, the biggest art museum in Düsseldorf', 
+			'The website and webshop for the Kunstpalast museum, the biggest art museum in Düsseldorf',
 		link: 'https://kunstpalast.de',
 		tags: ['Web Dev', 'Wordpress', 'PHP', 'React'],
 	},
@@ -35,6 +49,7 @@ export const PROJECTS = [
 			'The website of the EVKK, a hospital in Cologne',
 		link: 'https://www.evkk.de',
 		tags: ['Web Dev', 'Wordpress', 'PHP', 'React'],
+		gridSpan: 2,
 	},
 	// {
 	// 	id: 'raspberry-pi-garden',
@@ -50,6 +65,7 @@ export const PROJECTS = [
 		description:
 			'An uni project for the Museum Ulm where we created a 3 split screen altar, that took pictures of the visitors and transformed them into various art styles with the help of AI',
 		tags: ['AI', 'Computer Vision', 'Python'],
+		gridSpan: 4,
 	},
 	{
 		id: 'hovercube-42',
@@ -58,6 +74,7 @@ export const PROJECTS = [
 			'An uni project where we programmed a movement based racing game for a 1x1x1m wooden cube with a screen on top that had gyroscopes and a raspberry pi inside',
 		link: 'https://github.com/jbg-1/hovercar-42',
 		tags: ['Game Dev', 'Unity', 'C#'],
+		gridSpan: 4,
 	},
 	{
 		id: 'css-flex-grid-game',
@@ -65,6 +82,7 @@ export const PROJECTS = [
 		description: 'An uni project game to practice CSS layout skills',
 		badge: 'archived',
 		tags: ['Web Dev', 'Vue.js'],
+		gridSpan: 2,
 	},
 	{
 		id: 'git-work-tracker',

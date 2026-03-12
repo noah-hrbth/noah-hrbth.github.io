@@ -44,6 +44,7 @@
 	}
 
 	&__item {
+		position: relative;
 		grid-column: span 3;
 		border-radius: variables.$spacing_2;
 		background-color: variables.$color_background_1--blur;
