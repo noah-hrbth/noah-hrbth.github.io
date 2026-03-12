@@ -17,6 +17,9 @@
 .projects {
 	overflow-y: auto;
 	border-radius: variables.$spacing_2;
+	padding: variables.$spacing_4;
+	margin: -(variables.$spacing_4);
+	margin-top: 0;
 
 	h1 {
 		margin-bottom: variables.$spacing_4;
@@ -45,9 +48,21 @@
 		border-radius: variables.$spacing_2;
 		background-color: variables.$color_background_1--blur;
 		padding: variables.$spacing_4;
+		cursor: default;
+		transform-style: preserve-3d;
+		transition: transform 0.4s ease-out;
+
+		&:hover {
+			will-change: transform;
+			transition: transform 0.1s ease-out;
+		}
+
+		&:is(#evkk) {
+			grid-column: span 2;
+		}
 
 		&:is(#nextmuseum-sacred-pixels) {
-			grid-column: span 6;
+			grid-column: span 4;
 		}
 
 		&:is(#hovercube-42) {
@@ -63,5 +78,23 @@
 		margin-top: variables.$spacing_1;
 		font-size: variables.$font_size_-2;
 		color: variables.$color_primary_1;
+	}
+
+	&__link-wrapper {
+		display: inline-block;
+		margin-top: variables.$spacing_2;
+		font-size: variables.$font_size_-2;
+		color: variables.$color_primary_1;
+	}
+
+	&__link {
+		margin-top: variables.$spacing_2;
+		font-size: variables.$font_size_-2;
+		color: variables.$color_primary_1;
+		transition: color 0.2s ease-out;
+
+		&:hover {
+			color: variables.$color_primary_2;
+		}
 	}
 }

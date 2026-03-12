@@ -1,6 +1,11 @@
 import Link from '../Link/Link.js';
 import Button from '../Button/Button';
-import { APP_ROUTES, DELAY, getDelay, hasEntrancePlayed } from '../../constants.ts';
+import {
+	APP_ROUTES,
+	DELAY,
+	getDelay,
+	hasEntrancePlayed,
+} from '../../constants.ts';
 import './Header.scss';
 import NoahsLogo from '../../assets/images/noah_logo.png';
 import { useEffect, useMemo, useState } from 'react';
@@ -43,7 +48,9 @@ function HeaderMenuDesktopButton({
 	return (
 		<div
 			className={`header__nav-button fade-slide-in--top ${isOpen ? 'header__nav-button--open' : ''}`}
-			style={{ animationDelay: getDelay(DELAY.HEADER_NAV_BUTTON, skipEntrance) }}
+			style={{
+				animationDelay: getDelay(DELAY.HEADER_NAV_BUTTON, skipEntrance),
+			}}
 		>
 			<Button onClick={onClick} className={'header__desktop-nav-button'}>
 				<CaretDown size={10} />
@@ -129,7 +136,11 @@ function Header() {
 
 	return (
 		<header className='header'>
-			<div className='header__logo fade-in' style={{ animationDelay: getDelay(DELAY.HEADER_LOGO, skipEntrance) }} role='button'>
+			<div
+				className='header__logo fade-in'
+				style={{ animationDelay: getDelay(DELAY.HEADER_LOGO, skipEntrance) }}
+				role='button'
+			>
 				<Link isNavLink to='/'>
 					<img
 						className='header__logo-img'
@@ -138,7 +149,12 @@ function Header() {
 					/>
 				</Link>
 			</div>
-			<span className='fade-slide-in--top' style={{ animationDelay: getDelay(DELAY.HEADER_SLASH, skipEntrance) }}>/</span>
+			<span
+				className='fade-slide-in--top'
+				style={{ animationDelay: getDelay(DELAY.HEADER_SLASH, skipEntrance) }}
+			>
+				/
+			</span>
 
 			<div className='header__container'>
 				<Button
@@ -146,7 +162,9 @@ function Header() {
 						setIsDesktopMenuOpen(true);
 					}}
 					className='header__active-page fade-slide-in--top'
-					style={{ animationDelay: getDelay(DELAY.HEADER_ACTIVE_PAGE, skipEntrance) }}
+					style={{
+						animationDelay: getDelay(DELAY.HEADER_ACTIVE_PAGE, skipEntrance),
+					}}
 					disabled={isDesktopMenuOpen}
 					styleType='no-bg'
 				>

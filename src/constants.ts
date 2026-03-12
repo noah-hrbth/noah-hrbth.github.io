@@ -13,21 +13,37 @@ export const APP_ROUTES = [
 
 export const PROJECTS = [
 	{
-		id: 'cnn-bachelor-thesis',
-		label: 'CNN Bachelor Thesis',
+		id: 'bachelor-thesis',
+		label: 'RAG Bachelor Thesis',
 		description:
-			'My bachelor thesis project where I implemented a CNN to classify traffic signs and skin lesions',
+			'My bachelor thesis project where I implemented a RAG pipeline and exlpored the theoretical background of it',
 		badge: 'WIP',
-		tags: ['AI', 'Computer Vision', 'Python'],
+		tags: ['AI', 'RAG', 'Python'],
 	},
 	{
-		id: 'raspberry-pi-garden',
-		label: 'Raspberry Pi Garden',
+		id: 'kunstpalast',
+		label: 'Kunstpalast Website & Webshop',
 		description:
-			'A Raspberry Pi project to monitor my plant with an infrared camera and to keep them alive',
-		badge: 'WIP',
-		tags: ['IoT', 'Computer Vision', 'Python'],
+			'The website and webshop for the Kunstpalast museum, the biggest art museum in Düsseldorf', 
+		link: 'https://kunstpalast.de',
+		tags: ['Web Dev', 'Wordpress', 'PHP', 'React'],
 	},
+	{
+		id: 'evkk',
+		label: 'EVKK Website',
+		description:
+			'The website of the EVKK, a hospital in Cologne',
+		link: 'https://www.evkk.de',
+		tags: ['Web Dev', 'Wordpress', 'PHP', 'React'],
+	},
+	// {
+	// 	id: 'raspberry-pi-garden',
+	// 	label: 'Raspberry Pi Garden',
+	// 	description:
+	// 		'A Raspberry Pi project to monitor my plant with an infrared camera and to keep them alive',
+	// 	badge: 'WIP',
+	// 	tags: ['IoT', 'Computer Vision', 'Python'],
+	// },
 	{
 		id: 'nextmuseum-sacred-pixels',
 		label: 'NextMuseum: Sacred Pixels',
