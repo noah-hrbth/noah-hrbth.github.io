@@ -5,18 +5,17 @@ import { useNavigation } from '../../contexts/NavigationContext';
 const Cursor = () => {
 	const mousePosition = useMousePosition();
 	const cursorRef = useRef<HTMLDivElement>(null);
-	const { urlChanged } = useNavigation();
+	const { locationKey } = useNavigation();
 
-	const handleMouseEnter = () => {
-		cursorRef.current?.classList.add('cursor--hover');
-	};
-
-	const handleMouseLeave = () => {
-		cursorRef.current?.classList.remove('cursor--hover');
-	};
-
-	const handleMouseHover = () => {
+	useEffect(() => {
 		setTimeout(() => {
+			const handleMouseEnter = () => {
+				cursorRef.current?.classList.add('cursor--hover');
+			};
+			const handleMouseLeave = () => {
+				cursorRef.current?.classList.remove('cursor--hover');
+			};
+
 			const allLinks = document.querySelectorAll('a');
 			const allButtons = document.querySelectorAll('button');
 
@@ -24,17 +23,12 @@ const Cursor = () => {
 				link.addEventListener('mouseenter', handleMouseEnter);
 				link.addEventListener('mouseleave', handleMouseLeave);
 			});
-
 			allButtons.forEach((button) => {
 				button.addEventListener('mouseenter', handleMouseEnter);
 				button.addEventListener('mouseleave', handleMouseLeave);
 			});
 		});
-	};
-
-	useEffect(() => {
-		handleMouseHover();
-	}, [urlChanged]);
+	}, [locationKey]);
 
 	return (
 		<div
@@ -55,7 +49,7 @@ const useMousePosition = () => {
 	});
 
 	React.useEffect(() => {
-		const updateMousePosition = (ev: { clientX: any; clientY: any }) => {
+		const updateMousePosition = (ev: MouseEvent) => {
 			setMousePosition({ x: ev.clientX, y: ev.clientY });
 		};
 

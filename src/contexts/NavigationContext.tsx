@@ -1,9 +1,9 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+import React, { createContext, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface NavigationContextType {
-	urlChanged: boolean;
-	setUrlChanged: (value: boolean) => void;
+	locationKey: string;
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(
@@ -17,21 +17,17 @@ interface NavigationProviderProps {
 export const NavigationProvider: React.FC<NavigationProviderProps> = ({
 	children,
 }) => {
-	const [urlChanged, setUrlChanged] = useState(false);
 	const location = useLocation();
 
-	useEffect(() => {
-		setUrlChanged(true);
-	}, [location]);
-
 	return (
-		<NavigationContext.Provider value={{ urlChanged, setUrlChanged }}>
+		<NavigationContext.Provider value={{ locationKey: location.key ?? '' }}>
 			{children}
 		</NavigationContext.Provider>
 	);
 };
 
-export const useNavigation = () => {
+/** Provides access to the NavigationContext for tracking URL changes. */
+export const useNavigation = (): NavigationContextType => {
 	const context = useContext(NavigationContext);
 
 	if (!context) {

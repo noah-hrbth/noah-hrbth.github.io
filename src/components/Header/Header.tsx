@@ -81,6 +81,14 @@ function Header() {
 		[location],
 	);
 
+	const [prevLocation, setPrevLocation] = useState(location);
+	if (prevLocation !== location) {
+		setPrevLocation(location);
+		if (isDesktopMenuOpen) {
+			setIsDesktopMenuOpen(false);
+		}
+	}
+
 	useEffect(() => {
 		const timeout = setTimeout(
 			() => {
@@ -93,10 +101,6 @@ function Header() {
 			clearTimeout(timeout);
 		};
 	}, [isDesktopMenuOpen]);
-
-	useEffect(() => {
-		setIsDesktopMenuOpen(false);
-	}, [location]);
 
 	useEffect(() => {
 		const handleClickOutsideDesktopMenu = (event: MouseEvent) => {
