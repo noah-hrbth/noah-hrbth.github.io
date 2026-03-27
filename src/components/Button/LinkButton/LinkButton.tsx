@@ -2,20 +2,25 @@ import { ReactNode } from 'react';
 import './LinkButton.scss';
 
 interface LinkButtonProps {
-	[key: string]: any;
+	className?: string;
+	children: ReactNode;
 	href?: string;
 	target?: string;
 	rel?: string;
 	download?: string | boolean;
+	styleType?: string;
 }
+
+
 
 function LinkButton({
 	className = '',
 	children,
-	...props
-}: { className?: string; children: ReactNode } & LinkButtonProps) {
-	const { href = '', target = '_blank', rel = 'noreferrer', download } = props;
-
+	href = '',
+	target = '_blank',
+	rel = 'noreferrer',
+	download,
+}: LinkButtonProps) {
 	return (
 		<a
 			className={className}

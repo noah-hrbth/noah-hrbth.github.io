@@ -1,16 +1,21 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import LinkButton from './LinkButton/LinkButton';
 import './Button.scss';
 
-interface ButtonProps {
-	[key: string]: any;
+interface ButtonProps
+	extends Omit<
+		React.ButtonHTMLAttributes<HTMLButtonElement>,
+		'type' | 'className'
+	> {
 	type?: string;
 	styleType?: string;
-	className?: Array<string> | string;
+	className?: string[] | string;
 	children?: ReactNode;
+	href?: string;
+	target?: string;
+	rel?: string;
+	download?: string | boolean;
 }
-
-// TODO: Add button styles (round for example)
 function Button({
 	type = '',
 	styleType = '',

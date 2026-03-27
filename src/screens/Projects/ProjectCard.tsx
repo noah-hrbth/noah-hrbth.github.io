@@ -1,17 +1,18 @@
-import { useCallback } from 'react';
+import { JSX, useCallback } from 'react';
 import { useSparkle } from '../../hooks/useSparkle';
 import { useTilt } from '../../hooks/useTilt';
-import { Project } from '../../constants';
+import { Project, DELAY, getDelay } from '../../constants';
 
 interface ProjectCardProps {
 	project: Project;
 	sparkleCount: number;
 	index: number;
+	skipEntrance: boolean;
 	onAnimationEnd: (e: React.AnimationEvent<HTMLElement>) => void;
 }
 
 /** A single project card with sparkle hover and 3D tilt effects. */
-const ProjectCard = ({ project, sparkleCount, index, onAnimationEnd }: ProjectCardProps): JSX.Element => {
+const ProjectCard = ({ project, sparkleCount, index, skipEntrance, onAnimationEnd }: ProjectCardProps): JSX.Element => {
 	const { sparklePositions, sparkleColor, isHovering, handleMouseEnter, handleMouseLeave: sparkleMouseLeave } =
 		useSparkle(sparkleCount);
 	const { handleMouseMove, handleMouseLeave: tiltMouseLeave } = useTilt();
@@ -28,7 +29,7 @@ const ProjectCard = ({ project, sparkleCount, index, onAnimationEnd }: ProjectCa
 		<li
 			id={project.id}
 			className='projects__item fade-slide-in--top'
-			style={{ animationDelay: `${1.6 + index * 0.3}s` }}
+			style={{ animationDelay: getDelay(DELAY.PROJECTS_CARD_BASE, skipEntrance, index * (skipEntrance ? 0.1 : 0.3)) }}
 			onMouseMove={handleMouseMove}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}

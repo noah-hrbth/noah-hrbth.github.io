@@ -126,7 +126,7 @@ const Background: React.FC = () => {
 	const interBubbleRef = useRef<HTMLDivElement>(null);
 	const blobRefs = useRef<(HTMLDivElement | null)[]>([]);
 	const wanderStates = useRef<(WanderState | null)[]>(
-		Array(BLOB_COUNT).fill(null),
+		new Array<WanderState | null>(BLOB_COUNT).fill(null),
 	);
 	const readyBlobs = useRef<Set<number>>(new Set());
 	const completedBlobCount = useRef(0);
@@ -156,13 +156,16 @@ const Background: React.FC = () => {
 	}, []);
 
 	/** Initialize a blob for wandering. Set skipPhaseUpdate when phase is already 'ready'. */
-	const initBlobWander = useCallback((index: number, skipPhaseUpdate = false) => {
-		wanderStates.current[index] = createWanderState(index, 0, 0);
-		readyBlobs.current.add(index);
-		if (!skipPhaseUpdate) {
-			advanceBlob(index, 'ready');
-		}
-	}, [advanceBlob]);
+	const initBlobWander = useCallback(
+		(index: number, skipPhaseUpdate = false) => {
+			wanderStates.current[index] = createWanderState(index, 0, 0);
+			readyBlobs.current.add(index);
+			if (!skipPhaseUpdate) {
+				advanceBlob(index, 'ready');
+			}
+		},
+		[advanceBlob],
+	);
 
 	/* ---- Skip-entrance: initialize all blobs as ready immediately ---- */
 	useEffect(() => {
@@ -203,9 +206,12 @@ const Background: React.FC = () => {
 		/* Stage 2: after all sparkles visible, stagger blob morphs. */
 		for (let i = 0; i < BLOB_COUNT; i++) {
 			timers.push(
-				window.setTimeout(() => {
-					advanceBlob(i, 'animating');
-				}, BLOB_MORPH_START_MS + i * BLOB_MORPH_STAGGER_MS),
+				window.setTimeout(
+					() => {
+						advanceBlob(i, 'animating');
+					},
+					BLOB_MORPH_START_MS + i * BLOB_MORPH_STAGGER_MS,
+				),
 			);
 		}
 
@@ -276,10 +282,10 @@ const Background: React.FC = () => {
 					const tdy = state.targetY - state.startY;
 					state.totalDist = Math.sqrt(tdx * tdx + tdy * tdy);
 				} else {
-					const progress = state.totalDist > 0
-						? 1 - dist / state.totalDist
-						: 0.5;
-					const easeFactor = EASE_FLOOR + (1 - EASE_FLOOR) * Math.sin(progress * Math.PI);
+					const progress =
+						state.totalDist > 0 ? 1 - dist / state.totalDist : 0.5;
+					const easeFactor =
+						EASE_FLOOR + (1 - EASE_FLOOR) * Math.sin(progress * Math.PI);
 
 					const effectiveSpeed = state.speed * easeFactor;
 					state.offsetX += (dx / dist) * effectiveSpeed;
@@ -324,7 +330,8 @@ const Background: React.FC = () => {
 	/** Get className for a blob based on its animation phase. */
 	const getBlobClassName = (index: number, phase: BlobPhase): string => {
 		const base = `g-blob g${index + 1}`;
-		if (phase === 'entrance' || phase === 'sparkle') return `${base} g--entrance`;
+		if (phase === 'entrance' || phase === 'sparkle')
+			return `${base} g--entrance`;
 		if (phase === 'animating') return `${base} g--animating`;
 		return base;
 	};

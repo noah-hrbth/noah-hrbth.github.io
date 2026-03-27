@@ -46,7 +46,7 @@
 	&__item {
 		position: relative;
 		grid-column: span 3;
-		border-radius: variables.$spacing_2;
+		border-radius: 20px;
 		background-color: variables.$color_background_1--blur;
 		padding: variables.$spacing_4;
 		cursor: default;

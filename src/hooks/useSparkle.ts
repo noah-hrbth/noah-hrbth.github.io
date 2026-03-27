@@ -1,7 +1,16 @@
-import { useState, useCallback, useRef } from 'react';
-import { useBlobColors, DEFAULT_BLOB_COLORS } from '../contexts/BlobColorsContext';
+import { useState, useCallback, useRef, useEffect } from 'react';
+import {
+	useBlobColors,
+	DEFAULT_BLOB_COLORS,
+} from '../contexts/BlobColorsContext';
 
-const BLOB_COLOR_KEYS = ['color1', 'color2', 'color3', 'color4', 'color5'] as const;
+const BLOB_COLOR_KEYS = [
+	'color1',
+	'color2',
+	'color3',
+	'color4',
+	'color5',
+] as const;
 const WHITE = '255, 255, 255';
 
 interface SparklePosition {
@@ -26,12 +35,17 @@ const generatePositions = (count: number): SparklePosition[] =>
 /** Manages sparkle hover state: positions, color selection from BlobColorsContext, and hover toggling. */
 export const useSparkle = (count: number): UseSparkleReturn => {
 	const [isHovering, setIsHovering] = useState(false);
-	const [sparklePositions, setSparklePositions] = useState(() => generatePositions(count));
+	const [sparklePositions, setSparklePositions] = useState(() =>
+		generatePositions(count),
+	);
 	const [sparkleColor, setSparkleColor] = useState(WHITE);
 
 	const { colors } = useBlobColors();
 	const colorsRef = useRef(colors);
-	colorsRef.current = colors;
+
+	useEffect(() => {
+		colorsRef.current = colors;
+	}, [colors]);
 
 	const handleMouseEnter = useCallback(() => {
 		const c = colorsRef.current;
@@ -49,5 +63,11 @@ export const useSparkle = (count: number): UseSparkleReturn => {
 		setIsHovering(false);
 	}, []);
 
-	return { sparklePositions, sparkleColor, isHovering, handleMouseEnter, handleMouseLeave };
+	return {
+		sparklePositions,
+		sparkleColor,
+		isHovering,
+		handleMouseEnter,
+		handleMouseLeave,
+	};
 };
