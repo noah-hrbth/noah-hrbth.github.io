@@ -66,9 +66,6 @@ function Header() {
 	const skipEntrance = hasEntrancePlayed();
 	const location = useLocation();
 
-	const test = 'test';
-	console.log(test);
-
 	const currentActivePage = useMemo(() => {
 		const path = location.pathname.slice(1);
 
