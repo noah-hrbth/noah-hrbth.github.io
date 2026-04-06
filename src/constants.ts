@@ -45,8 +45,7 @@ export const PROJECTS: Project[] = [
 	{
 		id: 'evkk',
 		label: 'EVKK Website',
-		description:
-			'The website of the EVKK, a hospital in Cologne',
+		description: 'The website of the EVKK, a hospital in Cologne',
 		link: 'https://www.evkk.de',
 		tags: ['Web Dev', 'Wordpress', 'PHP', 'React'],
 		gridSpan: 2,

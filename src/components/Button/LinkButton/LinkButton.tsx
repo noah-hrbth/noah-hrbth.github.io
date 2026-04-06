@@ -11,8 +11,6 @@ interface LinkButtonProps {
 	styleType?: string;
 }
 
-
-
 function LinkButton({
 	className = '',
 	children,

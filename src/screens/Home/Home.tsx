@@ -10,8 +10,13 @@ const Home = () => {
 	const [showTotoro, setShowTotoro] = useState(false);
 	const skipEntrance = hasEntrancePlayed();
 
-	const { sparklePositions, sparkleColor, isHovering, handleMouseEnter, handleMouseLeave } =
-		useSparkle(4);
+	const {
+		sparklePositions,
+		sparkleColor,
+		isHovering,
+		handleMouseEnter,
+		handleMouseLeave,
+	} = useSparkle(4);
 
 	const handleDownloadResume = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
@@ -35,11 +40,17 @@ const Home = () => {
 	return (
 		<main className={'home'}>
 			<h1 className={'home__title'}>
-				{["Hey!", "I'm", 'Noah'].map((word, i) => (
+				{['Hey!', "I'm", 'Noah'].map((word, i) => (
 					<span
 						key={word}
 						className='fade-slide-in--top'
-						style={{ animationDelay: getDelay(DELAY.HOME_TITLE_BASE, skipEntrance, i * 0.15) }}
+						style={{
+							animationDelay: getDelay(
+								DELAY.HOME_TITLE_BASE,
+								skipEntrance,
+								i * 0.15,
+							),
+						}}
 					>
 						{word}
 					</span>
@@ -50,7 +61,13 @@ const Home = () => {
 					<span
 						key={word}
 						className='fade-slide-in--bottom'
-						style={{ animationDelay: getDelay(DELAY.HOME_SUBTITLE_BASE, skipEntrance, i * 0.15) }}
+						style={{
+							animationDelay: getDelay(
+								DELAY.HOME_SUBTITLE_BASE,
+								skipEntrance,
+								i * 0.15,
+							),
+						}}
 					>
 						{word}
 					</span>
@@ -59,7 +76,9 @@ const Home = () => {
 			<div className='home__download-container'>
 				<Button
 					className='home__download-btn fade-slide-in--bottom'
-					style={{ animationDelay: getDelay(DELAY.HOME_DOWNLOAD, skipEntrance) }}
+					style={{
+						animationDelay: getDelay(DELAY.HOME_DOWNLOAD, skipEntrance),
+					}}
 					onClick={handleDownloadResume}
 					onMouseEnter={handleMouseEnter}
 					onMouseLeave={handleMouseLeave}
@@ -71,21 +90,19 @@ const Home = () => {
 						<span
 							key={i}
 							className={`sparkle${isHovering ? ' sparkle--active' : ''}`}
-							style={{
-								'--sparkle-index': i,
-								'--sparkle-color': sparkleColor,
-								top: pos.top,
-								left: pos.left,
-							} as React.CSSProperties}
+							style={
+								{
+									'--sparkle-index': i,
+									'--sparkle-color': sparkleColor,
+									top: pos.top,
+									left: pos.left,
+								} as React.CSSProperties
+							}
 						/>
 					))}
 				</Button>
 				{showTotoro && (
-					<img
-						src={totoroImage}
-						alt='Totoro'
-						className='home__totoro'
-					/>
+					<img src={totoroImage} alt='Totoro' className='home__totoro' />
 				)}
 			</div>
 		</main>

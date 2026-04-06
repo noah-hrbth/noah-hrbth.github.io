@@ -12,9 +12,20 @@ interface ProjectCardProps {
 }
 
 /** A single project card with sparkle hover and 3D tilt effects. */
-const ProjectCard = ({ project, sparkleCount, index, skipEntrance, onAnimationEnd }: ProjectCardProps): JSX.Element => {
-	const { sparklePositions, sparkleColor, isHovering, handleMouseEnter, handleMouseLeave: sparkleMouseLeave } =
-		useSparkle(sparkleCount);
+const ProjectCard = ({
+	project,
+	sparkleCount,
+	index,
+	skipEntrance,
+	onAnimationEnd,
+}: ProjectCardProps): JSX.Element => {
+	const {
+		sparklePositions,
+		sparkleColor,
+		isHovering,
+		handleMouseEnter,
+		handleMouseLeave: sparkleMouseLeave,
+	} = useSparkle(sparkleCount);
 	const { handleMouseMove, handleMouseLeave: tiltMouseLeave } = useTilt();
 
 	const handleMouseLeave = useCallback(
@@ -29,7 +40,13 @@ const ProjectCard = ({ project, sparkleCount, index, skipEntrance, onAnimationEn
 		<li
 			id={project.id}
 			className='projects__item fade-slide-in--top'
-			style={{ animationDelay: getDelay(DELAY.PROJECTS_CARD_BASE, skipEntrance, index * (skipEntrance ? 0.1 : 0.3)) }}
+			style={{
+				animationDelay: getDelay(
+					DELAY.PROJECTS_CARD_BASE,
+					skipEntrance,
+					index * (skipEntrance ? 0.1 : 0.3),
+				),
+			}}
 			onMouseMove={handleMouseMove}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
@@ -41,19 +58,30 @@ const ProjectCard = ({ project, sparkleCount, index, skipEntrance, onAnimationEn
 			<p className='projects__description'>{project.description}</p>
 			{project.link && (
 				<span className='projects__link-wrapper'>
-					[<a className='projects__link' href={project.link} target='_blank' rel='noreferrer'>{project.link}</a>]
+					[
+					<a
+						className='projects__link'
+						href={project.link}
+						target='_blank'
+						rel='noreferrer'
+					>
+						{project.link}
+					</a>
+					]
 				</span>
 			)}
 			{sparklePositions.map((pos, i) => (
 				<span
 					key={i}
 					className={`sparkle${isHovering ? ' sparkle--active' : ''}`}
-					style={{
-						'--sparkle-index': i,
-						'--sparkle-color': sparkleColor,
-						top: pos.top,
-						left: pos.left,
-					} as React.CSSProperties}
+					style={
+						{
+							'--sparkle-index': i,
+							'--sparkle-color': sparkleColor,
+							top: pos.top,
+							left: pos.left,
+						} as React.CSSProperties
+					}
 				/>
 			))}
 		</li>

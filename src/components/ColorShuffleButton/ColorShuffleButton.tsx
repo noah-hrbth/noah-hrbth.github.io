@@ -33,7 +33,10 @@ const ColorShuffleButton = () => {
 	};
 
 	return (
-		<div className='color-shuffle-button fade-in' style={{ animationDelay: getDelay(DELAY.COLOR_SHUFFLE, skipEntrance) }}>
+		<div
+			className='color-shuffle-button fade-in'
+			style={{ animationDelay: getDelay(DELAY.COLOR_SHUFFLE, skipEntrance) }}
+		>
 			<button
 				className='color-shuffle-button__btn'
 				onClick={handleClick}

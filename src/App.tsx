@@ -19,7 +19,10 @@ function App() {
 				<BlobColorsProvider>
 					<div className={'app'}>
 						<Background />
-						<div className='layout' style={{ animationDelay: getDelay(DELAY.LAYOUT, skipEntrance) }}>
+						<div
+							className='layout'
+							style={{ animationDelay: getDelay(DELAY.LAYOUT, skipEntrance) }}
+						>
 							<Header />
 
 							<Routes>
