@@ -40,7 +40,7 @@ const Projects = (): JSX.Element => {
 					animationDelay: getDelay(DELAY.PROJECTS_HEADLINE, skipEntrance),
 				}}
 			>
-				Projects
+				projects
 			</h1>
 
 			<ul

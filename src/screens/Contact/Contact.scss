@@ -1,0 +1,138 @@
+@use '../../styles/variables.scss' as variables;
+@use '../../styles/mixins.scss' as mixins;
+
+.contact {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: variables.$spacing_6;
+
+	&__socials {
+		display: flex;
+		gap: variables.$spacing_6;
+		align-items: center;
+	}
+
+	&__social-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		transition: transform variables.$transition;
+
+		&:hover {
+			transform: scale(1.15);
+		}
+
+		&:focus-visible {
+			padding: 0;
+
+			.icon,
+			.icon svg {
+				color: variables.$color_background_1 !important;
+			}
+		}
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: variables.$spacing_4;
+		width: 100%;
+		max-width: 480px;
+	}
+
+	&__field {
+		display: flex;
+		flex-direction: column;
+		gap: variables.$spacing_2;
+	}
+
+	&__label {
+		font-size: variables.$font_size_-1;
+		color: variables.$color_primary_2;
+		font-family: variables.$font_family;
+	}
+
+	&__form &__input,
+	&__form &__textarea {
+		appearance: none;
+		border: 0;
+		border-radius: 20px;
+		padding: variables.$spacing_3 variables.$spacing_4;
+		color: variables.$color_text_1;
+		font-size: variables.$font_size_-1;
+		font-family: variables.$font_family;
+		@include mixins.glassy;
+		transition: background-color variables.$transition;
+
+		&::placeholder {
+			color: variables.$color_primary_1;
+			font-family: variables.$font_family;
+		}
+
+		&:focus,
+		&:focus-visible {
+			outline: none;
+			background-color: variables.$color_background_1--blur;
+			color: variables.$color_text_1;
+			border-radius: 20px;
+			padding: variables.$spacing_3 variables.$spacing_4;
+		}
+
+		&:-webkit-autofill,
+		&:-webkit-autofill:hover,
+		&:-webkit-autofill:focus {
+			-webkit-text-fill-color: variables.$color_text_1;
+			-webkit-box-shadow: 0 0 0 1000px variables.$color_background_1 inset;
+			caret-color: variables.$color_text_1;
+		}
+	}
+
+	&__form &__textarea {
+		resize: none;
+		min-height: 120px;
+	}
+
+	&__submit {
+		position: relative;
+		overflow: hidden;
+		align-self: flex-start;
+		padding: variables.$spacing_3 variables.$spacing_6;
+		border: 0;
+		border-radius: 50px;
+		font-size: variables.$font_size_-1;
+		font-family: variables.$font_family;
+		cursor: pointer;
+		color: variables.$color_text_1;
+		@include mixins.glassy;
+		transition: opacity variables.$transition;
+
+		&:focus-visible {
+			border-radius: 50px;
+		}
+
+		&:disabled {
+			opacity: 0.6;
+			cursor: not-allowed;
+		}
+	}
+}
+
+@media (width <= variables.$viewport_medium) {
+	.contact {
+		align-items: start;
+
+		&__socials {
+			gap: variables.$spacing_6;
+		}
+
+		&__form {
+			max-width: 100%;
+		}
+
+		&__submit {
+			align-self: stretch;
+		}
+	}
+}

@@ -129,6 +129,11 @@ export const DELAY = {
 	HOME_DOWNLOAD: { skip: 1.0, entrance: 4.5 },
 	PROJECTS_HEADLINE: { skip: 0, entrance: 1.5 },
 	PROJECTS_CARD_BASE: { skip: 0.1, entrance: 1.6 },
+	CONTACT_HEADING: { skip: 0, entrance: 1.5 },
+	CONTACT_ICONS_BASE: { skip: 0.2, entrance: 1.8 },
+	CONTACT_EMAIL: { skip: 0.5, entrance: 2.2 },
+	CONTACT_MESSAGE: { skip: 0.8, entrance: 2.5 },
+	CONTACT_SUBMIT: { skip: 1.1, entrance: 2.8 },
 } as const;
 
 /** Get animation delay CSS string based on entrance state, with optional per-item offset. */

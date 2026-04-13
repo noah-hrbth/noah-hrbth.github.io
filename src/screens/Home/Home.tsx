@@ -85,7 +85,7 @@ const Home = () => {
 					onFocus={handleMouseEnter}
 					onBlur={handleMouseLeave}
 				>
-					Download Resume
+					download resume
 					{sparklePositions.map((pos, i) => (
 						<span
 							key={i}
