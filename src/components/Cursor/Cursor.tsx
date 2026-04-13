@@ -1,66 +1,91 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, type ReactElement } from 'react';
 import './Cursor.scss';
-import { useNavigation } from '../../contexts/NavigationContext';
 
-const Cursor = () => {
-	const mousePosition = useMousePosition();
-	const cursorRef = useRef<HTMLDivElement>(null);
-	const { locationKey } = useNavigation();
+const FINE_POINTER_QUERY = '(pointer: fine)';
+const HOVER_SELECTOR = 'a, button';
+const HOVER_CLASS = 'cursor--hover';
 
-	useEffect(() => {
-		setTimeout(() => {
-			const handleMouseEnter = () => {
-				cursorRef.current?.classList.add('cursor--hover');
-			};
-			const handleMouseLeave = () => {
-				cursorRef.current?.classList.remove('cursor--hover');
-			};
-
-			const allLinks = document.querySelectorAll('a');
-			const allButtons = document.querySelectorAll('button');
-
-			allLinks.forEach((link) => {
-				link.addEventListener('mouseenter', handleMouseEnter);
-				link.addEventListener('mouseleave', handleMouseLeave);
-			});
-			allButtons.forEach((button) => {
-				button.addEventListener('mouseenter', handleMouseEnter);
-				button.addEventListener('mouseleave', handleMouseLeave);
-			});
-		});
-	}, [locationKey]);
-
-	return (
-		<div
-			className={'cursor'}
-			style={{
-				top: (mousePosition.y ?? 0) - 10,
-				left: (mousePosition.x ?? 0) - 10,
-			}}
-			ref={cursorRef}
-		></div>
-	);
-};
-
-const useMousePosition = () => {
-	const [mousePosition, setMousePosition] = React.useState({
-		x: 0,
-		y: 0,
+const useIsFinePointer = (): boolean => {
+	const [isFinePointer, setIsFinePointer] = useState<boolean>(() => {
+		if (typeof window === 'undefined' || !window.matchMedia) return false;
+		return window.matchMedia(FINE_POINTER_QUERY).matches;
 	});
 
-	React.useEffect(() => {
-		const updateMousePosition = (ev: MouseEvent) => {
-			setMousePosition({ x: ev.clientX, y: ev.clientY });
+	useEffect(() => {
+		if (typeof window === 'undefined' || !window.matchMedia) return;
+
+		const mediaQuery = window.matchMedia(FINE_POINTER_QUERY);
+		const handleChange = (event: MediaQueryListEvent): void => {
+			setIsFinePointer(event.matches);
 		};
 
-		window.addEventListener('mousemove', updateMousePosition);
-
-		return () => {
-			window.removeEventListener('mousemove', updateMousePosition);
-		};
+		mediaQuery.addEventListener('change', handleChange);
+		return () => mediaQuery.removeEventListener('change', handleChange);
 	}, []);
 
-	return mousePosition;
+	return isFinePointer;
+};
+
+/** Custom circular cursor follower for desktop (fine-pointer) devices. */
+const Cursor = (): ReactElement | null => {
+	const isFinePointer = useIsFinePointer();
+	const cursorRef = useRef<HTMLDivElement>(null);
+	const targetPosRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+	const rafIdRef = useRef<number | null>(null);
+
+	useEffect(() => {
+		if (!isFinePointer) return;
+
+		const applyTransform = (): void => {
+			rafIdRef.current = null;
+			const el = cursorRef.current;
+			if (!el) return;
+			const { x, y } = targetPosRef.current;
+			el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+		};
+
+		const handleMouseMove = (event: MouseEvent): void => {
+			targetPosRef.current = { x: event.clientX, y: event.clientY };
+			if (rafIdRef.current === null) {
+				rafIdRef.current = requestAnimationFrame(applyTransform);
+			}
+		};
+
+		const isHoverTarget = (target: EventTarget | null): boolean => {
+			if (!(target instanceof Element)) return false;
+			return target.closest(HOVER_SELECTOR) !== null;
+		};
+
+		const handlePointerOver = (event: PointerEvent): void => {
+			if (isHoverTarget(event.target)) {
+				cursorRef.current?.classList.add(HOVER_CLASS);
+			}
+		};
+
+		const handlePointerOut = (event: PointerEvent): void => {
+			if (isHoverTarget(event.target)) {
+				cursorRef.current?.classList.remove(HOVER_CLASS);
+			}
+		};
+
+		window.addEventListener('mousemove', handleMouseMove);
+		document.addEventListener('pointerover', handlePointerOver);
+		document.addEventListener('pointerout', handlePointerOut);
+
+		return () => {
+			window.removeEventListener('mousemove', handleMouseMove);
+			document.removeEventListener('pointerover', handlePointerOver);
+			document.removeEventListener('pointerout', handlePointerOut);
+			if (rafIdRef.current !== null) {
+				cancelAnimationFrame(rafIdRef.current);
+				rafIdRef.current = null;
+			}
+		};
+	}, [isFinePointer]);
+
+	if (!isFinePointer) return null;
+
+	return <div className='cursor' ref={cursorRef} />;
 };
 
 export default Cursor;

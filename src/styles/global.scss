@@ -49,8 +49,16 @@ html,
 body {
 	background-color: variables.$color_background_1;
 	overflow: hidden;
+}
 
-	// TODO: custom cursor wieder aktivieren, cleane morph animation based darauf was man macht
+@media (pointer: fine) {
+	html,
+	body,
+	*,
+	*::before,
+	*::after {
+		cursor: none !important;
+	}
 }
 
 .app {

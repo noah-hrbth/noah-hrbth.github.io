@@ -7,6 +7,7 @@ import Projects from './screens/Projects/Projects';
 import Contact from './screens/Contact/Contact';
 import Header from './components/Header/Header';
 import Background from './components/Background/Background';
+import Cursor from './components/Cursor/Cursor';
 
 import './styles/index.scss';
 
@@ -19,6 +20,7 @@ function App() {
 				<BlobColorsProvider>
 					<div className={'app'}>
 						<Background />
+						<Cursor />
 						<div
 							className='layout'
 							style={{ animationDelay: getDelay(DELAY.LAYOUT, skipEntrance) }}

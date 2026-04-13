@@ -93,9 +93,27 @@
 		font-size: variables.$font_size_-2;
 		color: variables.$color_primary_1;
 		transition: color 0.2s ease-out;
+		word-break: break-all;
 
 		&:hover {
 			color: variables.$color_primary_2;
+		}
+	}
+}
+
+@media (width <= variables.$viewport_medium) {
+	.projects {
+		&__list {
+			grid-template-columns: 1fr;
+			max-width: none;
+		}
+
+		&__item,
+		&__item:is(#evkk),
+		&__item:is(#nextmuseum-sacred-pixels),
+		&__item:is(#hovercube-42),
+		&__item:is(#css-flex-grid-game) {
+			grid-column: auto;
 		}
 	}
 }

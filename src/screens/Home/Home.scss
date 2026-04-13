@@ -63,5 +63,34 @@
 @media (width <= variables.$viewport_medium) {
 	.home {
 		align-items: start;
+
+		&__title,
+		&__profession {
+			flex-wrap: wrap;
+		}
+
+		&__title {
+			font-size: variables.$font_size_4;
+		}
+
+		&__profession {
+			font-size: variables.$font_size_3;
+		}
+	}
+}
+
+@media (width <= variables.$viewport_small) {
+	.home {
+		&__title {
+			font-size: variables.$font_size_3;
+		}
+
+		&__profession {
+			font-size: variables.$font_size_2;
+		}
+
+		&__download-container {
+			margin-top: variables.$spacing_5;
+		}
 	}
 }
