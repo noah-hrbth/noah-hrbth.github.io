@@ -4,21 +4,34 @@
 	position: fixed;
 	top: 0;
 	left: 0;
+	box-sizing: border-box;
 	height: 25px;
 	width: 25px;
-	margin: -12.5px 0 0 -12.5px;
 	background-color: variables.$color_background_2;
-	border-radius: 100%;
+	border: 2px solid transparent;
+	border-radius: 50%;
 	z-index: 10;
 	pointer-events: none;
-	will-change: transform;
-	transition: background-color variables.$transition ease-in-out;
+	transform: translate(-50%, -50%);
+	will-change: translate, width, height, border-radius;
+	contain: layout style paint;
+	transition:
+		width 0.22s ease-out,
+		height 0.22s ease-out,
+		border-radius 0.22s ease-out,
+		background-color 0.22s ease-out,
+		border-color 0.22s ease-out;
 
 	@media (pointer: coarse) {
 		display: none;
 	}
 
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+
 	&--hover {
-		background-color: variables.$color_background_1;
+		background-color: transparent;
+		border-color: variables.$color_background_2;
 	}
 }
