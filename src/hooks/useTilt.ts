@@ -5,10 +5,16 @@ const PERSPECTIVE = 800;
 
 /** Returns mouse handlers that apply a subtle 3D tilt effect directly on the target element. */
 export const useTilt = (): {
+	handleMouseEnter: (e: React.MouseEvent<HTMLElement>) => void;
 	handleMouseMove: (e: React.MouseEvent<HTMLElement>) => void;
 	handleMouseLeave: (e: React.MouseEvent<HTMLElement>) => void;
 } => {
 	const rafId = useRef<number>(0);
+	const rectRef = useRef<DOMRect | null>(null);
+
+	const handleMouseEnter = useCallback((e: React.MouseEvent<HTMLElement>) => {
+		rectRef.current = e.currentTarget.getBoundingClientRect();
+	}, []);
 
 	const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
 		cancelAnimationFrame(rafId.current);
@@ -16,7 +22,10 @@ export const useTilt = (): {
 		const el = e.currentTarget;
 
 		rafId.current = requestAnimationFrame(() => {
-			const rect = el.getBoundingClientRect();
+			if (rectRef.current === null) {
+				rectRef.current = el.getBoundingClientRect();
+			}
+			const rect = rectRef.current;
 
 			const x = (e.clientX - rect.left) / rect.width;
 			const y = (e.clientY - rect.top) / rect.height;
@@ -30,9 +39,10 @@ export const useTilt = (): {
 
 	const handleMouseLeave = useCallback((e: React.MouseEvent<HTMLElement>) => {
 		cancelAnimationFrame(rafId.current);
+		rectRef.current = null;
 		const el = e.currentTarget;
 		el.style.transform = '';
 	}, []);
 
-	return { handleMouseMove, handleMouseLeave };
+	return { handleMouseEnter, handleMouseMove, handleMouseLeave };
 };

@@ -23,10 +23,22 @@ const ProjectCard = ({
 		sparklePositions,
 		sparkleColor,
 		isHovering,
-		handleMouseEnter,
+		handleMouseEnter: sparkleMouseEnter,
 		handleMouseLeave: sparkleMouseLeave,
 	} = useSparkle(sparkleCount);
-	const { handleMouseMove, handleMouseLeave: tiltMouseLeave } = useTilt();
+	const {
+		handleMouseEnter: tiltMouseEnter,
+		handleMouseMove,
+		handleMouseLeave: tiltMouseLeave,
+	} = useTilt();
+
+	const handleMouseEnter = useCallback(
+		(e: React.MouseEvent<HTMLElement>) => {
+			tiltMouseEnter(e);
+			sparkleMouseEnter();
+		},
+		[tiltMouseEnter, sparkleMouseEnter],
+	);
 
 	const handleMouseLeave = useCallback(
 		(e: React.MouseEvent<HTMLElement>) => {
@@ -50,7 +62,7 @@ const ProjectCard = ({
 			onMouseMove={handleMouseMove}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
-			onFocus={handleMouseEnter}
+			onFocus={sparkleMouseEnter}
 			onBlur={sparkleMouseLeave}
 			onAnimationEnd={onAnimationEnd}
 		>
