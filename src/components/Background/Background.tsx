@@ -122,6 +122,20 @@ const markEntrancePlayed = (): void => {
 	}
 };
 
+/**
+ * Detect devices that should render the cheap static variant instead of the
+ * GPU-heavy goo-filtered blob field. OR'd conditions erring toward more
+ * devices getting the cheap path; `?? 8` keeps unknown cores on the desktop
+ * path rather than downgrading.
+ */
+const isLowPowerDevice = (): boolean => {
+	if (typeof window === 'undefined') return false;
+	const coarse = window.matchMedia('(pointer: coarse)').matches;
+	const narrow = window.matchMedia('(max-width: 768px)').matches;
+	const fewCores = (navigator.hardwareConcurrency ?? 8) <= 2;
+	return coarse || narrow || fewCores;
+};
+
 const Background: React.FC = () => {
 	const interBubbleRef = useRef<HTMLDivElement>(null);
 	const blobRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -130,7 +144,7 @@ const Background: React.FC = () => {
 	);
 	const readyBlobs = useRef<Set<number>>(new Set());
 	const completedBlobCount = useRef(0);
-	const rafId = useRef<number>(0);
+	const rafId = useRef<number | null>(null);
 	const mouseTargetRef = useRef({ x: 0, y: 0 });
 	const mouseCurRef = useRef({ x: 0, y: 0 });
 	const showInteractiveRef = useRef(false);
@@ -145,6 +159,8 @@ const Background: React.FC = () => {
 	);
 
 	const [showInteractive, setShowInteractive] = useState(skipEntrance);
+
+	const [lowPower] = useState(() => isLowPowerDevice());
 
 	/** Advance a single blob to the given phase. */
 	const advanceBlob = useCallback((index: number, to: BlobPhase) => {
@@ -169,16 +185,18 @@ const Background: React.FC = () => {
 
 	/* ---- Skip-entrance: initialize all blobs as ready immediately ---- */
 	useEffect(() => {
+		if (lowPower) return;
 		if (!skipEntrance) return;
 
 		for (let i = 0; i < BLOB_COUNT; i++) {
 			initBlobWander(i, true);
 		}
 		setShowInteractive(true);
-	}, [skipEntrance, initBlobWander]);
+	}, [lowPower, skipEntrance, initBlobWander]);
 
 	/* ---- Entrance: sparkles first, then blob morphs ---- */
 	useEffect(() => {
+		if (lowPower) return;
 		if (skipEntrance) return;
 
 		const reducedMotion = window.matchMedia(
@@ -216,7 +234,7 @@ const Background: React.FC = () => {
 		}
 
 		return () => timers.forEach((t) => window.clearTimeout(t));
-	}, [skipEntrance, advanceBlob, initBlobWander]);
+	}, [lowPower, skipEntrance, advanceBlob, initBlobWander]);
 
 	/** When blobEnter completes, transition to ready and begin wandering. */
 	const handleAnimationEnd = useCallback(
@@ -243,16 +261,19 @@ const Background: React.FC = () => {
 
 	/* ---- Mouse listener (stores target coords, cheap) ---- */
 	useEffect(() => {
+		if (lowPower) return;
 		const handleMouseMove = (event: MouseEvent) => {
 			mouseTargetRef.current.x = event.clientX;
 			mouseTargetRef.current.y = event.clientY;
 		};
 		window.addEventListener('mousemove', handleMouseMove);
 		return () => window.removeEventListener('mousemove', handleMouseMove);
-	}, []);
+	}, [lowPower]);
 
 	/* ---- Single combined animation loop (blob wandering + mouse following) ---- */
 	useEffect(() => {
+		if (lowPower) return;
+
 		const animate = () => {
 			/* Blob wandering */
 			for (const i of readyBlobs.current) {
@@ -310,9 +331,30 @@ const Background: React.FC = () => {
 			rafId.current = requestAnimationFrame(animate);
 		};
 
-		rafId.current = requestAnimationFrame(animate);
-		return () => cancelAnimationFrame(rafId.current);
-	}, []);
+		const start = (): void => {
+			if (rafId.current === null) {
+				rafId.current = requestAnimationFrame(animate);
+			}
+		};
+		const stop = (): void => {
+			if (rafId.current !== null) {
+				cancelAnimationFrame(rafId.current);
+				rafId.current = null;
+			}
+		};
+		const handleVisibility = (): void => {
+			if (document.visibilityState === 'visible') start();
+			else stop();
+		};
+
+		document.addEventListener('visibilitychange', handleVisibility);
+		if (document.visibilityState === 'visible') start();
+
+		return () => {
+			document.removeEventListener('visibilitychange', handleVisibility);
+			stop();
+		};
+	}, [lowPower]);
 
 	/* ---- Sync blob colors to CSS custom properties ---- */
 	useEffect(() => {
@@ -344,6 +386,10 @@ const Background: React.FC = () => {
 		);
 		return { top: origin.top, left: origin.left };
 	};
+
+	if (lowPower) {
+		return <div className='gradient-bg gradient-bg--static' aria-hidden />;
+	}
 
 	return (
 		<div className='gradient-bg'>
