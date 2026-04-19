@@ -57,13 +57,29 @@
 			will-change: transform;
 			transition: transform 0.1s ease-out;
 		}
+		
+		&:is(#bachelor-thesis) {
+			grid-column: span 2;
+		}
+
+		&:is(#zed-claude-code) {
+			grid-column: span 4;
+		}
+		
+		&:is(#token-saver) {
+			grid-column: span 4;
+		}
+		
+		&:is(#kunstpalast) {
+			grid-column: span 3;
+		}
 
 		&:is(#evkk) {
 			grid-column: span 2;
 		}
 
 		&:is(#nextmuseum-sacred-pixels) {
-			grid-column: span 4;
+			grid-column: span 3;
 		}
 
 		&:is(#hovercube-42) {

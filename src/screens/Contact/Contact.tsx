@@ -3,6 +3,7 @@ import { DELAY, getDelay, hasEntrancePlayed } from '../../constants.ts';
 import Github from '../../assets/images/icons/github/Github.tsx';
 import Linkedin from '../../assets/images/icons/linkedin/Linkedin.tsx';
 import HuggingFace from '../../assets/images/icons/hugging-face/HuggingFace.tsx';
+import Heart from '../../assets/images/icons/heart/Heart.tsx';
 import { useSparkle } from '../../hooks/useSparkle';
 import './Contact.scss';
 
@@ -223,6 +224,14 @@ function Contact() {
 					))}
 				</button>
 			</form>
+			<p
+				className='contact__footer fade-in'
+				style={{
+					animationDelay: getDelay(DELAY.CONTACT_FOOTER, skipEntrance),
+				}}
+			>
+				Made with <Heart size={14} /> by me
+			</p>
 		</main>
 	);
 }

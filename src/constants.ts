@@ -35,12 +35,21 @@ export const PROJECTS: Project[] = [
 		tags: ['AI', 'RAG', 'Python'],
 	},
 	{
-		id: 'kunstpalast',
-		label: 'Kunstpalast Website & Webshop',
+		id: 'zed-claude-code',
+		label: 'Zed Claude Code',
 		description:
-			'The website and webshop for the Kunstpalast museum, the biggest art museum in Düsseldorf',
-		link: 'https://kunstpalast.de',
-		tags: ['Web Dev', 'Wordpress', 'PHP', 'React'],
+			"A Rust CLI (zcc - downloadable via homebrew) that bridges Zed and Claude Code, letting you set a keybinding in Zed to send the current selection to a Claude Code session running in Zed's integrated terminal",
+		link: 'https://github.com/noah-hrbth/zed-claude-code',
+		tags: ['Zed', 'Claude Code', 'Rust'],
+	},
+
+	{
+		id: 'token-saver',
+		label: 'LLM Token Saver',
+		description:
+			'A Rust CLI wrapper that strips unnecessary stuff from some command outputs to save tokens when used by agents',
+		link: 'https://github.com/noah-hrbth/token-saver',
+		tags: ['AI', 'CLI', 'Rust'],
 	},
 	{
 		id: 'evkk',
@@ -49,6 +58,14 @@ export const PROJECTS: Project[] = [
 		link: 'https://www.evkk.de',
 		tags: ['Web Dev', 'Wordpress', 'PHP', 'React'],
 		gridSpan: 2,
+	},
+	{
+		id: 'kunstpalast',
+		label: 'Kunstpalast Website & Webshop',
+		description:
+			'The website and webshop for the Kunstpalast museum, the biggest art museum in Düsseldorf',
+		link: 'https://kunstpalast.de',
+		tags: ['Web Dev', 'Wordpress', 'PHP', 'React'],
 	},
 	// {
 	// 	id: 'raspberry-pi-garden',
@@ -134,6 +151,7 @@ export const DELAY = {
 	CONTACT_EMAIL: { skip: 0.5, entrance: 2.2 },
 	CONTACT_MESSAGE: { skip: 0.8, entrance: 2.5 },
 	CONTACT_SUBMIT: { skip: 1.1, entrance: 2.8 },
+	CONTACT_FOOTER: { skip: 2.3, entrance: 5.0 },
 } as const;
 
 /** Get animation delay CSS string based on entrance state, with optional per-item offset. */
