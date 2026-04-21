@@ -3,12 +3,12 @@
 :root {
 	--color-bg1: #{variables.$color_background_1};
 	--color-bg2: var(--color-bg1);
-	--color1: 20, 20, 20; /* Nearly black */
-	--color2: 45, 45, 45; /* Very dark grey */
-	--color3: 80, 80, 80; /* Dark grey */
-	--color4: 120, 120, 120; /* Medium grey */
-	--color5: 160, 160, 160; /* Light grey */
-	--color-interactive: 200, 200, 200; /* Lighter grey */
+	--color1: 10, 10, 10; /* Nearly black */
+	--color2: 25, 25, 25; /* Very dark grey */
+	--color3: 50, 50, 50; /* Dark grey */
+	--color4: 80, 80, 80; /* Medium grey */
+	--color5: 110, 110, 110; /* Light grey */
+	--color-interactive: 140, 140, 140; /* Lighter grey */
 
 	--layout-margin: #{variables.$spacing_4};
 	--layout-radius: #{variables.$spacing_2};
@@ -107,8 +107,6 @@ body {
 	border-radius: 0;
 	overflow: hidden;
 	padding: variables.$spacing_4 variables.$spacing_8;
-	backdrop-filter: blur(16px) saturate(180%);
-	-webkit-backdrop-filter: blur(16px) saturate(180%);
 	background-color: variables.$color_background_1--blur;
 	transition: variables.$transition;
 	animation: layout-animation 1s ease forwards;

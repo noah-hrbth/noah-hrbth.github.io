@@ -230,7 +230,7 @@ function Contact() {
 					animationDelay: getDelay(DELAY.CONTACT_FOOTER, skipEntrance),
 				}}
 			>
-				Made with <Heart size={14} /> by me
+				made with <Heart size={14} /> by me
 			</p>
 		</main>
 	);

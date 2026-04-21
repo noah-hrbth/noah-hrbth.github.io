@@ -40,7 +40,7 @@ const Home = () => {
 	return (
 		<main className={'home'}>
 			<h1 className={'home__title'}>
-				{['Hey!', "I'm", 'Noah'].map((word, i) => (
+				{['hey!', "i'm", 'noah'].map((word, i) => (
 					<span
 						key={word}
 						className='fade-slide-in--top'
@@ -57,7 +57,7 @@ const Home = () => {
 				))}
 			</h1>
 			<h2 className={'home__profession'}>
-				{['Software', 'Developer'].map((word, i) => (
+				{['software', 'developer'].map((word, i) => (
 					<span
 						key={word}
 						className='fade-slide-in--bottom'

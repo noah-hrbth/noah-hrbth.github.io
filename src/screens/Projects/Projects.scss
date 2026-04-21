@@ -125,6 +125,10 @@
 		}
 
 		&__item,
+		&__item:is(#bachelor-thesis),
+		&__item:is(#zed-claude-code),
+		&__item:is(#token-saver),
+		&__item:is(#kunstpalast),
 		&__item:is(#evkk),
 		&__item:is(#nextmuseum-sacred-pixels),
 		&__item:is(#hovercube-42),

@@ -81,12 +81,12 @@ const interpolateBlobColors = (
 
 // Default colors matching global.scss :root values
 export const DEFAULT_BLOB_COLORS: BlobColors = {
-	color1: '20, 20, 20',
-	color2: '45, 45, 45',
-	color3: '80, 80, 80',
-	color4: '120, 120, 120',
-	color5: '160, 160, 160',
-	colorInteractive: '200, 200, 200',
+	color1: '10, 10, 10',
+	color2: '25, 25, 25',
+	color3: '50, 50, 50',
+	color4: '80, 80, 80',
+	color5: '110, 110, 110',
+	colorInteractive: '140, 140, 140',
 };
 
 const generateRandomColors = (): BlobColors => ({
