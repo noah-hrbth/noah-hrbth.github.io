@@ -125,7 +125,7 @@ function Contact() {
 			<form
 				ref={formRef}
 				className='contact__form'
-				onSubmit={handleSubmit}
+				onSubmit={(e) => void handleSubmit(e)}
 			>
 				<input
 					type='hidden'

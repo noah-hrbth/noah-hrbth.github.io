@@ -152,13 +152,21 @@ const Background: React.FC = () => {
 
 	const skipEntrance = hasEntrancePlayed();
 
+	const [reducedMotion] = useState(
+		() =>
+			typeof window !== 'undefined' &&
+			window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+	);
+
+	const initiallyReady = skipEntrance || reducedMotion;
+
 	const [blobPhases, setBlobPhases] = useState<BlobPhase[]>(() =>
 		Array.from({ length: BLOB_COUNT }, () =>
-			skipEntrance ? 'ready' : 'entrance',
+			initiallyReady ? 'ready' : 'entrance',
 		),
 	);
 
-	const [showInteractive, setShowInteractive] = useState(skipEntrance);
+	const [showInteractive, setShowInteractive] = useState(initiallyReady);
 
 	const [lowPower] = useState(() => isLowPowerDevice());
 
@@ -171,44 +179,21 @@ const Background: React.FC = () => {
 		});
 	}, []);
 
-	/** Initialize a blob for wandering. Set skipPhaseUpdate when phase is already 'ready'. */
-	const initBlobWander = useCallback(
-		(index: number, skipPhaseUpdate = false) => {
-			wanderStates.current[index] = createWanderState(index, 0, 0);
-			readyBlobs.current.add(index);
-			if (!skipPhaseUpdate) {
-				advanceBlob(index, 'ready');
-			}
-		},
-		[advanceBlob],
-	);
-
-	/* ---- Skip-entrance: initialize all blobs as ready immediately ---- */
+	/* ---- Ready-at-mount: initialize wander refs directly (state already ready) ---- */
 	useEffect(() => {
 		if (lowPower) return;
-		if (!skipEntrance) return;
+		if (!initiallyReady) return;
 
 		for (let i = 0; i < BLOB_COUNT; i++) {
-			initBlobWander(i, true);
+			wanderStates.current[i] = createWanderState(i, 0, 0);
+			readyBlobs.current.add(i);
 		}
-		setShowInteractive(true);
-	}, [lowPower, skipEntrance, initBlobWander]);
+	}, [lowPower, initiallyReady]);
 
 	/* ---- Entrance: sparkles first, then blob morphs ---- */
 	useEffect(() => {
 		if (lowPower) return;
-		if (skipEntrance) return;
-
-		const reducedMotion = window.matchMedia(
-			'(prefers-reduced-motion: reduce)',
-		).matches;
-		if (reducedMotion) {
-			for (let i = 0; i < BLOB_COUNT; i++) {
-				initBlobWander(i);
-			}
-			setShowInteractive(true);
-			return;
-		}
+		if (initiallyReady) return;
 
 		const timers: number[] = [];
 
@@ -234,7 +219,7 @@ const Background: React.FC = () => {
 		}
 
 		return () => timers.forEach((t) => window.clearTimeout(t));
-	}, [lowPower, skipEntrance, advanceBlob, initBlobWander]);
+	}, [lowPower, initiallyReady, advanceBlob]);
 
 	/** When blobEnter completes, transition to ready and begin wandering. */
 	const handleAnimationEnd = useCallback(
