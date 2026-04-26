@@ -4,16 +4,6 @@
 	--list-width: 800px;
 }
 
-@keyframes running-pixelman {
-	0% {
-		transform: translateX(0);
-	}
-
-	100% {
-		transform: translateX(calc(var(--list-width) / 2));
-	}
-}
-
 .projects {
 	overflow-y: auto;
 	border-radius: variables.$spacing_2;
@@ -23,16 +13,6 @@
 
 	h1 {
 		margin-bottom: variables.$spacing_4;
-	}
-
-	&__running-pixelman {
-		position: absolute;
-		height: 50px;
-		width: 50px;
-		top: -49px;
-		left: 50%;
-		transform: translateX(-50%);
-		animation: running-pixelman 1s linear infinite;
 	}
 
 	&__list {

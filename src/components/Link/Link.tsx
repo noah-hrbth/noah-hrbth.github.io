@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 
 interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 	isNavLink?: boolean;

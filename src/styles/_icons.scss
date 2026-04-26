@@ -6,8 +6,3 @@
 		color: variables.$color_text_1;
 	}
 }
-
-.icon--logo {
-	@include mixins.box(variables.$font_size_5);
-	object-fit: contain;
-}

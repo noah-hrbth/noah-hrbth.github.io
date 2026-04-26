@@ -14,11 +14,6 @@
 	background-color: variables.$color_background_1--blur;
 }
 
-@mixin glassy-with-border {
-	background-color: variables.$color_background_1--blur;
-	box-shadow: 0 0 10px 0 variables.$color_background_2--blur;
-}
-
 @function z-index($index_name) {
 	$index_list: (
 		'hidden',

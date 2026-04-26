@@ -38,7 +38,7 @@
 }
 
 :is(a, span, p, strong, input):focus-visible,
-textarea:not(.terminal-input__input):focus-visible {
+textarea:focus-visible {
 	background-color: variables.$color_background_2;
 	color: variables.$color_background_1;
 	padding: 2px;

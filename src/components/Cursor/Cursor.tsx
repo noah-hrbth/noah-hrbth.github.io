@@ -3,7 +3,7 @@ import './Cursor.scss';
 
 const FINE_POINTER_QUERY = '(pointer: fine)';
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
-const HOVER_SELECTOR = 'a, button';
+const HOVER_SELECTOR = 'a, button, input, textarea';
 const HOVER_CLASS = 'cursor--hover';
 const BASE_SIZE = 25;
 const SNAP_PADDING = 6;
@@ -57,6 +57,7 @@ const Cursor = (): ReactElement | null => {
 	const wasSnappedRef = useRef<boolean>(false);
 	const isAnimatingRef = useRef<boolean>(false);
 	const rafIdRef = useRef<number | null>(null);
+	const suppressSnapRef = useRef<boolean>(false);
 
 	useEffect(() => {
 		if (!isFinePointer) return;
@@ -139,6 +140,7 @@ const Cursor = (): ReactElement | null => {
 		};
 
 		const handlePointerMove = (event: PointerEvent): void => {
+			suppressSnapRef.current = false;
 			targetPosRef.current = { x: event.clientX, y: event.clientY };
 			const hovered = hoveredElementRef.current;
 			if (hovered) {
@@ -159,6 +161,7 @@ const Cursor = (): ReactElement | null => {
 		};
 
 		const handlePointerOver = (event: PointerEvent): void => {
+			if (suppressSnapRef.current) return;
 			const match = findHoverTarget(event.target);
 			if (!match) return;
 			if (hoveredElementRef.current === match) return;
@@ -197,6 +200,34 @@ const Cursor = (): ReactElement | null => {
 			if (hoveredElementRef.current) scheduleFrame();
 		};
 
+		// When a modal opens the backdrop intercepts all pointer events, so the
+		// button never receives pointerout — unsnap the cursor immediately. On
+		// close, suppress re-snapping until the cursor actually moves, because
+		// Chrome fires a synthetic pointerover on the newly-unmasked element.
+		const handleModalChange = (): void => {
+			const el = cursorRef.current;
+			if (!el) return;
+			if (document.body.classList.contains('modal-open')) {
+				if (!hoveredElementRef.current) return;
+				hoveredElementRef.current = null;
+				el.classList.remove(HOVER_CLASS);
+				if (wasSnappedRef.current) {
+					resetSnapStyles(el);
+					wasSnappedRef.current = false;
+				}
+				isAnimatingRef.current = true;
+				scheduleFrame();
+			} else {
+				suppressSnapRef.current = true;
+			}
+		};
+
+		const modalObserver = new MutationObserver(handleModalChange);
+		modalObserver.observe(document.body, {
+			attributes: true,
+			attributeFilter: ['class'],
+		});
+
 		window.addEventListener('pointermove', handlePointerMove, {
 			passive: true,
 		});
@@ -210,6 +241,7 @@ const Cursor = (): ReactElement | null => {
 		window.addEventListener('resize', handleViewportChange);
 
 		return () => {
+			modalObserver.disconnect();
 			window.removeEventListener('pointermove', handlePointerMove);
 			document.removeEventListener('pointerover', handlePointerOver);
 			document.removeEventListener('pointerout', handlePointerOut);

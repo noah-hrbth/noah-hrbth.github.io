@@ -35,3 +35,13 @@
 		border-color: variables.$color_background_2;
 	}
 }
+
+body.modal-open .cursor {
+	background-color: variables.$color_background_1;
+	border-color: transparent;
+
+	&.cursor--hover {
+		background-color: transparent;
+		border-color: variables.$color_background_1;
+	}
+}

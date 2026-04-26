@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import './Home.scss';
 import Button from '../../components/Button/Button';
+import ResumeModal from '../../components/ResumeModal/ResumeModal';
 import { DELAY, getDelay, hasEntrancePlayed } from '../../constants';
 import resumePdf from '../../assets/documents/NoahHarborthResume.pdf';
-import totoroImage from '../../assets/images/totoro.png';
 import { useSparkle } from '../../hooks/useSparkle';
 
 const Home = () => {
-	const [showTotoro, setShowTotoro] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 	const skipEntrance = hasEntrancePlayed();
 
 	const {
@@ -18,23 +18,9 @@ const Home = () => {
 		handleMouseLeave,
 	} = useSparkle(4);
 
-	const handleDownloadResume = (e: React.MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-
-		setShowTotoro(true);
-
-		setTimeout(() => {
-			const link = document.createElement('a');
-			link.href = resumePdf;
-			link.download = 'NoahHarborthResume.pdf';
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
-		}, 300);
-
-		setTimeout(() => {
-			setShowTotoro(false);
-		}, 3000);
+	const handleOpenResume = () => {
+		handleMouseLeave();
+		setIsModalOpen(true);
 	};
 
 	return (
@@ -79,13 +65,17 @@ const Home = () => {
 					style={{
 						animationDelay: getDelay(DELAY.HOME_DOWNLOAD, skipEntrance),
 					}}
-					onClick={handleDownloadResume}
+					onClick={handleOpenResume}
 					onMouseEnter={handleMouseEnter}
 					onMouseLeave={handleMouseLeave}
-					onFocus={handleMouseEnter}
+					onFocus={(e) => {
+						const from = e.relatedTarget;
+						if (from instanceof Element && from.closest('.resume-modal__content')) return;
+						handleMouseEnter();
+					}}
 					onBlur={handleMouseLeave}
 				>
-					download resume
+					open resume
 					{sparklePositions.map((pos, i) => (
 						<span
 							key={i}
@@ -101,10 +91,13 @@ const Home = () => {
 						/>
 					))}
 				</Button>
-				{showTotoro && (
-					<img src={totoroImage} alt='Totoro' className='home__totoro' />
-				)}
 			</div>
+			<ResumeModal
+				isOpen={isModalOpen}
+				onClose={() => setIsModalOpen(false)}
+				src='/NoahHarborthResume.html'
+				downloadSrc={resumePdf}
+			/>
 		</main>
 	);
 };

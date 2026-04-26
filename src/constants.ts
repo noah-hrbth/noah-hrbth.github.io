@@ -1,10 +1,3 @@
-export const VIEWPORT: { [key: string]: number } = {
-	SMALL: 576,
-	MEDIUM: 768,
-	LARGE: 992,
-	XLARGE: 1200,
-};
-
 export const APP_ROUTES = [
 	{ route: '/', name: 'home' },
 	{ route: '/projects', name: 'projects' },
@@ -67,14 +60,6 @@ export const PROJECTS: Project[] = [
 		link: 'https://kunstpalast.de',
 		tags: ['Web Dev', 'Wordpress', 'PHP', 'React'],
 	},
-	// {
-	// 	id: 'raspberry-pi-garden',
-	// 	label: 'Raspberry Pi Garden',
-	// 	description:
-	// 		'A Raspberry Pi project to monitor my plant with an infrared camera and to keep them alive',
-	// 	badge: 'WIP',
-	// 	tags: ['IoT', 'Computer Vision', 'Python'],
-	// },
 	{
 		id: 'nextmuseum-sacred-pixels',
 		label: 'NextMuseum: Sacred Pixels',
@@ -160,5 +145,3 @@ export const getDelay = (
 	skipEntrance: boolean,
 	offsetS = 0,
 ): string => `${(skipEntrance ? delays.skip : delays.entrance) + offsetS}s`;
-
-export default VIEWPORT;

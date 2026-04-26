@@ -1,58 +1,35 @@
-import React, { ReactNode } from 'react';
-import LinkButton from './LinkButton/LinkButton';
+import React, { ReactNode, forwardRef } from 'react';
 import './Button.scss';
 
 interface ButtonProps
-	extends Omit<
-		React.ButtonHTMLAttributes<HTMLButtonElement>,
-		'type' | 'className'
-	> {
-	type?: string;
+	extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'className'> {
 	styleType?: string;
 	className?: string[] | string;
 	children?: ReactNode;
-	href?: string;
-	target?: string;
-	rel?: string;
-	download?: string | boolean;
 }
-function Button({
-	type = '',
-	styleType = '',
-	className = '',
-	children,
-	...props
-}: ButtonProps) {
-	const classNameArrayAsString = Array.isArray(className)
-		? className.join(' ')
-		: className;
-	const allClasses = {
-		button: true,
-		[`button--${type}`]: type,
-		[`button--${styleType}`]: styleType,
-		[`${classNameArrayAsString}`]: classNameArrayAsString,
-	};
-	const formattedClassName = Object.keys(allClasses)
-		.filter((key) => allClasses[key])
-		.join(' ');
 
-	if (type === 'link' || type === 'link-inline') {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+	({ styleType = '', className = '', children, ...props }, ref) => {
+		const classNameArrayAsString = Array.isArray(className)
+			? className.join(' ')
+			: className;
+		const allClasses = {
+			button: true,
+			[`button--${styleType}`]: styleType,
+			[`${classNameArrayAsString}`]: classNameArrayAsString,
+		};
+		const formattedClassName = Object.keys(allClasses)
+			.filter((key) => allClasses[key])
+			.join(' ');
+
 		return (
-			<LinkButton
-				className={formattedClassName}
-				styleType={styleType}
-				{...props}
-			>
+			<button ref={ref} className={formattedClassName} {...props}>
 				{children}
-			</LinkButton>
+			</button>
 		);
-	}
+	},
+);
 
-	return (
-		<button className={formattedClassName} {...props}>
-			{children}
-		</button>
-	);
-}
+Button.displayName = 'Button';
 
 export default Button;
