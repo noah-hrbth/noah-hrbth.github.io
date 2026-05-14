@@ -7,24 +7,36 @@ import {
 	getDelay,
 	hasEntrancePlayed,
 } from '../../constants';
-import { JSX, useCallback, useEffect, useRef, useState } from 'react';
+import {
+	JSX,
+	useCallback,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from 'react';
 import useWindowSize from '../../hooks/useWindowSize';
+import { useInView } from '../../hooks/useInView';
 import ProjectCard from './ProjectCard';
 
 const Projects = (): JSX.Element => {
 	const skipEntrance = hasEntrancePlayed();
+	const projectsRef = useRef<HTMLElement>(null);
 	const listRef = useRef<HTMLUListElement>(null);
+	const headlineRef = useRef<HTMLHeadingElement>(null);
 	const { width } = useWindowSize();
 	const [listWidth, setListWidth] = useState(800);
+	const [scrollRoot, setScrollRoot] = useState<Element | null>(null);
+	const [headlineEntered, setHeadlineEntered] = useState(false);
 
-	const handleAnimationEnd = useCallback(
-		(e: React.AnimationEvent<HTMLElement>) => {
-			const el = e.currentTarget;
-			el.style.animation = 'none';
-			el.style.opacity = '1';
-		},
-		[],
-	);
+	const headlineInView = useInView(headlineRef, {
+		root: scrollRoot,
+		enabled: scrollRoot !== null,
+	});
+
+	useLayoutEffect(() => {
+		setScrollRoot(projectsRef.current);
+	}, []);
 
 	useEffect(() => {
 		if (listRef.current) {
@@ -32,13 +44,27 @@ const Projects = (): JSX.Element => {
 		}
 	}, [listRef, width]);
 
+	const handleHeadlineAnimationEnd = useCallback(() => {
+		if (!headlineEntered) setHeadlineEntered(true);
+	}, [headlineEntered]);
+
+	// null (pre-observation) is treated as "in view" so the entrance plays on first paint
+	const headlineAnimationClass =
+		!headlineEntered || headlineInView !== false
+			? 'fade-slide-in--left'
+			: 'fade-slide-out--left';
+
+	const headlineAnimationDelay = headlineEntered
+		? '0s'
+		: getDelay(DELAY.PROJECTS_HEADLINE, skipEntrance);
+
 	return (
-		<main className={'projects'}>
+		<main ref={projectsRef} className={'projects'}>
 			<h1
-				className='fade-slide-in--top'
-				style={{
-					animationDelay: getDelay(DELAY.PROJECTS_HEADLINE, skipEntrance),
-				}}
+				ref={headlineRef}
+				className={headlineAnimationClass}
+				style={{ animationDelay: headlineAnimationDelay }}
+				onAnimationEnd={handleHeadlineAnimationEnd}
 			>
 				projects
 			</h1>
@@ -57,7 +83,7 @@ const Projects = (): JSX.Element => {
 						}
 						index={index}
 						skipEntrance={skipEntrance}
-						onAnimationEnd={handleAnimationEnd}
+						scrollRoot={scrollRoot}
 					/>
 				))}
 			</ul>

@@ -28,30 +28,18 @@
 		gap: variables.$spacing_4;
 	}
 
-	&__item {
+	&__cell {
 		position: relative;
 		display: flex;
-		flex-direction: column;
 		grid-column: span 3;
-		border-radius: 20px;
-		background-color: variables.$color_background_1--blur;
-		padding: variables.$spacing_4;
-		cursor: default;
-		transform-style: preserve-3d;
-		transition: transform 0.4s ease-out;
-
-		&:hover {
-			will-change: transform;
-			transition: transform 0.1s ease-out;
-		}
 
 		&:is(#agentsync) {
 			grid-column: span 3;
-		}				
+		}
 
 		&:is(#zed-claude-code) {
 			grid-column: span 4;
-		}				
+		}
 
 		&:is(#bachelor-thesis) {
 			grid-column: span 2;
@@ -60,7 +48,7 @@
 		&:is(#token-saver) {
 			grid-column: span 3;
 		}
-		
+
 		&:is(#kunstpalast) {
 			grid-column: span 2;
 		}
@@ -79,6 +67,24 @@
 
 		&:is(#css-flex-grid-game) {
 			grid-column: 5 / 7;
+		}
+	}
+
+	&__item {
+		position: relative;
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		border-radius: 20px;
+		background-color: variables.$color_background_1--blur;
+		padding: variables.$spacing_4;
+		cursor: default;
+		transform-style: preserve-3d;
+		transition: transform 0.4s ease-out;
+
+		&:hover {
+			will-change: transform;
+			transition: transform 0.1s ease-out;
 		}
 	}
 
@@ -119,8 +125,7 @@
 			max-width: none;
 		}
 
-		&__item,
-		{
+		&__cell {
 			grid-column: auto !important;
 		}
 	}
