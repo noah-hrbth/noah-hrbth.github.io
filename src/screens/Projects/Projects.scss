@@ -5,6 +5,10 @@
 }
 
 .projects {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: safe center;
 	overflow-y: auto;
 	border-radius: variables.$spacing_2;
 	padding: variables.$spacing_4;
@@ -19,12 +23,15 @@
 		display: grid;
 		position: relative;
 		grid-template-columns: repeat(6, 1fr);
+		width: 100%;
 		max-width: 800px;
 		gap: variables.$spacing_4;
 	}
 
 	&__item {
 		position: relative;
+		display: flex;
+		flex-direction: column;
 		grid-column: span 3;
 		border-radius: 20px;
 		background-color: variables.$color_background_1--blur;
@@ -37,21 +44,25 @@
 			will-change: transform;
 			transition: transform 0.1s ease-out;
 		}
-		
+
+		&:is(#agentsync) {
+			grid-column: span 3;
+		}				
+
+		&:is(#zed-claude-code) {
+			grid-column: span 4;
+		}				
+
 		&:is(#bachelor-thesis) {
 			grid-column: span 2;
 		}
 
-		&:is(#zed-claude-code) {
-			grid-column: span 4;
-		}
-		
 		&:is(#token-saver) {
-			grid-column: span 4;
+			grid-column: span 3;
 		}
 		
 		&:is(#kunstpalast) {
-			grid-column: span 3;
+			grid-column: span 2;
 		}
 
 		&:is(#evkk) {
@@ -59,11 +70,11 @@
 		}
 
 		&:is(#nextmuseum-sacred-pixels) {
-			grid-column: span 3;
+			grid-column: span 4;
 		}
 
 		&:is(#hovercube-42) {
-			grid-column: 1 / 5;
+			grid-column: span 4;
 		}
 
 		&:is(#css-flex-grid-game) {
@@ -79,7 +90,8 @@
 
 	&__link-wrapper {
 		display: inline-block;
-		margin-top: variables.$spacing_2;
+		margin-top: auto;
+		padding-top: variables.$spacing_2;
 		font-size: variables.$font_size_-2;
 		color: variables.$color_primary_1;
 	}
@@ -89,7 +101,7 @@
 		font-size: variables.$font_size_-2;
 		color: variables.$color_primary_1;
 		transition: color 0.2s ease-out;
-		word-break: break-all;
+		word-break: break-word;
 
 		&:hover {
 			color: variables.$color_primary_2;
@@ -99,21 +111,17 @@
 
 @media (width <= variables.$viewport_medium) {
 	.projects {
+		align-items: start;
+		justify-content: safe start;
+
 		&__list {
 			grid-template-columns: 1fr;
 			max-width: none;
 		}
 
 		&__item,
-		&__item:is(#bachelor-thesis),
-		&__item:is(#zed-claude-code),
-		&__item:is(#token-saver),
-		&__item:is(#kunstpalast),
-		&__item:is(#evkk),
-		&__item:is(#nextmuseum-sacred-pixels),
-		&__item:is(#hovercube-42),
-		&__item:is(#css-flex-grid-game) {
-			grid-column: auto;
+		{
+			grid-column: auto !important;
 		}
 	}
 }

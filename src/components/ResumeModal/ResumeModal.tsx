@@ -158,6 +158,13 @@ const ResumeModal = ({ isOpen, onClose, src, downloadSrc }: ResumeModalProps) =>
 		}
 	};
 
+	// keep focus on close button so trigger's onFocus guard sees relatedTarget inside modal
+	const handleBackdropMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+		if (event.currentTarget === event.target) {
+			event.preventDefault();
+		}
+	};
+
 	const handleDownload = () => {
 		downloadFile(downloadSrc, 'NoahHarborthResume.pdf');
 	};
@@ -167,6 +174,7 @@ const ResumeModal = ({ isOpen, onClose, src, downloadSrc }: ResumeModalProps) =>
 	return (
 		<div
 			className={`resume-modal__backdrop ${isOpen ? 'fade-in' : 'fade-out'}`}
+			onMouseDown={handleBackdropMouseDown}
 			onClick={handleBackdropClick}
 		>
 			<div
