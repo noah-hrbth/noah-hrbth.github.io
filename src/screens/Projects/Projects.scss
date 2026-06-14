@@ -34,7 +34,7 @@
 		grid-column: span 3;
 
 		&:is(#agentsync) {
-			grid-column: span 3;
+			grid-column: span 4;
 		}
 
 		&:is(#zed-claude-code) {
@@ -42,7 +42,7 @@
 		}
 
 		&:is(#bachelor-thesis) {
-			grid-column: span 2;
+			grid-column: span 3;
 		}
 
 		&:is(#token-saver) {
