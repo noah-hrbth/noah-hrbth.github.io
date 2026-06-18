@@ -3,7 +3,7 @@ import './Home.scss';
 import Button from '../../components/Button/Button';
 import ResumeModal from '../../components/ResumeModal/ResumeModal';
 import { DELAY, getDelay, hasEntrancePlayed } from '../../constants';
-import resumePdf from '../../assets/documents/NoahHarborthResume.pdf';
+import resumePdf from '../../assets/documents/Resume.pdf';
 import { useSparkle } from '../../hooks/useSparkle';
 
 const Home = () => {
@@ -70,7 +70,11 @@ const Home = () => {
 					onMouseLeave={handleMouseLeave}
 					onFocus={(e) => {
 						const from = e.relatedTarget;
-						if (from instanceof Element && from.closest('.resume-modal__content')) return;
+						if (
+							from instanceof Element &&
+							from.closest('.resume-modal__content')
+						)
+							return;
 						handleMouseEnter();
 					}}
 					onBlur={handleMouseLeave}
@@ -95,7 +99,7 @@ const Home = () => {
 			<ResumeModal
 				isOpen={isModalOpen}
 				onClose={() => setIsModalOpen(false)}
-				src='/NoahHarborthResume.html'
+				src='/Resume.html'
 				downloadSrc={resumePdf}
 			/>
 		</main>
