@@ -16,24 +16,24 @@
 		flex-shrink: 0;
 		width: 36px;
 		height: 36px;
-		transform-origin: 50% 60%;
-		transition: transform variables.$transition-fast ease-in-out;
+
+		// The tilt lives on the inner image, not this element, because this
+		// element carries the `.fade-in` entrance animation (with a delay).
+		// Overriding its `animation` would re-trigger that entrance and make
+		// the logo briefly disappear after a tap.
 
 		// Hover tilt only on devices that truly support hover, so the rotation
 		// doesn't stick after a tap on touch screens.
 		@media (hover: hover) {
-			&:hover {
+			&:hover .header__logo-img {
 				transform: rotate(20deg);
 			}
 		}
 
 		// On touch devices, tapping plays the tilt once and returns to default.
-		// !important beats the sibling `.fade-in` entrance animation, which
-		// otherwise occupies the `animation` property on this element.
 		@media (hover: none) {
-			&--tapped {
-				animation: header-logo-tap variables.$transition ease-in-out
-					!important;
+			&--tapped .header__logo-img {
+				animation: header-logo-tap variables.$transition ease-in-out;
 			}
 		}
 
@@ -55,6 +55,8 @@
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
+		transform-origin: 50% 60%;
+		transition: transform variables.$transition_fast ease-in-out;
 	}
 
 	&__active-page {
