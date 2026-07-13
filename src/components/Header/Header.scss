@@ -19,8 +19,22 @@
 		transform-origin: 50% 60%;
 		transition: transform variables.$transition-fast ease-in-out;
 
-		&:hover {
-			transform: rotate(20deg);
+		// Hover tilt only on devices that truly support hover, so the rotation
+		// doesn't stick after a tap on touch screens.
+		@media (hover: hover) {
+			&:hover {
+				transform: rotate(20deg);
+			}
+		}
+
+		// On touch devices, tapping plays the tilt once and returns to default.
+		// !important beats the sibling `.fade-in` entrance animation, which
+		// otherwise occupies the `animation` property on this element.
+		@media (hover: none) {
+			&--tapped {
+				animation: header-logo-tap variables.$transition ease-in-out
+					!important;
+			}
 		}
 
 		a {
@@ -112,5 +126,17 @@
 				font-size: variables.$font_size_-1;
 			}
 		}
+	}
+}
+
+@keyframes header-logo-tap {
+	0% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(20deg);
+	}
+	100% {
+		transform: rotate(0deg);
 	}
 }
