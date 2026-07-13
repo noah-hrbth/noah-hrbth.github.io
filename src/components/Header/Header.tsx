@@ -63,6 +63,7 @@ function Header() {
 	const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false);
 	const [delayedIsDesktopMenuOpen, setDelayedIsDesktopMenuOpen] =
 		useState(false);
+	const [isLogoTapped, setIsLogoTapped] = useState(false);
 	const skipEntrance = hasEntrancePlayed();
 	const location = useLocation();
 
@@ -141,9 +142,15 @@ function Header() {
 	return (
 		<header className='header'>
 			<div
-				className='header__logo fade-in'
+				className={`header__logo fade-in ${isLogoTapped ? 'header__logo--tapped' : ''}`}
 				style={{ animationDelay: getDelay(DELAY.HEADER_LOGO, skipEntrance) }}
 				role='button'
+				onPointerDown={() => setIsLogoTapped(true)}
+				onAnimationEnd={(event) => {
+					if (event.animationName.includes('header-logo-tap')) {
+						setIsLogoTapped(false);
+					}
+				}}
 			>
 				<Link isNavLink to='/'>
 					<img
