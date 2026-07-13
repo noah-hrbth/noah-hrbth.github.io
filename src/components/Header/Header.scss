@@ -13,15 +13,20 @@
 	}
 
 	&__logo {
-		place-self: center;
-		width: 34px;
-		height: 34px;
-		transform-origin: 50% 70%;
-		margin-bottom: 10px;
+		flex-shrink: 0;
+		width: 42px;
+		height: 42px;
+		transform-origin: 50% 60%;
 		transition: transform variables.$transition-fast ease-in-out;
 
 		&:hover {
 			transform: rotate(20deg);
+		}
+
+		a {
+			display: block;
+			width: 100%;
+			height: 100%;
 		}
 
 		a:focus-visible {
@@ -30,6 +35,12 @@
 			outline-offset: 2px;
 			border-radius: 4px;
 		}
+	}
+
+	&__logo-img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
 	}
 
 	&__active-page {
