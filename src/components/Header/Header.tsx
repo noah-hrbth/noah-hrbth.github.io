@@ -149,7 +149,7 @@ function Header() {
 					<img
 						className='header__logo-img'
 						src={NoahsLogo}
-						alt='Line-art illustration of Noah'
+						alt='Line-art illustration of me'
 					/>
 				</Link>
 			</div>
